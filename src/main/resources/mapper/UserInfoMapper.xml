@@ -10,7 +10,7 @@
     </select>
 
     <insert id="insert" parameterType="com.platform.dao.domain.UserInfo">
-        insert into user_info(user_id,user_name,password,role) values(#{user_id},#{user_name},#{password},#{role})
+        insert into user_info(user_id,user_name,password) values(#{user_id},#{user_name},#{password})
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.UserInfo">

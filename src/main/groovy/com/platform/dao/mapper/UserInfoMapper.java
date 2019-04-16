@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface UserInfoMapper {
-    public int insert(UserInfo userInfo) throws DataAccessException;;
+    public int insert(UserInfo userInfo);
 
     public int update(UserInfo userInfo);
 

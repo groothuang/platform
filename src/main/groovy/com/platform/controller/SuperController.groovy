@@ -1,6 +1,6 @@
 package com.platform.controller
 
-
+import com.google.gson.Gson
 import com.platform.dao.domain.User
 import com.platform.dao.domain.UserInfo
 import com.platform.service.UserInfoService
@@ -21,9 +21,9 @@ class SuperController {
     public String index() {
         return "super/index";
     }
-    @RequestMapping(value = "/users_add")
-    public String users_add() {
-        return "super/users_add";
+    @RequestMapping(value = "/userForm")
+    public String userForm() {
+        return "super/userForm";
     }
     @RequestMapping(value = "/users")
     public String users() {
@@ -69,7 +69,12 @@ class SuperController {
     @RequestMapping("/addUser")
     @ResponseBody
     String addUser(UserInfo user){
-        println(user.user_id)
         return userInfoService.insert(user)
+    }
+
+    @RequestMapping("/findByUserName")
+    @ResponseBody
+    UserInfo findByUserName(UserInfo user){
+        return userInfoService.findByUserName(user.user_name)
     }
 }

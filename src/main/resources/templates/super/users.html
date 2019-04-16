@@ -51,7 +51,7 @@
     </div>
 </div>
 <script src="/layui/layui.js" charset="utf-8"></script>
-<script src="/ui/js/jquery.js" charset="utf-8"></script>
+<script src="/ui/js/jquery-3.3.1.min.js" charset="utf-8"></script>
 <script src="/layui/jquery.serializejson.js" charset="utf-8"></script>
 <script>
     layui.use(['element', 'layer'], function(){
@@ -68,9 +68,9 @@
             ,height: 550 //容器高度
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                ,{field:'user_id', title:'ID', width:130, fixed: 'left', unresize: true, sort: true}
-                ,{field:'user_name', title:'用户名', width:130, edit: 'text', sort: true}
-                ,{field:'password', title:'密码', width:130, edit: 'text'}
+                ,{field:'user_id', title:'ID', width:150, fixed: 'left', unresize: true, sort: true}
+                ,{field:'user_name', title:'用户名', width:150, edit: 'text', sort: true}
+                ,{field:'password', title:'密码', width:150, edit: 'text'}
                 ,{field:'role', title:'角色', width:60}
                 ,{field:'create_time', title:'创建日期', width:180}
                 ,{field:'name', title:'姓名', width:80, edit: 'text'}
@@ -105,6 +105,11 @@
             }
         });
 
+        //监听行双击事件
+        table.on('rowDouble(userTable)', function(obj){
+            obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+        });
+
         //监听单元格编辑
         table.on('edit(userTable)', function(obj){
             var value = obj.value //得到修改后的值
@@ -130,7 +135,7 @@
                     layer.close(index);
                 });
             }else if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.user_id + ' 的查看操作');
+                findByUserName(data);
             }
         });
 
@@ -164,13 +169,12 @@
 
         function addUser() {
             var body;
-            var num = 1904001;
             layer.open({
                 title: '添加用户信息',
                 type: 2,
                 maxmin: true, //开启最大化最小化按钮
                 area: ['1000px', '600px'],
-                content: ['/super/users_add','no'],
+                content: ['/super/userForm','no'],
                 btnAlign: 'c',
                 btn: ['确定', '取消'],
                 success: function(layero, index){
@@ -182,14 +186,11 @@
                     // body.find('input').val('Hi，我是从父页来的')
                 },
                 yes: function (index, layero) {
-                    num++;
-                    var u = body.find('form').serializeJSON();
-                    var newId = "U"+num;
+                    var u = body.find('form').serializeJSON(); //获取form表单里的元素
                     $.ajax({
                         type: "POST",
                         url: "/super/addUser",
                         data: {
-                            user_id: newId,
                             user_name: u.user_name
                             ,password: u.password
                         },
@@ -209,6 +210,37 @@
                     }) //ajax结束
                 }
             });
+        }
+
+        function findByUserName(data){
+            $.ajax({
+                type: "POST",
+                url: "/super/findByUserName",
+                data: {
+                    user_name: data.user_name
+                },
+                dataType: "text",
+                success: function (Data) {
+                    var ref = JSON.parse(Data)
+                    layer.open({
+                            title: '添加用户信息',
+                            type: 2,
+                            maxmin: true, //开启最大化最小化按钮
+                            area: ['1000px', '600px'],
+                            content: ['/super/userForm','no'],
+                            success: function(layero, index){
+                                layer.iframeAuto(index);
+                                var body = layer.getChildFrame('body', index);
+                                body.find("input[name='user_name']").val(ref.user_name)
+                                body.find("input[name='password']").val(ref.password)
+                            }
+                    });
+                },
+                error: function () {
+                    alert("出现错误");
+                    return false;
+                }
+            }) //ajax结束
         }
     });
 

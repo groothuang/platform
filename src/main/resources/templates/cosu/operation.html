@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>COSU DB Operation Page</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" type="image/x-icon" href="/image/spy.jpg"/>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+
+    <style>
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header :: cosu_menu" class="layui-header"></div>
+    <div class="layui-body">
+        <br/>
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">EDI</li>
+                <li>ODS</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-row">
+                        <div class="layui-col-md10">
+                            <div class="layui-upload-drag" id="uploadEDISQL">
+                                <i class="layui-icon">&#xe67c;</i>
+                                <p>Click upload EDI SQL, or drag and drop files to this place</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row">
+                        <div class="layui-col-md10">
+                            <pre class="layui-hide" id="ediSqlResult" lay-skin="notepad">Please upload sql.</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-row">
+                            <div class="layui-col-md10">
+                                <div class="layui-upload-drag" id="uploadODSSQL">
+                                    <i class="layui-icon">&#xe67c;</i>
+                                    <p>Click upload ODS SQL, or drag and drop files to this place</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md10">
+                                <pre class="layui-hide" id="odsSqlResult" lay-skin="notepad">Please upload sql.</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/layui/layui.js"></script>
+
+<script>
+
+layui.use(['element','layer','table','upload'], function(){
+  var element = layui.element
+    ,layer = layui.layer
+    ,table = layui.table
+    ,upload = layui.upload
+
+    var $ = layui.jquery
+
+    var ediSqlResult = $('#ediSqlResult');
+    upload.render({
+        elem: '#uploadEDISQL'
+        ,url: '/cosu/uploadEDISQL'
+        ,accept: 'file'
+        ,before: function(obj){
+            layer.load();
+        }
+        ,done: function(res){
+            ediSqlResult.text(res.result)
+            layui.use('code', function(){
+                layui.code({elem: '#ediSqlResult', title: 'EDI SQL Result', encode: true, height: '580px', about: false});
+            });
+            ediSqlResult.removeClass('layui-hide')
+            layer.closeAll('loading');
+        }
+         ,error: function(index, upload){
+            layer.closeAll('loading');
+        }
+    });
+
+    var odsSqlResult = $('#odsSqlResult');
+    upload.render({
+        elem: '#uploadODSSQL'
+        ,url: '/cosu/uploadODSSQL'
+        ,accept: 'file'
+        ,before: function(obj){
+            layer.load();
+        }
+        ,done: function(res){
+            odsSqlResult.text(res.result)
+            layui.use('code', function(){
+                layui.code({elem: '#odsSqlResult', title: 'ODS SQL Result', encode: true, height: '580px', about: false});
+            });
+            odsSqlResult.removeClass('layui-hide')
+            layer.closeAll('loading');
+        }
+         ,error: function(index, upload){
+            layer.closeAll('loading');
+        }
+    });
+
+    var menuList = $('.layui-nav-item')
+    menuList[1].classList.add('layui-this')
+});
+
+
+</script>
+
+</body>
+</html>

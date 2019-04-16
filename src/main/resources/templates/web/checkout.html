@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Xpedia</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" content="Xpedia" />
+	<meta name="keywords" content="Xpedia" />
+	<meta name="author" content="" />
+	<meta name="MobileOptimized" content="320" />
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all"/>
+	<link rel="stylesheet" type="text/css" href="/ui/css/xpedia.css" />
+	<!--favicon-->
+	<link rel="shortcut icon" type="image/png" href="/ui/images/fevicon.png" />
+</head>
+
+<body>
+<div th:include="header :: user_menu"></div>
+	<!-- btc tittle Wrapper Start -->
+	<div class="btc_tittle_main_wrapper">
+		<div class="btc_tittle_img_overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+					<div class="btc_tittle_left_heading">
+						<h1>提交订单</h1>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+					<div class="btc_tittle_right_heading">
+						<div class="btc_tittle_right_cont_wrapper">
+							<ul>
+								<li><a href="index.html">主页</a>  <i class="fa fa-angle-right"></i>
+								</li>
+								<li><a href="booking.html">列表</a>  <i class="fa fa-angle-right"></i>
+								</li>
+								<li>提交订单</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- btc tittle Wrapper End -->
+	<!-- x tittle num Wrapper Start -->
+	<div class="x_title_num_mian_Wrapper float_left">
+		<div class="container">
+			<div class="x_title_inner_num_wrapper float_left">
+				<div class="x_title_num_heading">
+					<h3>预定出行工具</h3>
+					<p>步骤</p>
+				</div>
+				<div class="x_title_num_heading_cont">
+					<div class="x_title_num_main_box_wrapper">
+						<div class="x_icon_num">
+							<p>1</p>
+						</div>
+						<h5>时间和地点</h5>
+					</div>
+					<div class="x_title_num_main_box_wrapper">
+						<div class="x_icon_num ">
+							<p>2</p>
+						</div>
+						<h5>挑选工具</h5>
+					</div>
+					<div class="x_title_num_main_box_wrapper">
+						<div class="x_icon_num">
+							<p>3</p>
+						</div>
+						<h5>其他服务</h5>
+					</div>
+					<div class="x_title_num_main_box_wrapper x_title_num_main_box_wrapper3">
+						<div class="x_icon_num x_icon_num2">
+							<p>4</p>
+						</div>
+						<h5>提交订单</h5>
+					</div>
+					<div class="x_title_num_main_box_wrapper x_title_num_main_box_wrapper3 x_title_num_main_box_wrapper_last">
+						<div class="x_icon_num x_icon_num3">
+							<p>5</p>
+						</div>
+						<h5>完成!</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- x tittle num Wrapper End -->
+	<!-- x car book sidebar section Wrapper Start -->
+	<div class="x_car_book_sider_main_Wrapper float_left">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
+					<div class="x_car_book_left_siderbar_wrapper float_left">
+						<div class="row">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								<!-- Filter Results -->
+								<div class="car-filter accordion x_inner_car_acc_accor">
+									<h3>订单详情</h3>
+									<hr>
+									<!-- Resources -->
+									<div class="x_car_access_filer_top_img">
+										<img src="/ui/images/c2.png" alt="car_img">
+										<h3>Dakota gtx</h3>
+										<p>50元 （2小时）</p>
+									</div>
+									<hr>
+									<!-- Company -->
+									<!-- Attributes -->
+									<div class="panel panel-default x_car_inner_acc_acordion_padding">
+										<div class="collapse show">
+											<div class="panel-body">
+												<div class="x_car_acc_filter_date">
+													<table class="table">
+														<thead>
+															<tr>
+																<th scope="col">数量</th>
+																<th scope="col">单价</th>
+																<th scope="col">总价</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>1</td>
+																<td>25元</td>
+																<td>25元</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div class="panel panel-default x_car_inner_acc_acordion_padding x_car_inner_acc_acordion_padding_last">
+										<div class="panel-heading car_checkout_caret">
+											<h5 class="panel-title"> <a href="#"> 出发日期 & 出发地</a> </h5>
+										</div>
+										<div class="collapse show">
+											<div class="panel-body">
+												<div class="x_car_acc_filter_date">
+													<ul>
+														<li>Wed 20 Mar 2019 @ 10:00</li>
+														<li>广州, 白云机场</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div class="panel panel-default x_car_inner_acc_acordion_padding x_car_inner_acc_acordion_padding_last">
+										<div class="panel-heading car_checkout_caret">
+											<h5 class="panel-title"> <a href="#"> 结束日期 & 目的地</a> </h5>
+										</div>
+										<div class="collapse show">
+											<div class="panel-body">
+												<div class="x_car_acc_filter_date">
+													<ul>
+														<li>Wed 20 Mar 2019 @ 12:00</li>
+														<li>广州, 珠江新城</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div class="panel panel-default x_car_inner_acc_acordion_padding x_car_inner_acc_acordion_padding_last">
+										<div class="panel-heading car_checkout_caret">
+											<h5 class="panel-title"> <a href="#"> 其他服务</a> </h5>
+										</div>
+										<div class="collapse show">
+											<div class="panel-body">
+												<div class="x_car_acc_filter_date">
+													<ul>
+														<li>GPS <span>3元</span>
+														</li>
+														<li>保险 <span>5元</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div class="x_car_acc_filter_bottom_total">
+										<ul>
+											<li>费用 <span>58元</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
+					<div class="x_carbooking_right_section_wrapper float_left">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="x_car_checkout_right_main_box_wrapper float_left">
+									<div class="car-filter order-billing margin-top-0">
+										<div class="heading-block text-left margin-bottom-0">
+											<h4>用户信息</h4>
+										</div>
+										<hr>
+										<form class="billing-form">
+											<ul class="list-unstyled row">
+												<li class="col-md-6">
+													<label>昵称
+														aaaa
+													</label>
+												</li>
+												<li class="col-md-6">
+													<label>性别
+														男
+													</label>
+												</li>
+												<hr>
+												<li class="col-md-6">
+													<label>真实姓名
+														黄XX
+													</label>
+												</li>
+												<li class="col-md-6">
+													<label>身份证号码
+														440xxx
+													</label>
+												</li>
+												<hr>
+												<li class="col-md-6">
+													<label>联系方式
+														137
+													</label>
+												</li>
+												<li class="col-md-6">
+													<label>驾驶证编号
+														xxxxx
+													</label>
+												</li>
+												<hr>
+												<li class="col-md-12">
+													<label>邮箱地址
+														464101668@qq.com
+													</label>
+												</li>
+												<hr>
+												<li class="col-md-12">
+													<label>备注信息</label>
+													你好
+													<br>
+													<br>
+												</li>
+											</ul>
+											<hr>
+											<div class="payme-opton">
+												<div class="heading-block text-left margin-bottom-30">
+													<h4>支付方式</h4>
+												</div>
+												<div class="radio">
+													<input type="radio" name="ratio" id="poa" value="option1" checked="">
+													<label for="poa">还车支付</label>
+												</div>
+												<div class="radio">
+													<input type="radio" name="ratio" id="paypal" value="option1">
+													<label for="paypal">在线支付</label>
+												</div>
+											</div>
+											<hr>
+											<div class="checkbox car_checkout_chekbox car_checkout_chekbox1">
+												<input type="checkbox" id="c2" name="cb">
+												<label for="c2">我已确认信息无误</label>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="contect_btn contect_btn_contact">
+									<ul>
+										<li><a href="booking_done.html">提交订单 <i class="fa fa-arrow-right"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- x car book sidebar section Wrapper End -->
+	<div th:include="header :: user_base"></div><script src="/layui/layui.js"></script>
+	<script src="/ui/js/jquery-3.3.1.min.js"></script>
+	<script src="/ui/js/bootstrap.min.js"></script>
+	<script src="/ui/js/modernizr.js"></script>
+	<script src="/ui/js/select2.min.js"></script>
+	<script src="/ui/js/jquery.menu-aim.js"></script>
+	<script src="/ui/js/jquery-ui.js"></script>
+	<script src="/ui/js/jquery.nice-select.min.js"></script>
+	<script src="/ui/js/owl.carousel.js"></script>
+	<script src="/ui/js/own-menu.js"></script>
+	<script src="/ui/js/jquery.bxslider.min.js"></script>
+	<script src="/ui/js/jquery.magnific-popup.js"></script>
+	<script src="/ui/js/xpedia.js"></script>
+	<!-- custom js-->
+</body>
+
+</html>

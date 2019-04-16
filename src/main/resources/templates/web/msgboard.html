@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Xpedia</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" content="Xpedia" />
+	<meta name="keywords" content="Xpedia" />
+	<meta name="author" content="" />
+	<meta name="MobileOptimized" content="320" />
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all"/>
+	<link rel="stylesheet" type="text/css" href="/ui/css/xpedia.css" />
+	<!--favicon-->
+	<link rel="shortcut icon" type="image/png" href="/ui/images/fevicon.png" />
+</head>
+
+<body>
+<div th:include="header :: user_menu"></div>
+	<!-- btc tittle Wrapper Start -->
+	<div class="btc_tittle_main_wrapper">
+		<div class="btc_tittle_img_overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+					<div class="btc_tittle_left_heading">
+						<h1>留言板</h1>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+					<div class="btc_tittle_right_heading">
+						<div class="btc_tittle_right_cont_wrapper">
+							<ul>
+								<li><a href="index.html">主页</a>  <i class="fa fa-angle-right"></i>
+								</li>
+								<li>留言板</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- btc tittle Wrapper End -->
+	<!-- x blog main and sidebar Wrapper Start -->
+	<div class="x_blog_sidebar_main_wrapper float_left padding_tb_100">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+					<div class="x_blog_left_side_wrapper float_left">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="lr_bc_first_box_main_wrapper">
+									<div class="lr_bc_first_box_img_wrapper">
+										<img src="/ui/images/bc1.jpg" alt="blog_img">
+									</div>
+									<div class="lr_bc_first_box_img_cont_wrapper">
+										<h2>标题1</h2>
+										<ul>
+											<li><i class="fa fa-calendar"></i>&nbsp; <a href="#">2019/04/01</a>
+											</li>
+											<li><i class="fa fa-user-o"></i>&nbsp; <a href="#">管理员</a>
+											</li>
+											<li><i class="fa fa-comments-o"></i>&nbsp; <a href="#">0 评论</a>
+											</li>
+										</ul>
+										<p>内容1</p>
+										<span><a href="#">更多 &nbsp;<i class="fa fa-angle-double-right"></i></a></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="lr_bc_first_box_main_wrapper lr_bc_first_box_main_wrapper2">
+									<div class="hs_blog_box1_img_wrapper">
+										<img src="/ui/images/bc3.jpg" class="lr_bc_zoom_img" alt="blog_img">
+										<div class="prs_ms_scene_img_overlay">
+											<ul>
+												<li>
+													<a class="test-popup-link button" rel='external' href='https://www.youtube.com/embed/ryzOXAO0Ss0' title='title'>
+														<img src="/ui/images/play.png" alt="play_icon">
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="lr_bc_first_box_img_cont_wrapper">
+										<h2>内容2</h2>
+										<ul>
+											<li><i class="fa fa-calendar"></i>&nbsp; <a href="#">2019/04/01</a>
+											</li>
+											<li><i class="fa fa-user-o"></i>&nbsp; <a href="#">管理员</a>
+											</li>
+											<li><i class="fa fa-comments-o"></i>&nbsp; <a href="#">0 评论</a>
+											</li>
+										</ul>
+										<p>内容2</p> <span><a href="#">更多 &nbsp;<i class="fa fa-angle-double-right"></i></a></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="pager_wrapper prs_blog_pagi_wrapper blog_pager_wrapper">
+									<ul class="pagination">
+										<li><a href="#"><i class="flaticon-left-arrow"></i></a>
+										</li>
+										<li class="btc_shop_pagi"><a href="#">01</a>
+										</li>
+										<li class="btc_shop_pagi"><a href="#">02</a>
+										</li>
+										<li class="btc_third_pegi btc_shop_pagi"><a href="#">03</a>
+										</li>
+										<li class="hidden-xs btc_shop_pagi"><a href="#">...</a>
+										</li>
+										<li><a href="#"><i class="flaticon-right-arrow"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+					<div class="x_blog_right_side_wrapper float_left">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="jp_rightside_job_categories_wrapper jp_blog_right_box_search">
+									<div class="jp_rightside_job_categories_heading">
+										<h4>查询</h4>
+									</div>
+									<div class="jp_blog_right_search_wrapper">
+										<input type="text" placeholder="查询">
+										<button type="submit"><i class="fa fa-search"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="jp_rightside_job_categories_wrapper jp_rightside_job_categories_wrapper2">
+									<div class="jp_rightside_job_categories_heading">
+										<h4>Archives</h4>
+									</div>
+									<div class="jp_rightside_job_categories_content">
+										<ul>
+											<li><i class="fa fa-long-arrow-right"></i> &nbsp;&nbsp;<a href="#">一月 </a>
+											</li>
+											<li><i class="fa fa-long-arrow-right"></i>  <a href="#"> &nbsp;&nbsp;二月</a>
+											</li>
+											<li><i class="fa fa-long-arrow-right"></i>  <a href="#"> &nbsp;&nbsp;三月 </a>
+											</li>
+											<li><i class="fa fa-long-arrow-right"></i>  <a href="#"> &nbsp;&nbsp;四月</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="jp_rightside_job_categories_wrapper jp_rightside_job_categories_wrapper2">
+									<div class="jp_rightside_job_categories_heading">
+										<h4>标签</h4>
+									</div>
+									<div class="blog_category_side_menu">
+										<ul>
+											<li><a href="#">出行工具</a>
+											</li>
+											<li><a href="#">用车</a>
+											</li>
+											<li><a href="#">驾驶</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- x blog main and sidebar Wrapper End -->
+	<div th:include="header :: user_base"></div><script src="/layui/layui.js"></script>
+	<script src="/ui/js/jquery-3.3.1.min.js"></script>
+	<script src="/ui/js/bootstrap.min.js"></script>
+	<script src="/ui/js/modernizr.js"></script>
+	<script src="/ui/js/select2.min.js"></script>
+	<script src="/ui/js/jquery.menu-aim.js"></script>
+	<script src="/ui/js/jquery-ui.js"></script>
+	<script src="/ui/js/jquery.nice-select.min.js"></script>
+	<script src="/ui/js/owl.carousel.js"></script>
+	<script src="/ui/js/own-menu.js"></script>
+	<script src="/ui/js/jquery.countTo.js"></script>
+	<script src="/ui/js/jquery.inview.min.js"></script>
+	<script src="/ui/js/jquery.bxslider.min.js"></script>
+	<script src="/ui/js/jquery.magnific-popup.js"></script>
+	<script src="/ui/js/xpedia.js"></script>
+	<!-- custom js-->
+</body>
+
+</html>

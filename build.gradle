@@ -1,0 +1,54 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: "io.spring.dependency-management"
+
+sourceCompatibility = 1.8
+
+// Spring setting
+buildscript {
+    ext {
+        springBootVersion = '1.4.6.RELEASE'
+        springClouldVersion = '1.0.6.RELEASE'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE")
+    }
+}
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
+    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
+    compile 'com.alibaba:druid-spring-boot-starter:1.1.0'
+    compile 'com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8'
+    compile 'mysql:mysql-connector-java'
+    compile 'com.google.code.gson:gson:2.7'
+//    compile 'com.oracle:ojdbc6:12.1.0.1-atlassian-hosted'
+//    compile 'com.zaxxer:HikariCP:2.4.7'
+//    compile 'org.springframework.boot:spring-boot-starter-tomcat'
+//    compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
+//    compile 'org.apache.logging.log4j:log4j-api:2.4'
+//    compile 'org.apache.logging.log4j:log4j-core:2.4'
+//    compile 'in.jlibs:jlibs-xsd:2.2.1'
+    compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-starter-test'
+    compile("org.springframework.boot:spring-boot:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-cache:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    //    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

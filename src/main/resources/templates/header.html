@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Xpedia</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Xpedia" />
+    <meta name="keywords" content="Xpedia" />
+    <meta name="author" content="" />
+    <meta name="MobileOptimized" content="320" />
+
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+
+    <!--favicon-->
+    <link rel="shortcut icon" type="image/png" href="/ui/images/fevicon.png" />
+</head>
+<body>
+    <div th:fragment="top_menu">
+        <div class="layui-logo">交通工具租赁管理系统</div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item">
+                <a href="index.html">
+                    <i class="layui-icon layui-icon-home" style="font-size: 20px;"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-app" style="font-size: 20px;"></i>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/web/index.html">前台主页</a></dd>
+                    <dd><a href="/web/booking.html">前台列表</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="/ui/images/fevicon.png" class="layui-nav-img"/>
+                    <span th:text="${session.username}"/>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">个人信息</a></dd>
+                    <dd><a href="">修改密码</a></dd>
+                    <dd><a href="/web/logout">退出</a></dd>
+                </dl>
+            </li>
+            <!--<li class="layui-nav-item"><a href="/rent/login">登录</a></li>-->
+        </ul>
+
+    </div>
+
+    <div th:fragment="super_menu">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree site-demo-nav"  lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">交通工具管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="tools.html">出行工具管理</a></dd>
+                            <dd><a href="sharing.html">共享资源管理</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="order.html">订单管理</a></li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">账号管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="users.html">用户管理</a></dd>
+                            <dd><a href="adminis.html">管理员管理</a></dd>
+                            <dd><a href="power.html">授权管理</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="msgboard.html">留言板管理</a></li>
+                </ul>
+            </div>
+    </div>
+
+    <div th:fragment="admin_menu">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree site-demo-nav"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">交通工具管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/admin/tools.html">出行工具管理</a></dd>
+                        <dd><a href="/admin/sharing.html">共享资源管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/admin/users.html">用户管理</a></li>
+                <li class="layui-nav-item"><a href="/admin/order.html">订单管理</a></li>
+                <li class="layui-nav-item"><a href="/admin/msgboard.html">留言板管理</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div th:fragment="user_menu">
+        <div id="preloader">
+            <div id="status">
+                <img src="/ui/images/loader.gif" id="preloader_image" alt="loader">
+            </div>
+        </div>
+        <div class="serach-header">
+            <div class="searchbox">
+                <button class="close">×</button>
+                <form>
+                    <input type="search" placeholder="Search …">
+                    <button type="submit"><i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- x top header_wrapper Start -->
+        <div class="x_top_header_wrapper float_left">
+            <div class="container">
+                <div class="x_top_header_left_side_wrapper float_left">
+                    <p>Groot</p>
+                </div>
+                <div class="x_top_header_right_side_wrapper float_left">
+                    <div class="x_top_header_social_icon_wrapper">
+                        <ul>
+                            <li><a href="#"><i class="layui-icon layui-icon-login-qq"></i></a></li>
+                            <li><a href="#"><i class="layui-icon layui-icon-login-wechat"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook-square"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-twitter-square"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin-square"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="x_top_header_all_select_box_wrapper">
+                        <ul th:if = "${session.username == null}">
+                            <li class="login">	<a href="login.html"><i class="fa fa-power-off"></i> &nbsp;&nbsp;登录</a>
+                            </li>
+                            <li class="register">	<a href="register.html"><i class="fa fa-plus-circle"></i> &nbsp;&nbsp;注册&nbsp;&nbsp;</a>
+                            </li>
+                            <li>
+                                <button class="searchd"><i class="fa fa-search"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <ul th:if = "${session.username != null}">
+                            <li class="login">
+                                <a href="javascript:;">
+                                    <img src="/ui/images/fevicon.png" class="layui-nav-img"/>
+                                    <span th:text="${session.username}"/>
+                                </a>
+                            </li>
+                            <li class="login"><a href="/web/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;退出 </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- x top header_wrapper End -->
+        <!-- hs Navigation Start -->
+        <div class="hs_navigation_header_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                        <div class="hs_logo_wrapper d-none d-sm-none d-xs-none d-md-block">
+                            <a href="index.html">
+                                <img src="/ui/images/logo.png" class="img-responsive" alt="logo" title="Logo" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                        <div class="hs_navi_cart_wrapper  d-none d-sm-none d-xs-none d-md-block d-lg-block d-xl-block">
+                            <div class="dropdown-wrapper menu-button menu_button_end"> <a class="menu-button" href="#"><i class="flaticon-shopping-cart"></i><span>3</span></a>
+                                <div class="drop-menu">
+                                    <div class="cc_cart_wrapper1">
+                                        <div class="cc_cart_img_wrapper">
+                                            <img src="/ui/images/cart_img.jpg" alt="cart_img" />
+                                        </div>
+                                        <div class="cc_cart_cont_wrapper">
+                                            <h4><a href="#">汽车</a></h4>
+                                            <p>2小时 x 45元</p>
+                                            <h5>90元</h5>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <nav class="hs_main_menu d-none d-sm-none d-xs-none d-md-block">
+                            <ul>
+                                <li>
+                                    <a class="menu-button single_menu" href="index.html">主页 </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-wrapper menu-button">
+                                        <a class="menu-button" href="">出行工具</a>
+                                        <div class="drop-menu">
+                                            <a class="menu-button" href="booking.html"> 汽车</a>
+                                            <a class="menu-button" href="booking.html"> 自行车</a>
+                                            <a class="menu-button" href="booking.html"> 大巴</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li> <a class="menu-button single_menu" href="order.html">我的订单 </a>
+                                </li>
+                                <li> <a class="menu-button single_menu" href="provide.html">共享资源 </a>
+                                </li>
+                                <li> <a class="menu-button single_menu" href="msgboard.html">留言板 </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-wrapper menu-button">
+                                        <a class="menu-button" href="">关于</a>
+                                        <div class="drop-menu">
+                                            <a class="menu-button" href="about.html"> 关于我们</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <header class="mobail_menu d-none d-block d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-6">
+                                        <div class="hs_logo">
+                                            <a href="index.html">
+                                                <img src="/ui/images/logo.png" alt="Logo" title="Logo">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-6">
+                                        <div class="cd-dropdown-wrapper">
+                                            <a class="house_toggle" href="#0">
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="511.63px" height="511.631px" viewBox="0 0 511.63 511.631" style="enable-background:new 0 0 511.63 511.631;" xml:space="preserve">
+												<g>
+													<g>
+														<path d="M493.356,274.088H18.274c-4.952,0-9.233,1.811-12.851,5.428C1.809,283.129,0,287.417,0,292.362v36.545
+																	c0,4.948,1.809,9.236,5.424,12.847c3.621,3.617,7.904,5.432,12.851,5.432h475.082c4.944,0,9.232-1.814,12.85-5.432
+																	c3.614-3.61,5.425-7.898,5.425-12.847v-36.545c0-4.945-1.811-9.233-5.425-12.847C502.588,275.895,498.3,274.088,493.356,274.088z" />
+                                                        <path d="M493.356,383.721H18.274c-4.952,0-9.233,1.81-12.851,5.427C1.809,392.762,0,397.046,0,401.994v36.546
+																	c0,4.948,1.809,9.232,5.424,12.854c3.621,3.61,7.904,5.421,12.851,5.421h475.082c4.944,0,9.232-1.811,12.85-5.421
+																	c3.614-3.621,5.425-7.905,5.425-12.854v-36.546c0-4.948-1.811-9.232-5.425-12.847C502.588,385.53,498.3,383.721,493.356,383.721z" />
+                                                        <path d="M506.206,60.241c-3.617-3.612-7.905-5.424-12.85-5.424H18.274c-4.952,0-9.233,1.812-12.851,5.424
+																	C1.809,63.858,0,68.143,0,73.091v36.547c0,4.948,1.809,9.229,5.424,12.847c3.621,3.616,7.904,5.424,12.851,5.424h475.082
+																	c4.944,0,9.232-1.809,12.85-5.424c3.614-3.617,5.425-7.898,5.425-12.847V73.091C511.63,68.143,509.82,63.861,506.206,60.241z" />
+                                                        <path d="M493.356,164.456H18.274c-4.952,0-9.233,1.807-12.851,5.424C1.809,173.495,0,177.778,0,182.727v36.547
+																	c0,4.947,1.809,9.233,5.424,12.845c3.621,3.617,7.904,5.429,12.851,5.429h475.082c4.944,0,9.232-1.812,12.85-5.429
+																	c3.614-3.612,5.425-7.898,5.425-12.845v-36.547c0-4.952-1.811-9.231-5.425-12.847C502.588,166.263,498.3,164.456,493.356,164.456z
+																	" />
+													</g>
+												</g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+                                                    <g></g>
+											</svg>
+                                            </a>
+                                            <!-- .cd-dropdown -->
+                                        </div>
+                                        <nav class="cd-dropdown">
+                                            <h2><a href="index.html">易出行</a></h2>
+                                            <a href="#0" class="cd-close">Close</a>
+                                            <ul class="cd-dropdown-content">
+                                                <li>
+                                                    <form class="cd-search">
+                                                        <input type="search" placeholder="查询...">
+                                                    </form>
+                                                </li>
+                                                <li> <a href="index.html">主页</a>
+                                                </li>
+                                                <li class="has-children"> <a href="">出行工具</a>
+                                                    <ul class="cd-secondary-dropdown is-hidden">
+                                                        <li class="go-back"><a href="#0">Menu</a>
+                                                        </li>
+                                                        <li> <a href="booking.html"> 汽车</a>
+                                                        </li>
+                                                        <li> <a href="booking.html"> 自行车</a>
+                                                        </li>
+                                                        <li> <a href="booking.html"> 大巴</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li> <a href="order.html">我的订单 </a>
+                                                </li>
+                                                <li> <a href="provide.html">我要出租 </a>
+                                                </li>
+                                                <li> <a href="msgboard.html">留言板 </a>
+                                                </li>
+                                                <li class="has-children"> <a href="">关于</a>
+                                                    <ul class="cd-secondary-dropdown is-hidden">
+                                                        <li class="go-back"><a href="#0">Menu</a>
+                                                        </li>
+                                                        <li> <a href="contact.html"> 联系方式</a>
+                                                        </li>
+                                                        <li> <a href="services.html"> 服务</a>
+                                                        </li>
+                                                        <li> <a href="booking.html"> 大巴</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- hs Navigation End -->
+    </div>
+    <div th:fragment="user_base">
+        <div class="x_copyr_main_wrapper float_left">
+            <a href="javascript:" id="return-to-top"><i class="fa fa-arrow-up"></i></a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div class="x_footer_top_left float_left">
+                            <img src="/ui/images/footer_logo.png" alt="logo">
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="x_footer_top_right float_left">
+                            <div class="x_footer_top_title_box x_footer_top_title_box1">
+                                <div class="x_footer_top_title_box_icon_cont">	<i class="flaticon-pie-chart"></i>
+                                    <h3>最近新闻</h3>
+                                </div>
+                            </div>
+                            <div class="x_footer_top_title_box">
+                                <div class="x_footer_top_title_box_icon_cont">	<i class="flaticon-phone-call"></i>
+                                    <h3>联系我们</h3>
+                                </div>
+                            </div>
+                            <div class="x_footer_top_title_box">
+                                <div class="x_footer_top_title_box_icon_cont x_footer_top_title_box_icon_cont_first">	<i class="flaticon-home-page"></i>
+                                    <h3>预定</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="/layui/layui.js"></script>
+<script src="/ui/js/jquery-3.3.1.min.js"></script>
+<script src="/ui/js/bootstrap.min.js"></script>
+<script src="/ui/js/modernizr.js"></script>
+<script src="/ui/js/select2.min.js"></script>
+<script src="/ui/js/jquery.menu-aim.js"></script>
+<script src="/ui/js/jquery-ui.js"></script>
+<script src="/ui/js/jquery.nice-select.min.js"></script>
+<script src="/ui/js/owl.carousel.js"></script>
+<script src="/ui/js/own-menu.js"></script>
+<script src="/ui/js/jquery.bxslider.min.js"></script>
+<script src="/ui/js/jquery.magnific-popup.js"></script>
+<script src="/ui/js/xpedia.js"></script>
+<script>
+    layui.use(['element'], function(){
+        var element = layui.element
+    });
+</script>
+</body>
+</html>

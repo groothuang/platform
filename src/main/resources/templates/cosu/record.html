@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>COSU DB Record Page</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" type="image/x-icon" href="/image/spy.jpg"/>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+
+    <style>
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin" >
+    <div th:include="header :: cosu_menu" class="layui-header"></div>
+    <div class="layui-body">
+        <br/>
+        <div class="layui-container">
+        <form class="layui-form" method="post" th:action="@{/cosu/record}">
+            <div class="layui-input-inline">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">user</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username"  lay-verify="required" class="layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" >Save</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<script src="/layui/layui.js"></script>
+<script>
+
+//Demo
+layui.use(['element','layer','table','form'], function(){
+  var form = layui.form
+  ,element = layui.element
+  ,layer = layui.layer
+  ,table = layui.table
+  var $ = layui.jquery
+});
+</script>
+</body>
+</html>
+
+

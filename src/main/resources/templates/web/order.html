@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Xpedia</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Xpedia" />
+    <meta name="keywords" content="Xpedia" />
+    <meta name="author" content="" />
+    <meta name="MobileOptimized" content="320" />
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all"/>
+    <link rel="stylesheet" type="text/css" href="/ui/css/xpedia.css" />
+    <!--favicon-->
+    <link rel="shortcut icon" type="image/png" href="/ui/images/fevicon.png" />
+</head>
+
+<body>
+<div th:include="header :: user_menu"></div>
+<!-- btc tittle Wrapper Start -->
+<div class="btc_tittle_main_wrapper">
+    <div class="btc_tittle_img_overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+                <div class="btc_tittle_left_heading">
+                    <h1>我的订单</h1>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+                <div class="btc_tittle_right_heading">
+                    <div class="btc_tittle_right_cont_wrapper">
+                        <ul>
+                            <li><a href="index.html">主页</a>  <i class="fa fa-angle-right"></i>
+                            </li>
+                            <li><a href="booking.html">列表</a>  <i class="fa fa-angle-right"></i>
+                            </li>
+                            <li>我的订单</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- btc tittle Wrapper End -->
+<div class="x_car_donr_main_box_wrapper float_left">
+    <div class="container">
+        <div class="x_blog_sidebar_main_wrapper float_left padding_tb_100">
+            <div class="x_car_donr_main_box_wrapper_inner">
+            <div class="order-done"> <i class="icon-checked"><img src="/ui/images/icon-checked.png" alt=""></i>
+                <h4>Order number: <span>#887768</span></h4>
+                <hr>
+                <h4>Summary</h4>
+                <ul class="row list-unstyled">
+                    <li class="col-md-6">
+                        <h6>Date</h6>
+                        <p>From <span>16-01-2018 @ 10:00</span>
+                        </p>
+                        <p>To <span>16-01-2018 @ 10:00</span>
+                        </p>
+                        <p>From <span>1 Day</span>
+                        </p>
+                    </li>
+                    <li class="col-md-6">
+                        <h6>Location</h6>
+                        <p>Pick-Up <span>Barcelona, Airport</span>
+                        </p>
+                        <p>Drop-off <span>Barcelona, Airport</span>
+                        </p>
+                    </li>
+                    <li class="col-md-6">
+                        <h6>Car</h6>
+                        <p>Dakota GT86 <span>$69</span>
+                        </p>
+                        <p>Coupe</p>
+                    </li>
+                    <li class="col-md-6">
+                        <h6>Add-ons</h6>
+                        <p>1x GPS <span>$19</span>
+                        </p>
+                        <p>Extended Insurance <span>$199</span>
+                        </p>
+                    </li>
+                    <li class="col-md-6">
+                        <h6>Taxes & Fees</h6>
+                        <p>Sales Tax (1%) <span>$1</span>
+                        </p>
+                    </li>
+                    <li class="col-md-6">
+                        <h6>Total</h6>
+                        <p>Payment on Arrival <span>$288</span>
+                        </p>
+                    </li>
+                    <li class="col-md-12">
+                        <h6>Billing Information</h6>
+                        <p>John Smith
+                            <br>Driver’s License ID 1234567890
+                            <br>Envato Ltd.
+                            <br>Australia
+                            <br>Victoria
+                            <br>PO Box 16122 Collins Street West
+                            <br>+61 3 8376 6284
+                            <br>john@envato.com
+                            <br>
+                        </p>
+                    </li>
+                    <li class="col-md-12">
+                        <h6>Additional Information</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.</p>
+                    </li>
+                </ul>
+                <hr>
+                <div class="contect_btn contect_btn_contact">
+                    <ul>
+                        <li><a href="#">打印订单 <i class="fa fa-print"></i></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">取消订单 <i class="fa fa-arrow-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<div th:include="header :: user_base"></div>
+<script src="/ui/js/jquery-3.3.1.min.js"></script>
+<script src="/ui/js/bootstrap.min.js"></script>
+<script src="/ui/js/modernizr.js"></script>
+<script src="/ui/js/select2.min.js"></script>
+<script src="/ui/js/jquery.menu-aim.js"></script>
+<script src="/ui/js/jquery-ui.js"></script>
+<script src="/ui/js/jquery.nice-select.min.js"></script>
+<script src="/ui/js/owl.carousel.js"></script>
+<script src="/ui/js/own-menu.js"></script>
+<script src="/ui/js/jquery.bxslider.min.js"></script>
+<script src="/ui/js/jquery.magnific-popup.js"></script>
+<script src="/ui/js/xpedia.js"></script>
+<!-- custom js-->
+</body>
+
+</html>

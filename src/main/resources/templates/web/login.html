@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Xpedia</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" content="Xpedia" />
+	<meta name="keywords" content="Xpedia" />
+	<meta name="author" content="" />
+	<meta name="MobileOptimized" content="320" />
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all"/>
+	<link rel="stylesheet" type="text/css" href="/ui/css/xpedia.css" />
+	<!--favicon-->
+	<link rel="shortcut icon" type="image/png" href="/ui/images/fevicon.png" />
+</head>
+
+<body>
+<div th:include="header :: user_menu"></div>
+<div class="x_partner_main_wrapper float_left padding_tb_100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-12">
+                    <form method="post" id="loginForm" th:action="@{/web/login}">
+                    <div class="login_wrapper">
+                        <div class="formsix-pos">
+                            <label>登录</label>
+                            <a href="javascript:;"><i class="layui-icon layui-icon-login-qq"></i></a>
+                            <a href="javascript:;"><i class="layui-icon layui-icon-login-wechat"></i></a>
+                            <a href="javascript:;"><i class="layui-icon layui-icon-login-weibo"></i></a>
+                        </div>
+                        <div class="formsix-pos">
+                            <div class="form-group i-email">
+                                <input type="text" class="form-control" required="" name="username" id="username" placeholder="用户名*">
+                            </div>
+                        </div>
+                        <div class="formsix-e">
+                            <div class="form-group i-password">
+                                <input type="password" class="form-control" required="" name="password" id="password" placeholder="密码 *">
+                            </div>
+                        </div>
+                        <div class="login_remember_box">
+                            <label class="control control--checkbox">记住密码
+                                <input type="checkbox">
+                                <span class="control__indicator"></span>
+                            </label>
+                                <span id="basic-addon0">&nbsp;</span>
+                                <span style="font-size: 12px;color: red" th:text="${loginError}" aria-describedby="basic-addon0"></span>
+                            <a href="#" class="forget_password">
+                                忘记密码
+                            </a>
+                        </div>
+                        <div class="login_btn_wrapper">
+                            <a onclick="document:loginForm.submit()" class="btn btn-primary login_btn"> 登陆 </a>
+                        </div>
+                        <div class="login_message">
+                            <p>还没注册 ? <a href="register.html"> 立即注册 </a> </p>
+                        </div>
+                    </div>
+                    </form>
+                    <p>如果您正在使用公共/共享计算机<br/>我们建议您注销以防止任何未经授权的访问您的帐户</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/layui/layui.js"></script>
+<script src="/ui/js/jquery-3.3.1.min.js"></script>
+<script src="/ui/js/bootstrap.min.js"></script>
+<script src="/ui/js/modernizr.js"></script>
+<script src="/ui/js/select2.min.js"></script>
+<script src="/ui/js/jquery.menu-aim.js"></script>
+<script src="/ui/js/jquery-ui.js"></script>
+<script src="/ui/js/jquery.nice-select.min.js"></script>
+<script src="/ui/js/owl.carousel.js"></script>
+<script src="/ui/js/own-menu.js"></script>
+<script src="/ui/js/jquery.countTo.js"></script>
+<script src="/ui/js/jquery.inview.min.js"></script>
+<script src="/ui/js/jquery.bxslider.min.js"></script>
+<script src="/ui/js/xpedia.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1885 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<title>Xpedia</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" content="Xpedia" />
+	<meta name="keywords" content="Xpedia" />
+	<meta name="author" content="" />
+	<meta name="MobileOptimized" content="320" />
+
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all"/>
+	<link rel="stylesheet" type="text/css" href="/ui/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/fonts.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/flaticon.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/select2.min.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/nice-select.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/owl.theme.default.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/magnific-popup.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/ui/css/responsive.css" />
+	<!--favicon-->
+	<link rel="shortcut icon" type="image/png" href="/ui/images/fevicon.png" />
+</head>
+
+<body>
+	<div th:include="header :: user_menu"></div>
+	<!-- hs Slider Start -->
+	<div class="slider-area float_left">
+		<div id="carousel-example-generic" class="carousel slide" data-interval="false" data-ride="carousel">
+			<div class="carousel-inner" role="listbox">
+				<div class="carousel-item active">
+					<div class="carousel-captions caption-1">
+						<div class="container">
+							<div class="row">
+								<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
+									<div class="content">
+										<h2 data-animation="animated fadeInLeft">更好的出行方式<br>
+                                            选你所选</h2>
+										<p data-animation="animated bounceInUp">我们的首要任务之一是根据客户的具体需求安排我们
+											<br>提供的每一个出行工具。轿车/自行车/大巴 <span>最低1元起！</span>
+										</p>
+										<div class="hs_effect_btn">
+											<ul>
+                                                <li data-animation="animated flipInX"><a href="booking.html">立即查询<i class="fa fa-arrow-right"></i></a>
+                                                </li>
+												<li data-animation="animated flipInX"><a href="about.html">关于<i class="fa fa-arrow-right"></i></a>
+												</li>
+											</ul>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</div>
+								<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 d-none d-sm-none d-md-none  d-lg-block d-xl-block">
+									<div class="content_tabs">
+										<div class="row">
+											<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+												<div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
+													<div class="x_slider_form_heading_wrapper float_left">
+														<h3>填写出行的地点和时间</h3>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="x_slider_form_input_wrapper float_left">
+																<h3>出发地</h3>
+																<input type="text" placeholder="城市，机场，车站等">
+															</div>
+														</div>
+														<div class="col-md-12">
+															<div class="x_slider_form_input_wrapper float_left">
+																<h3>目的地</h3>
+																<input type="text" placeholder="城市，机场，车站等">
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-sec-header">
+																<h3>出发日期</h3>
+																<label class="cal-icon">出发日期
+																	<input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+																</label>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-sec-header">
+																<h3>结束日期</h3>
+																<label class="cal-icon">结束日期
+																	<input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+																</label>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="x_slider_select">
+																<select class="myselect">
+																	<option>09</option>
+																	<option>01</option>
+																	<option>02</option>
+																	<option>03</option>
+																</select>	<i class="fa fa-clock-o"></i>
+															</div>
+															<div class="x_slider_select x_slider_select2">
+																<select class="myselect">
+																	<option>50</option>
+																	<option>40</option>
+																	<option>03</option>
+																	<option>02</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="x_slider_select">
+																<select class="myselect">
+																	<option>09</option>
+																	<option>01</option>
+																	<option>02</option>
+																	<option>03</option>
+																</select>	<i class="fa fa-clock-o"></i>
+															</div>
+															<div class="x_slider_select x_slider_select2">
+																<select class="myselect">
+																	<option>50</option>
+																	<option>40</option>
+																	<option>03</option>
+																	<option>02</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-md-12">
+															<div class="x_slider_checkbox float_left">
+																<input type="checkbox" id="c1" name="cb">
+																<label for="c1">是否自行驾驶 &nbsp;<i class="fa fa-question-circle"></i>
+																</label>
+															</div>
+														</div>
+														<div class="col-md-12">
+															<div class="x_slider_checkbox_bottom float_left">
+																<div class="x_slider_checout_left">
+																	<ul>
+																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;先用后结</li>
+																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;在线支付</li>
+																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;安全保障</li>
+																	</ul>
+																</div>
+																<div class="x_slider_checout_right">
+																	<ul>
+																		<li><a href="booking.html">查询 <i class="fa fa-arrow-right"></i></a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="carousel-captions caption-2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="content">
+                                        <h2 data-animation="animated fadeInLeft">更好的出行方式<br>
+                                            选你所选</h2>
+                                        <p data-animation="animated bounceInUp">我们的首要任务之一是根据客户的具体需求调整我们
+                                            <br>提供的每一个出行工具。轿车/自行车/大巴 <span>最低1元起！</span>
+                                        </p>
+                                        <div class="hs_effect_btn">
+                                            <ul>
+                                                <li data-animation="animated flipInX"><a href="booking.html">立即查询<i class="fa fa-arrow-right"></i></a>
+                                                </li>
+                                                <li data-animation="animated flipInX"><a href="about.html">关于<i class="fa fa-arrow-right"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 d-none d-sm-none d-md-none  d-lg-block d-xl-block">
+                                    <div class="content_tabs">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
+                                                    <div class="x_slider_form_heading_wrapper float_left">
+                                                        <h3>选择出行的地点和时间</h3>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_form_input_wrapper float_left">
+                                                                <h3>出发地</h3>
+                                                                <input type="text" placeholder="城市，机场，车站等">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_form_input_wrapper float_left">
+                                                                <h3>目的地</h3>
+                                                                <input type="text" placeholder="城市，机场，车站等">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-sec-header">
+                                                                <h3>出发日期</h3>
+                                                                <label class="cal-icon">出发日期
+                                                                    <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-sec-header">
+                                                                <h3>结束日期</h3>
+                                                                <label class="cal-icon">结束日期
+                                                                    <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="x_slider_select">
+                                                                <select class="myselect">
+                                                                    <option>09</option>
+                                                                    <option>01</option>
+                                                                    <option>02</option>
+                                                                    <option>03</option>
+                                                                </select>	<i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                            <div class="x_slider_select x_slider_select2">
+                                                                <select class="myselect">
+                                                                    <option>50</option>
+                                                                    <option>40</option>
+                                                                    <option>03</option>
+                                                                    <option>02</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="x_slider_select">
+                                                                <select class="myselect">
+                                                                    <option>09</option>
+                                                                    <option>01</option>
+                                                                    <option>02</option>
+                                                                    <option>03</option>
+                                                                </select>	<i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                            <div class="x_slider_select x_slider_select2">
+                                                                <select class="myselect">
+                                                                    <option>50</option>
+                                                                    <option>40</option>
+                                                                    <option>03</option>
+                                                                    <option>02</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_checkbox float_left">
+                                                                <input type="checkbox" id="c2" name="cb">
+                                                                <label for="c1">是否自行驾驶 &nbsp;<i class="fa fa-question-circle"></i>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_checkbox_bottom float_left">
+                                                                <div class="x_slider_checout_left">
+                                                                    <ul>
+                                                                        <li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;先用后结</li>
+                                                                        <li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;在线支付</li>
+                                                                        <li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;安全保障</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="x_slider_checout_right">
+                                                                    <ul>
+                                                                        <li><a href="booking.html">查询 <i class="fa fa-arrow-right"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="carousel-captions caption-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="content">
+                                        <h2 data-animation="animated fadeInLeft">更好的出行方式<br>
+                                            选你所选</h2>
+                                        <p data-animation="animated bounceInUp">我们的首要任务之一是根据客户的具体需求调整我们
+                                            <br>提供的每一个出行工具。轿车/自行车/大巴 <span>最低1元起！</span>
+                                        </p>
+                                        <div class="hs_effect_btn">
+                                            <ul>
+                                                <li data-animation="animated flipInX"><a href="booking.html">立即查询<i class="fa fa-arrow-right"></i></a>
+                                                </li>
+                                                <li data-animation="animated flipInX"><a href="about.html">关于<i class="fa fa-arrow-right"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 d-none d-sm-none d-md-none  d-lg-block d-xl-block">
+                                    <div class="content_tabs">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
+                                                    <div class="x_slider_form_heading_wrapper float_left">
+                                                        <h3>选择要出发的地点和时间</h3>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_form_input_wrapper float_left">
+                                                                <h3>出发地</h3>
+                                                                <input type="text" placeholder="城市，机场，车站等">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_form_input_wrapper float_left">
+                                                                <h3>目的地</h3>
+                                                                <input type="text" placeholder="城市，机场，车站等">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-sec-header">
+                                                                <h3>出发日期</h3>
+                                                                <label class="cal-icon">出发日期
+                                                                    <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-sec-header">
+                                                                <h3>结束日期</h3>
+                                                                <label class="cal-icon">结束日期
+                                                                    <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="x_slider_select">
+                                                                <select class="myselect">
+                                                                    <option>09</option>
+                                                                    <option>01</option>
+                                                                    <option>02</option>
+                                                                    <option>03</option>
+                                                                </select>	<i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                            <div class="x_slider_select x_slider_select2">
+                                                                <select class="myselect">
+                                                                    <option>50</option>
+                                                                    <option>40</option>
+                                                                    <option>03</option>
+                                                                    <option>02</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="x_slider_select">
+                                                                <select class="myselect">
+                                                                    <option>09</option>
+                                                                    <option>01</option>
+                                                                    <option>02</option>
+                                                                    <option>03</option>
+                                                                </select>	<i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                            <div class="x_slider_select x_slider_select2">
+                                                                <select class="myselect">
+                                                                    <option>50</option>
+                                                                    <option>40</option>
+                                                                    <option>03</option>
+                                                                    <option>02</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_checkbox float_left">
+                                                                <input type="checkbox" id="c3" name="cb">
+                                                                <label for="c1">是否自行驾驶 &nbsp;<i class="fa fa-question-circle"></i>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="x_slider_checkbox_bottom float_left">
+                                                                <div class="x_slider_checout_left">
+                                                                    <ul>
+                                                                        <li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;先用后结</li>
+                                                                        <li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;在线支付</li>
+                                                                        <li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;安全保障</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="x_slider_checout_right">
+                                                                    <ul>
+                                                                        <li><a href="booking.html">查询 <i class="fa fa-arrow-right"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"><span class="number"></span>
+					</li>
+					<li data-target="#carousel-example-generic" data-slide-to="1" class=""><span class="number"></span>
+					</li>
+					<li data-target="#carousel-example-generic" data-slide-to="2" class=""><span class="number"></span>
+					</li>
+				</ol>
+				<div class="carousel-nevigation">
+					<a class="prev" href="#carousel-example-generic" role="button" data-slide="prev">	<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="next" href="#carousel-example-generic" role="button" data-slide="next"> <i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- hs Slider End -->
+	<!-- xs offer car tabs Start -->
+	<div class="x_offer_car_main_wrapper float_left padding_tb_100">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="x_offer_car_heading_wrapper float_left">
+						<h4>出行方式</h4>
+						<h3>选择你的出行工具</h3>
+						<p>请根据你的需要选择
+							<br>自行车无需押金</p>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="x_offer_tabs_wrapper">
+						<ul class="nav nav-tabs">
+							<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#home"> 自行车</a>
+							</li>
+							<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#menu1"> 汽车</a>
+							</li>
+							<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#menu2"> 大巴</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div id="home" class="tab-pane active">
+							<div class="row">
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c1.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+											<h6><i class="fa fa-tag"></i> &nbsp;热销型</h6>
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Berliet</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> 空调</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> 变速器</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> 天窗</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c2.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">BMW</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c3.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Brilliance</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c4.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Audi</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c5.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Alpine</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c6.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Diatto</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c7.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Ferrari</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c8.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Freightliner</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="x_tabs_botton_wrapper float_left">
+										<ul>
+											<li><a href="#">查看更多 <i class="fa fa-arrow-right"></i></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="menu1" class="tab-pane fade">
+							<div class="row">
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c1.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+											<h6><i class="fa fa-tag"></i> &nbsp;15% off Deal</h6>
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Berliet</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c2.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">BMW</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c3.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Brilliance</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c4.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Audi</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c5.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Alpine</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c6.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Diatto</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c7.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Ferrari</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c8.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Freightliner</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="x_tabs_botton_wrapper float_left">
+										<ul>
+											<li><a href="#">See All Cars <i class="fa fa-arrow-right"></i></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="menu2" class="tab-pane fade">
+							<div class="row">
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c1.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+											<h6><i class="fa fa-tag"></i> &nbsp;15% off Deal</h6>
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Berliet</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c2.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">BMW</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c3.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Brilliance</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c4.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Audi</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c5.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Alpine</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c6.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Diatto</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c7.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Ferrari</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="x_car_offer_main_boxes_wrapper float_left">
+										<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<div class="x_car_offer_img float_left">
+											<img src="/ui/images/c8.png" alt="img">
+										</div>
+										<div class="x_car_offer_price float_left">
+											<div class="x_car_offer_price_inner">
+												<h3>25元</h3>
+												<p><span>起</span>
+													<br>/ 小时</p>
+											</div>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<h2><a href="#">Freightliner</a></h2>
+											<p>介绍</p>
+										</div>
+										<div class="x_car_offer_heading float_left">
+											<ul>
+												<li>	<a href="#"><i class="fa fa-users"></i> &nbsp;4</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-clone"></i> &nbsp;2</a>
+												</li>
+												<li>	<a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a>
+												</li>
+												<li>
+													<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
+														<ul class="list">
+															<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
+															</li>
+															<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="x_car_offer_bottom_btn float_left">
+											<ul>
+												<li><a href="accessories.html">预定</a></li><li><a href="detail.html">细节</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="x_tabs_botton_wrapper float_left">
+										<ul>
+											<li><a href="#">See All Cars <i class="fa fa-arrow-right"></i></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- xs offer car tabs End -->
+	<!-- btc team Wrapper Start -->
+	<div class="btc_team_main_wrapper">
+		<div class="btc_team_img_overlay"></div>
+		<div class="container">
+			<div class="btc_team_left_wrapper">
+				<h3>特色 <br>
+目的地</h3>
+				<p>探索不同的旅行方式。支持自驾游！</p>
+			</div>
+			<div class="btc_team_right_wrapper">
+				<div class="btc_team_slider_wrapper">
+					<div class="owl-carousel owl-theme">
+						<div class="item">
+							<div class="btc_team_slider_cont_main_wrapper">
+								<div class="btc_team_img_wrapper">
+									<img src="/ui/images/t1.jpg" alt="team_img1">
+									<div class="x_team_label_wrapper">
+										<p>推荐</p>
+									</div>
+								</div>
+								<div class="btc_team_img_cont_wrapper">
+									<h4><a href="#">巴黎, 法国</a></h4>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="btc_team_slider_cont_main_wrapper">
+								<div class="btc_team_img_wrapper">
+									<img src="/ui/images/t2.jpg" alt="team_img1">
+									<div class="x_team_label_wrapper">
+										<p>推荐</p>
+									</div>
+								</div>
+								<div class="btc_team_img_cont_wrapper">
+									<h4><a href="#">洛杉矶, 美国</a></h4>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="btc_team_slider_cont_main_wrapper">
+								<div class="btc_team_img_wrapper">
+									<img src="/ui/images/t3.jpg" alt="team_img1">
+									<div class="x_team_label_wrapper">
+										<p>推荐</p>
+									</div>
+								</div>
+								<div class="btc_team_img_cont_wrapper">
+									<h4><a href="#">阿格拉, 印度</a></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- btc team Wrapper End -->
+	<!-- xs offer car tabs Start -->
+	<div class="x_ln_car_main_wrapper float_left padding_tb_100">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="x_ln_car_heading_wrapper float_left">
+						<h3>最新车型</h3>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="btc_ln_slider_wrapper">
+						<div class="owl-carousel owl-theme">
+							<div class="item">
+								<div class="btc_team_slider_cont_main_wrapper">
+									<div class="btc_ln_img_wrapper float_left">
+										<img src="/ui/images/ln1.jpg" alt="team_img1">
+									</div>
+									<div class="btc_ln_img_cont_wrapper float_left">
+										<h4><a href="#">全制动</a></h4>
+										<ul>
+											<li><a href="#"><i class="fa fa-calendar"></i> &nbsp; 2019/04/01</a>
+											</li>
+											<li><a href="#"><i class="fa fa-user"></i> &nbsp;管理员</a>
+											</li>
+										</ul>
+										<p>内容1</p>	<span><a href="#">更多 &nbsp;<i class="fa fa-angle-double-right"></i></a></span>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="btc_team_slider_cont_main_wrapper">
+									<div class="btc_ln_img_wrapper float_left">
+										<img src="/ui/images/ln2.jpg" alt="team_img1">
+									</div>
+									<div class="btc_ln_img_cont_wrapper float_left">
+										<h4><a href="#">跑车</a></h4>
+										<ul>
+											<li><a href="#"><i class="fa fa-calendar"></i> &nbsp; 2019/04/01</a>
+											</li>
+											<li><a href="#"><i class="fa fa-user"></i> &nbsp;管理员</a>
+											</li>
+										</ul>
+										<p>内容2</p>	<span><a href="#">更多 &nbsp;<i class="fa fa-angle-double-right"></i></a></span>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="btc_team_slider_cont_main_wrapper">
+									<div class="btc_ln_img_wrapper float_left">
+										<img src="/ui/images/ln3.jpg" alt="team_img1">
+									</div>
+									<div class="btc_ln_img_cont_wrapper float_left">
+										<h4><a href="#">宝马</a></h4>
+										<ul>
+											<li><a href="#"><i class="fa fa-calendar"></i> &nbsp; 2019/04/01</a>
+											</li>
+											<li><a href="#"><i class="fa fa-user"></i> &nbsp;管理员</a>
+											</li>
+										</ul>
+										<p>内容3</p>	<span><a href="#">更多 &nbsp;<i class="fa fa-angle-double-right"></i></a></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- xs offer car tabs End -->
+	<div th:include="header :: user_base"></div><script src="/layui/layui.js"></script>
+
+	<script src="/ui/js/jquery-3.3.1.min.js"></script>
+	<script src="/ui/js/bootstrap.min.js"></script>
+	<script src="/ui/js/modernizr.js"></script>
+	<script src="/ui/js/select2.min.js"></script>
+	<script src="/ui/js/jquery.menu-aim.js"></script>
+	<script src="/ui/js/jquery-ui.js"></script>
+	<script src="/ui/js/jquery.nice-select.min.js"></script>
+	<script src="/ui/js/owl.carousel.js"></script>
+	<script src="/ui/js/own-menu.js"></script>
+	<script src="/ui/js/jquery.bxslider.min.js"></script>
+	<script src="/ui/js/jquery.magnific-popup.js"></script>
+	<script src="/ui/js/xpedia.js"></script>
+
+</body>
+
+</html>

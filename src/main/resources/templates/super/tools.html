@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>交通工具租赁管理系统</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="shortcut icon" type="image/png" href="/ui/images/fevicon.png" />
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all"/>
+
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div th:include="header :: top_menu" class="layui-header "></div>
+    <div th:include="header :: super_menu" class="layui-side layui-bg-black"></div>
+    <div class="layui-body">
+        <div class="layui-fluid" id="LAY-myClient">
+            <div class="layui-card">
+                <div class="layui-tab-content">
+                        <span class="layui-breadcrumb">
+                            <a href="index.html">首页</a>
+                            <a><cite>交通工具管理</cite></a>
+                            <a><cite>出行工具管理</cite></a>
+                        </span>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-tab-content">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">查询类型</label>
+                                <div class="layui-input-inline">
+                                    <select name="search_type" lay-verify="required" lay-search="">
+                                        <option value="1" >车辆ID</option>
+                                        <option value="2">车辆名称</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="searchType"  lay-verify="required" class="layui-input"/>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <select name="car_type" lay-verify="required" lay-search="">
+                                        <option value="1">汽车</option>
+                                        <option value="2">自行车</option>
+                                        <option value="3">大巴</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <select name="source" lay-verify="required" lay-search="">
+                                        <option value="1">系统</option>
+                                        <option value="2">用户</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" data-type="reload">查询</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-tab-content">
+
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+
+                <script type="text/html" id="toolbarDemo">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+                        <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
+                    </div>
+                </script>
+                <script type="text/html" id="barDemo">
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['element'], function(){
+        var element = layui.element
+    });
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#test'
+            ,url:'/json/tools.json'
+            ,toolbar: '#toolbarDemo'
+            ,title: '用户数据表'
+            ,height: 550 //容器高度
+            ,cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                ,{field:'car_id', title:'车辆编号', width:180, fixed: 'left', unresize: true, sort: true}
+                ,{field:'car_name', title:'车辆名称', width:180, edit: 'text', sort: true}
+                ,{field:'car_type', title:'类型', width:80, edit: 'text'}
+                ,{field:'car_brand', title:'品牌', width:90, edit: 'text'}
+                ,{field:'car_source', title:'来源', width:80, edit: 'text'}
+                ,{field:'car_price', title:'价格', width:90, edit: 'text', sort: true}
+                ,{field:'add_time', title:'操作时间', width:150, sort: true}
+                ,{field:'car_site', title:'放置地点', edit: 'text', width:180}
+                ,{field:'validity_date', title:'有效日期', edit: 'text', width:120}
+                ,{field:'car_remark', title:'备注', edit: 'text'}
+                ,{fixed:'right', title:'操作', toolbar: '#barDemo', unresize: true, width:150}
+            ]]
+            ,page: true
+            ,initSort: {
+                field: 'add_time' //排序字段，对应 cols 设定的各字段名
+                ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+            }
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.car_id);
+            switch(obj.event){
+                case 'add':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'delete':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+            };
+        });
+
+        //监听单元格编辑
+        table.on('edit(test)', function(obj){
+            var value = obj.value //得到修改后的值
+                ,data = obj.data //得到所在行所有键值
+                ,field = obj.field; //得到字段
+            layer.msg('[ID: '+ data.car_id +'] ' + field + ' 字段更改为：'+ value);
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.prompt({
+                    formType: 2
+                    ,value: data.email
+                }, function(value, index){
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }else if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.car_id + ' 的查看操作');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

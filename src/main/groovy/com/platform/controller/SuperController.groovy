@@ -62,8 +62,14 @@ class SuperController {
 
     @RequestMapping("/deleteUser")
     @ResponseBody
-    String deleteUser(@RequestBody UserInfo user){
-        println(user.user_name)
-        return userInfoService.delete(user.user_name)
+    String deleteUser(UserInfo user){
+        return userInfoService.delete(user.user_id)
+    }
+
+    @RequestMapping("/addUser")
+    @ResponseBody
+    String addUser(UserInfo user){
+        println(user.user_id)
+        return userInfoService.insert(user)
     }
 }

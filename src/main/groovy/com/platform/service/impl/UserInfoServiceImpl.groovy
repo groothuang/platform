@@ -7,6 +7,7 @@ import com.platform.dao.mapper.UserInfoMapper
 import com.platform.service.UserInfoService
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.DataAccessException
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,8 +15,13 @@ class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private UserInfoMapper userInfoMapper
 
-    public void insert(UserInfo userInfo){
-        userInfoMapper.insert(userInfo)
+    public int insert(UserInfo userInfo){
+        try {
+            return userInfoMapper.insert(userInfo)
+        }catch (DataAccessException e) {
+            println("≤Â»Î“Ï≥££°")
+            return 0
+        }
     }
 
     String selectAll(){
@@ -35,8 +41,9 @@ class UserInfoServiceImpl implements UserInfoService {
         return  userInfoMapper.update(userInfo)
     }
 
-    int delete(String username){
-        return userInfoMapper.delete(username)
+    int delete(String user_id){
+        List<String> user_ids = java.util.Arrays.asList(user_id.split(","));
+        return userInfoMapper.delete(user_ids)
     }
 
     int countAll(){

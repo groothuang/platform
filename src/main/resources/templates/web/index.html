@@ -66,6 +66,7 @@
 									<div class="content_tabs">
 										<div class="row">
 											<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <form th:action="@{/web/addMsg}" method="post" id="msgForm">
 												<div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
 													<div class="x_slider_form_heading_wrapper float_left">
 														<h3>填写出行的地点和时间</h3>
@@ -73,29 +74,29 @@
 													<div class="row">
 														<div class="col-md-12">
 															<div class="x_slider_form_input_wrapper float_left">
-																<h3>出发地</h3>
-																<input type="text" placeholder="城市，机场，车站等">
+																<h3>取车地点</h3>
+																<input type="text" name="pick_up_location" placeholder="城市，机场，车站等">
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class="x_slider_form_input_wrapper float_left">
-																<h3>目的地</h3>
-																<input type="text" placeholder="城市，机场，车站等">
+																<h3>还车地点</h3>
+																<input type="text" name="drop_off_location" placeholder="城市，机场，车站等">
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-sec-header">
-																<h3>出发日期</h3>
-																<label class="cal-icon">出发日期
-																	<input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+																<h3>取车日期</h3>
+																<label class="cal-icon">取车日期
+																	<input type="text" name="pick_up_date" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
 																</label>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-sec-header">
-																<h3>结束日期</h3>
-																<label class="cal-icon">结束日期
-																	<input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+																<h3>还车日期</h3>
+																<label class="cal-icon">还车日期
+																	<input type="text" name="drop_off_date" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
 																</label>
 															</div>
 														</div>
@@ -103,35 +104,43 @@
 															<div class="x_slider_select">
 																<select class="myselect">
 																	<option>09</option>
-																	<option>01</option>
-																	<option>02</option>
-																	<option>03</option>
+																	<option>10</option>
+																	<option>11</option>
+																	<option>13</option>
+                                                                    <option>14</option>
+                                                                    <option>15</option>
+                                                                    <option>16</option>
+                                                                    <option>17</option>
 																</select>	<i class="fa fa-clock-o"></i>
 															</div>
 															<div class="x_slider_select x_slider_select2">
 																<select class="myselect">
-																	<option>50</option>
-																	<option>40</option>
-																	<option>03</option>
-																	<option>02</option>
+																	<option>00</option>
+																	<option>15</option>
+																	<option>30</option>
+																	<option>45</option>
 																</select>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="x_slider_select">
 																<select class="myselect">
-																	<option>09</option>
-																	<option>01</option>
-																	<option>02</option>
-																	<option>03</option>
+                                                                    <option>09</option>
+                                                                    <option>10</option>
+                                                                    <option>11</option>
+                                                                    <option>13</option>
+                                                                    <option>14</option>
+                                                                    <option>15</option>
+                                                                    <option>16</option>
+                                                                    <option>17</option>
 																</select>	<i class="fa fa-clock-o"></i>
 															</div>
 															<div class="x_slider_select x_slider_select2">
 																<select class="myselect">
-																	<option>50</option>
-																	<option>40</option>
-																	<option>03</option>
-																	<option>02</option>
+                                                                    <option>00</option>
+                                                                    <option>15</option>
+                                                                    <option>30</option>
+                                                                    <option>45</option>
 																</select>
 															</div>
 														</div>
@@ -153,7 +162,7 @@
 																</div>
 																<div class="x_slider_checout_right">
 																	<ul>
-																		<li><a href="booking.html">查询 <i class="fa fa-arrow-right"></i></a>
+																		<li><a onclick="document:msgForm.submit()">查询 <i class="fa fa-arrow-right"></i></a>
 																		</li>
 																	</ul>
 																</div>
@@ -161,6 +170,7 @@
 														</div>
 													</div>
 												</div>
+                                                </form>
 											</div>
 										</div>
 									</div>
@@ -202,28 +212,28 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="x_slider_form_input_wrapper float_left">
-                                                                <h3>出发地</h3>
+                                                                <h3>取车地点</h3>
                                                                 <input type="text" placeholder="城市，机场，车站等">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="x_slider_form_input_wrapper float_left">
-                                                                <h3>目的地</h3>
+                                                                <h3>还车地点</h3>
                                                                 <input type="text" placeholder="城市，机场，车站等">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-sec-header">
-                                                                <h3>出发日期</h3>
-                                                                <label class="cal-icon">出发日期
+                                                                <h3>取车日期</h3>
+                                                                <label class="cal-icon">取车日期
                                                                     <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-sec-header">
-                                                                <h3>结束日期</h3>
-                                                                <label class="cal-icon">结束日期
+                                                                <h3>还车日期</h3>
+                                                                <label class="cal-icon">还车日期
                                                                     <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
                                                                 </label>
                                                             </div>
@@ -331,28 +341,28 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="x_slider_form_input_wrapper float_left">
-                                                                <h3>出发地</h3>
+                                                                <h3>取车地点</h3>
                                                                 <input type="text" placeholder="城市，机场，车站等">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="x_slider_form_input_wrapper float_left">
-                                                                <h3>目的地</h3>
+                                                                <h3>还车地点</h3>
                                                                 <input type="text" placeholder="城市，机场，车站等">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-sec-header">
-                                                                <h3>出发日期</h3>
-                                                                <label class="cal-icon">出发日期
+                                                                <h3>取车日期</h3>
+                                                                <label class="cal-icon">取车日期
                                                                     <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-sec-header">
-                                                                <h3>结束日期</h3>
-                                                                <label class="cal-icon">结束日期
+                                                                <h3>还车日期</h3>
+                                                                <label class="cal-icon">还车日期
                                                                     <input type="text" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
                                                                 </label>
                                                             </div>
@@ -1744,7 +1754,7 @@
 		<div class="container">
 			<div class="btc_team_left_wrapper">
 				<h3>特色 <br>
-目的地</h3>
+还车地点</h3>
 				<p>探索不同的旅行方式。支持自驾游！</p>
 			</div>
 			<div class="btc_team_right_wrapper">

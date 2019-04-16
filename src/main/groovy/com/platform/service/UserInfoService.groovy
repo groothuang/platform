@@ -3,13 +3,13 @@ package com.platform.service
 import com.platform.dao.domain.UserInfo
 
 interface UserInfoService {
-    void insert(UserInfo userInfo);
+    int insert(UserInfo userInfo);
     
     String selectAll();
 
     int update(UserInfo userInfo);
 
-    int delete(String userName);
+    int delete(String user_id);
 
     int countAll();
 

@@ -10,15 +10,18 @@
     </select>
 
     <insert id="insert" parameterType="com.platform.dao.domain.UserInfo">
-        insert into user_info(user_name,password,role) values(#{user_name},#{password},#{role})
+        insert into user_info(user_id,user_name,password,role) values(#{user_id},#{user_name},#{password},#{role})
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.UserInfo">
         update user_info set user_name=#{user_name},password=#{password},role=#{role} where user_name=#{user_name}
     </update>
 
-    <delete id="delete" parameterType="String">
-        delete from user_info where user_name=#{user_name}
+    <delete id="delete" parameterType = "java.util.List">
+        delete from user_info where user_id in
+        <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+            #{item}
+        </foreach>
     </delete>
 
     <select id="findByUserName" parameterType="String" resultType="com.platform.dao.domain.UserInfo">

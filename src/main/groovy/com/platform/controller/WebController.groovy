@@ -1,5 +1,6 @@
 package com.platform.controller
 
+import com.platform.dao.domain.MsgInfo
 import com.platform.dao.domain.User
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
@@ -15,6 +16,19 @@ class WebController {
     public String index() {
         return "web/index";
     }
+    @PostMapping(value = "/addMsg")
+    ModelAndView addMsg(MsgInfo msgInfo, ModelAndView modelAndView, HttpSession httpSession){
+        def list = []
+        list.add(msgInfo.pick_up_location)
+        list.add(msgInfo.drop_off_location)
+        list.add(msgInfo.pick_up_date)
+        list.add(msgInfo.drop_off_date)
+        httpSession.setAttribute("list", msgInfo.pick_up_location)
+        modelAndView.addObject("list",list)
+        modelAndView.setViewName("redirect:/web/booking.html")
+        return modelAndView
+    }
+
     @RequestMapping(value = "/about")
     public String about() {
         return "web/about";

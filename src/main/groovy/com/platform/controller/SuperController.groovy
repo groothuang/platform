@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody
 @RequestMapping(value = "/super")
 class SuperController {
 
-    @Autowired
-    UserInfoService userInfoService
-
     @RequestMapping(value = "/index")
     public String index() {
         return "super/index";
@@ -24,6 +21,10 @@ class SuperController {
     @RequestMapping(value = "/userForm")
     public String userForm() {
         return "super/userForm";
+    }
+    @RequestMapping(value = "/adminForm")
+    public String adminForm() {
+        return "super/adminForm";
     }
     @RequestMapping(value = "/users")
     public String users() {
@@ -54,10 +55,19 @@ class SuperController {
         return "super/msgboard";
     }
 
+    @Autowired
+    UserInfoService userInfoService
+
     @RequestMapping("/userMsg")
     @ResponseBody
     String userMsg(UserInfo user){
         return userInfoService.selectAll()
+    }
+
+    @RequestMapping("/adminMsg")
+    @ResponseBody
+    String adminMsg(UserInfo user){
+        return userInfoService.selectAdmin()
     }
 
     @RequestMapping("/deleteUser")
@@ -72,9 +82,22 @@ class SuperController {
         return userInfoService.insert(user)
     }
 
-    @RequestMapping("/findByUserName")
+
+    @RequestMapping("/addAdmin")
     @ResponseBody
-    UserInfo findByUserName(UserInfo user){
-        return userInfoService.findByUserName(user.user_name)
+    String addAdmin(UserInfo user){
+        return userInfoService.insertAdmin(user)
+    }
+
+    @RequestMapping("/findByUserId")
+    @ResponseBody
+    UserInfo findByUserId(UserInfo user){
+        return userInfoService.findByUserId(user.user_id)
+    }
+
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    String updateUser(UserInfo user){
+        return userInfoService.update(user)
     }
 }

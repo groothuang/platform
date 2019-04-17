@@ -32,12 +32,12 @@
                 <div class="layui-tab-content">
 
                     <table class="layui-hide" id="userTable" lay-filter="userTable"></table>
+                    <div id="demo"></div>
 
                     <script type="text/html" id="toolbarDemo">
                         <div class="layui-btn-container">
                             <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
                             <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
                         </div>
                     </script>
                     <script type="text/html" id="barDemo">
@@ -58,32 +58,52 @@
         var element = layui.element;
         var layer = layui.layer;
     });
-    layui.use('table', function(){
-        var table = layui.table;
+    layui.use(['laypage', 'layer', 'table'], function(){
+        var laypage = layui.laypage
+            ,table = layui.table
+            ,layer = layui.layer;
+        var $ = layui.jquery;
         table.render({
             elem: '#userTable'
-            ,url:'/super/userMsg'
+            ,url:'/user/userMsg'
             ,toolbar: '#toolbarDemo'
             ,title: '用户数据表'
-            ,height: 550 //容器高度
+            ,height: 560 //容器高度
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'user_id', title:'ID', width:150, fixed: 'left', unresize: true, sort: true}
-                ,{field:'user_name', title:'用户名', width:150, edit: 'text', sort: true}
-                ,{field:'password', title:'密码', width:150, edit: 'text'}
+                ,{field:'user_name', title:'用户名', width:150, sort: true}
+                ,{field:'password', title:'密码', width:150}
                 ,{field:'role', title:'角色', width:60}
-                ,{field:'create_time', title:'创建日期', width:180}
-                ,{field:'name', title:'姓名', width:80, edit: 'text'}
-                ,{field:'sex', title:'性别', width:60, edit: 'text'}
-                ,{field:'tel', title:'联系方式', width:150, edit: 'text'}
-                ,{field:'email', title:'电子邮件', edit: 'text', width:180}
-                ,{field:'car_remark', title:'备注', edit: 'text'}
+                ,{field:'create_time', title:'创建日期', width:180, sort: true}
+                ,{field:'name', title:'姓名', width:80}
+                ,{field:'sex', title:'性别', width:60}
+                ,{field:'tel', title:'联系方式', width:150}
+                ,{field:'email', title:'电子邮件', width:180}
+                ,{field:'user_remark', title:'备注', edit: 'text'}
                 ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:165}
             ]]
-            ,page: true
             ,initSort: {
                 field: 'user_id' //排序字段，对应 cols 设定的各字段名
                 ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+            }
+            ,done: function(res, curr, count){
+                laypage.render({
+                    elem: 'demo'
+                    ,limit: 10
+                    ,count: count 
+                    ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+                    ,jump: function(obj, first){
+                        //obj包含了当前分页的所有参数，比如：
+                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                        console.log(obj.limit); //得到每页显示的条数
+
+                        //首次不执行
+                        if(!first){
+                            //do something
+                        }
+                    }
+                });
             }
         });
 
@@ -105,10 +125,32 @@
             }
         });
 
-        //监听行双击事件
-        table.on('rowDouble(userTable)', function(obj){
-            obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+        //单击行勾选checkbox事件
+        $(document).on("click",".layui-table-body table.layui-table tbody tr", function () {
+            var index = $(this).attr('data-index');
+            var tableBox = $(this).parents('.layui-table-box');
+            //存在固定列
+            if (tableBox.find(".layui-table-fixed.layui-table-fixed-l").length>0) {
+                tableDiv = tableBox.find(".layui-table-fixed.layui-table-fixed-l");
+            } else {
+                tableDiv = tableBox.find(".layui-table-body.layui-table-main");
+            }
+            var checkCell = tableDiv.find("tr[data-index=" + index + "]").find("td div.laytable-cell-checkbox div.layui-form-checkbox I");
+            if (checkCell.length>0) {
+                checkCell.click();
+            }
         });
+
+        $(document).on("click", "td div.laytable-cell-checkbox div.layui-form-checkbox", function (e) {
+            e.stopPropagation();
+        });
+
+        // //监听行双击事件
+        // table.on('rowDouble(userTable)', function(obj){
+        //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+        //     obj.tr.find("input[name='layTableCheckbox']").next().click();
+        //     console.log(obj.data) //获取选中行的数据
+        // });
 
         //监听单元格编辑
         table.on('edit(userTable)', function(obj){
@@ -121,38 +163,37 @@
         //监听行工具事件
         table.on('tool(userTable)', function(obj){
             var data = obj.data;
-            //console.log(obj)
-            if(obj.event === 'del'){
+            switch(obj.event) {
+                case 'del':
                     deleteUser(data.user_id);
-            } else if(obj.event === 'edit'){
-                layer.prompt({
-                    formType: 2
-                    ,value: data.email
-                }, function(value, index){
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
-                });
-            }else if(obj.event === 'detail'){
-                findByUserName(data);
+                    break;
+                case 'edit':
+                    editUser(data);
+                    break;
+                case 'detail':
+                    viewUser(data);
+                    break;
             }
         });
 
-        var $ = layui.jquery;
         function deleteUser(user_id) {
             layer.confirm('您确定要删除操作吗?', {
                 closeBtn: 1 // 是否显示关闭按钮
                 , btn: ['确定', '取消'] //按钮
-                , yes: function () {
+                , yes: function (index) {
                     $.ajax({
                         type: "POST",
-                        url: "/super/deleteUser",
+                        url: "/user/deleteUser",
                         data: { user_id: user_id },
                         dataType: "text",
                         success: function (Data) {
                             if (Data != "0") {
-                                location.reload();
+                                table.reload('userTable', {
+                                    url: '/user/userMsg'
+                                    ,where: {} //设定异步数据接口的额外参数
+                                    //,height: 300
+                                });
+                                layer.close(index);
                             }
                             else {
                                 layer.msg('删除失败')
@@ -189,15 +230,28 @@
                     var u = body.find('form').serializeJSON(); //获取form表单里的元素
                     $.ajax({
                         type: "POST",
-                        url: "/super/addUser",
+                        url: "/user/addUser",
                         data: {
                             user_name: u.user_name
                             ,password: u.password
+                            ,name: u.name
+                            ,sex: u.sex
+                            ,role: u.role
+                            ,tel: u.tel
+                            ,email: u.email
+                            ,licence: u.licence
+                            ,id_card: u.id_card
+                            ,user_remark: u.user_remark
                         },
                         dataType: "text",
                         success: function (Data) {
                             if (Data != "0") {
-                                location.reload();
+                                table.reload('userTable', {
+                                    url: '/user/userMsg'
+                                    ,where: {} //设定异步数据接口的额外参数
+                                    //,height: 300
+                                });
+                                layer.close(index);
                             }
                             else {
                                 layer.msg('用户已存在')
@@ -212,18 +266,97 @@
             });
         }
 
-        function findByUserName(data){
+        function editUser(data) {
             $.ajax({
                 type: "POST",
-                url: "/super/findByUserName",
+                url: "/user/findByUserId",
                 data: {
-                    user_name: data.user_name
+                    user_id: data.user_id
                 },
                 dataType: "text",
                 success: function (Data) {
-                    var ref = JSON.parse(Data)
+                    var ref = JSON.parse(Data);
+                    var body;
                     layer.open({
-                            title: '添加用户信息',
+                        title: '用户信息',
+                        type: 2,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['1000px', '600px'],
+                        content: ['/super/userForm','no'],
+                        btnAlign: 'c',
+                        btn: ['确定', '取消'],
+                        success: function(layero, index){
+                            layer.iframeAuto(index);
+                            body = layer.getChildFrame('body', index);
+                            body.find("input[name='user_name']").val(ref.user_name);
+                            body.find("input[name='password']").val(ref.password);
+                            body.find("input[name='name']").val(ref.name);
+                            if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
+                            body.find("input[name='tel']").val(ref.tel);
+                            body.find("input[name='email']").val(ref.email);
+                            body.find("input[name='licence']").val(ref.licence);
+                            body.find("input[name='id_card']").val(ref.id_card);
+                            body.find("textarea[name='user_remark']").val(ref.user_remark);
+                        }
+                        ,yes: function (index, layero) {
+                            var u = body.find('form').serializeJSON(); //获取form表单里的元素
+                            $.ajax({
+                                type: "POST",
+                                url: "/user/updateUser",
+                                data: {
+                                    user_id: data.user_id
+                                    ,user_name: u.user_name
+                                    ,password: u.password
+                                    ,name: u.name
+                                    ,sex: u.sex
+                                    ,role: u.role
+                                    ,tel: u.tel
+                                    ,email: u.email
+                                    ,licence: u.licence
+                                    ,id_card: u.id_card
+                                    ,user_remark: u.user_remark
+                                },
+                                dataType: "text",
+                                success: function (Data) {
+                                    if (Data != "0") {
+                                        table.reload('userTable', {
+                                            url: '/user/userMsg'
+                                            ,where: {} //设定异步数据接口的额外参数
+                                            //,height: 300
+                                        });
+                                        layer.close(index);
+                                    }
+                                    else {
+                                        layer.msg('编辑失败')
+                                    }
+                                },
+                                error: function () {
+                                    alert("出现错误");
+                                    return false;
+                                }
+                            }) //ajax结束
+                        }
+                    });
+                }
+                ,error: function () {
+                    layer.msg("ID不存在");
+                    return false;
+                }
+            }) //ajax结束
+        }
+
+        function viewUser(data){
+            $.ajax({
+                type: "POST",
+                url: "/user/findByUserId",
+                data: {
+                    user_id: data.user_id
+                },
+                dataType: "text",
+                success: function (Data) {
+                    var ref = JSON.parse(Data);
+                    layer.open({
+                            title: '用户信息',
                             type: 2,
                             maxmin: true, //开启最大化最小化按钮
                             area: ['1000px', '600px'],
@@ -231,8 +364,16 @@
                             success: function(layero, index){
                                 layer.iframeAuto(index);
                                 var body = layer.getChildFrame('body', index);
-                                body.find("input[name='user_name']").val(ref.user_name)
-                                body.find("input[name='password']").val(ref.password)
+                                body.find("input[name='user_name']").val(ref.user_name);
+                                body.find("input[name='password']").val(ref.password);
+                                body.find("input[name='name']").val(ref.name);
+                                if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
+                                body.find("input[name='tel']").val(ref.tel);
+                                body.find("input[name='email']").val(ref.email);
+                                body.find("input[name='licence']").val(ref.licence);
+                                body.find("input[name='id_card']").val(ref.id_card);
+                                body.find("textarea[name='user_remark']").val(ref.user_remark);
+
                             }
                     });
                 },

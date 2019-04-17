@@ -9,12 +9,24 @@
         select * from user_info order by user_id asc
     </select>
 
+    <select id="selectAdmin" resultType="com.platform.dao.domain.UserInfo">
+        select * from user_info where role = 1 order by user_id asc
+    </select>
+
     <insert id="insert" parameterType="com.platform.dao.domain.UserInfo">
-        insert into user_info(user_id,user_name,password) values(#{user_id},#{user_name},#{password})
+        insert into user_info(user_id,user_name,password,name,sex,tel,email,licence,id_card,user_remark,create_time,role)
+        values (#{user_id},#{user_name},#{password},#{name},#{sex},#{tel},#{email},#{licence},#{id_card},#{user_remark},#{create_time},#{role})
+    </insert>
+
+    <insert id="insertAdmin" parameterType="com.platform.dao.domain.UserInfo">
+        insert into user_info(user_id,user_name,password,name,tel,email,create_time,role,enable_flag)
+        values (#{user_id},#{user_name},#{password},#{name},#{tel},#{email},#{create_time},#{role},#{enable_flag})
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.UserInfo">
-        update user_info set user_name=#{user_name},password=#{password},role=#{role} where user_name=#{user_name}
+        update user_info set user_name=#{user_name},password=#{password},name=#{name}
+         ,sex=#{sex},tel=#{tel},email=#{email},licence=#{licence},id_card=#{id_card},user_remark=#{user_remark}
+         where user_id=#{user_id}
     </update>
 
     <delete id="delete" parameterType = "java.util.List">
@@ -24,7 +36,7 @@
         </foreach>
     </delete>
 
-    <select id="findByUserName" parameterType="String" resultType="com.platform.dao.domain.UserInfo">
-        select * from user_info where user_name=#{user_name}
+    <select id="findByUserId" parameterType="String" resultType="com.platform.dao.domain.UserInfo">
+        select * from user_info where user_id=#{user_id}
     </select>
 </mapper>

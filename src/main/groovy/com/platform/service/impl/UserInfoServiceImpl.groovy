@@ -16,64 +16,65 @@ import java.text.SimpleDateFormat
 class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private UserInfoMapper userInfoMapper
+
     public int insert(UserInfo userInfo){
-        try {
-            def currentDay = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
-            userInfo.user_id = "U"+currentDay;
-            return userInfoMapper.insert(userInfo)
-        }catch (DataAccessException e) {
-            println("数据库异常！")
-            return 0
-        }
+        def currentDay = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
+        def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        userInfo.user_id = "U"+currentDay;
+        userInfo.create_time = currentTime;
+        userInfo.role = "2";
+        return userInfoMapper.insert(userInfo)
+    }
+
+    int insertAdmin(UserInfo userInfo){
+        def currentDay = new SimpleDateFormat("ddHHmmss").format(new Date());
+        userInfo.user_id = "A"+currentDay;
+        def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        userInfo.create_time = currentTime;
+        userInfo.role = "1";
+        return userInfoMapper.insertAdmin(userInfo)
     }
 
     String selectAll(){
-        try{
-            List<User> users= userInfoMapper.selectAll();
-            Gson gson = new Gson();
-            String jsonStr = gson.toJson(users);
-            JSONObject jsonObject = new JSONObject();  //创建Json对象
-            jsonObject.put("code", 0);         //设置Json对象的属性
-            jsonObject.put("msg", "");
-            jsonObject.put("count", userInfoMapper.countAll());
-            String m = jsonObject.toString();
-            String result = "{"+m.substring(1,m.length()-1)+",\"data\":"+jsonStr+"}"
-            return result
-        }catch (DataAccessException e) {
-            println("数据库异常！")
-        }
+        List<User> users= userInfoMapper.selectAll();
+        Gson gson = new Gson();
+        String jsonStr = gson.toJson(users);
+        JSONObject jsonObject = new JSONObject();  //创建Json对象
+        jsonObject.put("code", 0);         //设置Json对象的属性
+        jsonObject.put("msg", "");
+        jsonObject.put("count", userInfoMapper.countAll());
+        String str = jsonObject.toString();
+        String result = "{"+str.substring(1,str.length()-1)+",\"data\":"+jsonStr+"}"
+        return result
     }
 
     int update(UserInfo userInfo){
-        try{
-            return  userInfoMapper.update(userInfo)
-        }catch (DataAccessException e) {
-            println("数据库异常！")
-        }
+        return  userInfoMapper.update(userInfo)
     }
 
     int delete(String user_id){
-        try {
-            List<String> user_ids = java.util.Arrays.asList(user_id.split(","));
-            return userInfoMapper.delete(user_ids)
-        } catch (DataAccessException e) {
-            println("数据库异常！")
-        }
+        List<String> user_ids = java.util.Arrays.asList(user_id.split(","));
+        return userInfoMapper.delete(user_ids)
     }
 
     int countAll(){
-        try {
-            return userInfoMapper.countAll()
-        } catch (DataAccessException e) {
-            println("数据库异常！")
-        }
+        return userInfoMapper.countAll()
     }
 
-    UserInfo findByUserName(String username){
-        try {
-            return userInfoMapper.findByUserName(username)
-        } catch (DataAccessException e) {
-            println("数据库异常！")
-        }
+    UserInfo findByUserId(String id){
+        return userInfoMapper.findByUserId(id)
+    }
+
+    String selectAdmin(){
+        List<User> admins= userInfoMapper.selectAdmin();
+        Gson gson = new Gson();
+        String jsonStr = gson.toJson(admins);
+        JSONObject jsonObject = new JSONObject();  //创建Json对象
+        jsonObject.put("code", 0);         //设置Json对象的属性
+        jsonObject.put("msg", "");
+        jsonObject.put("count", userInfoMapper.countAll());
+        String str = jsonObject.toString();
+        String result = "{"+str.substring(1,str.length()-1)+",\"data\":"+jsonStr+"}"
+        return result
     }
 }

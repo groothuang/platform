@@ -10,7 +10,8 @@ class UserInfo {
     String tel
     String email
     String licence
-    String idCard
-    String user_mark
+    String id_card
+    String user_remark
     String create_time
+    String enable_flag
 }

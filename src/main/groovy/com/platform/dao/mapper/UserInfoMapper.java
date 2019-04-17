@@ -7,7 +7,10 @@ import java.util.List;
 
 
 public interface UserInfoMapper {
+
     public int insert(UserInfo userInfo);
+
+    public int insertAdmin(UserInfo userInfo);
 
     public int update(UserInfo userInfo);
 
@@ -15,7 +18,9 @@ public interface UserInfoMapper {
 
     public List<UserInfo> selectAll();
 
+    public List<UserInfo> selectAdmin();
+
     public int countAll();
 
-    public UserInfo findByUserName(String userName);
+    public UserInfo findByUserId(String userId);
 }

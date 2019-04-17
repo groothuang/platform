@@ -17,17 +17,57 @@
 <body>
 <br>
 <div class="layui-container">
-<form class="layui-form">
-    <div class="layui-form-item">
+<form class="layui-form layui-form-pane">
+    <div class="layui-form-item" pane>
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="user_name" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            <input type="text" name="user_name" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item" pane>
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input type="text" name="password" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            <input type="text" name="password" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <input type="radio" name="sex" value="男" title="男" checked>
+            <input type="radio" name="sex" value="女" title="女" >
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+            <input type="text" name="tel" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">电子邮箱</label>
+        <div class="layui-input-block">
+            <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">驾驶证编号</label>
+        <div class="layui-input-block">
+            <input type="text" name="licence" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">身份证号码</label>
+        <div class="layui-input-block">
+            <input type="text" name="id_card" lay-verify="identity" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text" pane>
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <textarea name="user_remark" placeholder="请输入内容" class="layui-textarea"></textarea>
         </div>
     </div>
 </form>
@@ -35,7 +75,7 @@
     <script src="/layui/layui.js"></script>
     <script>
         function method(){
-            alert("hhhh")
+            alert("This.")
         }
         layui.use(['element','layer','table','form'], function(){
             var form = layui.form

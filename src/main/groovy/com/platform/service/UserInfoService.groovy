@@ -7,11 +7,15 @@ interface UserInfoService {
     
     String selectAll();
 
+    String selectAdmin();
+
+    int insertAdmin(UserInfo userInfo)
+
     int update(UserInfo userInfo);
 
     int delete(String user_id);
 
     int countAll();
 
-    UserInfo findByUserName(String userName);
+    UserInfo findByUserId(String id);
 }

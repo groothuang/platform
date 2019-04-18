@@ -30,6 +30,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-12">
+					<form method="post" id="registerForm" th:action="@{/web/register}">
 					<div class="login_wrapper">
 						<div class="formsix-pos">
 							<label>注册</label>
@@ -39,17 +40,17 @@
 						</div>
 						<div class="formsix-pos">
 							<div class="form-group i-email">
-								<input type="text" class="form-control" required="" id="username" placeholder="用户名*">
+								<input type="text" class="form-control" required=""  name="user_name" id="user_name" placeholder="用户名*">
 							</div>
 						</div>
 						<div class="formsix-e">
 							<div class="form-group i-password">
-								<input type="password" class="form-control" required="" id="password" placeholder="密码 *">
+								<input type="password" class="form-control" required="" name="password" id="password" placeholder="密码 *">
 							</div>
 						</div>
 						<div class="formsix-e">
 							<div class="form-group i-email">
-								<input type="password" class="form-control" required="" id="repassword" placeholder="确认密码 *">
+								<input type="password" class="form-control" required="" name="repassword" id="repassword" placeholder="确认密码 *">
 							</div>
 						</div>
 						<div class="login_remember_box">
@@ -59,12 +60,13 @@
 							</label>
 						</div>
 						<div class="login_btn_wrapper">
-							<a href="#" class="btn btn-primary login_btn"> 登陆 </a>
+							<a onclick="document:registerForm.submit()" class="btn btn-primary login_btn"> 注册 </a>
 						</div>
 						<div class="login_message">
 							<p>已有账号？ <a href="login.html"> 立即登录 </a> </p>
 						</div>
 					</div>
+					</form>
 					<p>如果您正在使用公共/共享计算机<br/>我们建议您注销以防止任何未经授权的访问您的帐户</p>
 				</div>
 			</div>

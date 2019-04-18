@@ -17,6 +17,13 @@ class UserInfoServiceImpl implements UserInfoService {
     private UserInfoMapper userInfoMapper
 
     public int insert(UserInfo userInfo){
+        if("".equals(userInfo.user_name) || userInfo.user_name == null){
+            return 0
+        }
+        UserInfo d_user = userInfoMapper.findByName(userInfo.user_name)
+        if(userInfo.user_name.equals(d_user.user_name) || d_user.user_name == userInfo.user_name){
+            return 0
+        }
         def currentDay = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
         def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         userInfo.user_id = "U"+currentDay;

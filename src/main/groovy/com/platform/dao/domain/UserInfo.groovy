@@ -14,4 +14,5 @@ class UserInfo {
     String user_remark
     String create_time
     String enable_flag
+    String repassword
 }

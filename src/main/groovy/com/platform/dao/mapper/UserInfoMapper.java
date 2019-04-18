@@ -24,5 +24,7 @@ interface UserInfoMapper {
 
     int countAll();
 
-    UserInfo findById(String userId);
+    UserInfo findById(String id);
+
+    UserInfo findByName(String name);
 }

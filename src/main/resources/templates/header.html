@@ -42,7 +42,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="/ui/images/fevicon.png" class="layui-nav-img"/>
-                    <span th:text="${session.username}"/>
+                    <span th:text="${session.user_name}"/>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">个人信息</a></dd>
@@ -136,7 +136,7 @@
                         </ul>
                     </div>
                     <div class="x_top_header_all_select_box_wrapper">
-                        <ul th:if = "${session.username == null}">
+                        <ul th:if = "${session.user_name == null}">
                             <li class="login">	<a href="login.html"><i class="fa fa-power-off"></i> &nbsp;&nbsp;登录</a>
                             </li>
                             <li class="register">	<a href="register.html"><i class="fa fa-plus-circle"></i> &nbsp;&nbsp;注册&nbsp;&nbsp;</a>
@@ -146,11 +146,11 @@
                                 </button>
                             </li>
                         </ul>
-                        <ul th:if = "${session.username != null}">
+                        <ul th:if = "${session.user_name != null}">
                             <li class="login">
                                 <a href="javascript:;">
                                     <img src="/ui/images/fevicon.png" class="layui-nav-img"/>
-                                    <span th:text="${session.username}"/>
+                                    <span th:text="${session.user_name}"/>
                                 </a>
                             </li>
                             <li class="login"><a href="/web/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;退出 </a>

@@ -2,6 +2,11 @@ package com.platform.controller
 
 import com.platform.dao.domain.MsgInfo
 import com.platform.dao.domain.User
+import com.platform.dao.domain.UserInfo
+import com.platform.service.LoginService
+import com.platform.service.UserInfoService
+import com.sun.java.util.jar.pack.Instruction
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -12,6 +17,12 @@ import javax.servlet.http.HttpSession
 @Controller
 @RequestMapping(value = "/web")
 class WebController {
+
+    @Autowired
+    UserInfoService userInfoService
+    @Autowired
+    LoginService loginService
+
     @RequestMapping(value = "/index")
     public String index() {
         return "web/index";
@@ -50,41 +61,54 @@ class WebController {
         return "web/login";
     }
     @PostMapping(value = "/login")
-    ModelAndView doLogin(User userVo, ModelAndView modelAndView, HttpSession httpSession){
-        String username = userVo.username;
-        String password = userVo.password;
-        if("admin".equals(username) && "123456".equals(password)){
-            httpSession.setAttribute("username", username);
-            modelAndView.setViewName("redirect:/admin/index.html");
-            return modelAndView;
-        }
-        if("super".equals(username) && "123123".equals(password)){
-            httpSession.setAttribute("username", username);
+    ModelAndView doLogin(UserInfo userInfo, ModelAndView modelAndView, HttpSession httpSession){
+        String flag = loginService.loginCheck(userInfo)
+        if (flag == "0"){
+            httpSession.setAttribute("user_name", userInfo.user_name);
             modelAndView.setViewName("redirect:/super/index.html");
             return modelAndView;
         }
-        if (!"user1".equals(username)) {
+        if (flag == "1"){
+            httpSession.setAttribute("user_name", userInfo.user_name);
+            modelAndView.setViewName("redirect:/admin/index.html");
+            return modelAndView;
+        }
+        if (flag == "2"){
+            httpSession.setAttribute("user_name", userInfo.user_name);
+            modelAndView.setViewName("redirect:/web/index.html");
+            return modelAndView;
+        }
+        if  (flag == "none"){
             modelAndView.addObject("loginError", "用户名不存在！");
             modelAndView.setViewName("web/login");
             return modelAndView;
         }
-        if (!"123".equals(password)) {
+        if (flag == "wrong") {
             modelAndView.addObject("loginError", "密码不正确！");
             modelAndView.setViewName("web/login");
             return modelAndView;
         }
-        httpSession.setAttribute("username", username);
-        modelAndView.setViewName("redirect:/web/index.html");
-        return modelAndView;
+
     }
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute('username');
+        session.removeAttribute('user_name');
         return "web/login";
     }
     @RequestMapping(value = "/register")
     public String register() {
         return "web/register";
+    }
+    @PostMapping(value = "/register")
+    ModelAndView doRegister(UserInfo userInfo, ModelAndView modelAndView, HttpSession httpSession){
+        int flag = userInfoService.insert(userInfo)
+        if(flag == 1){
+            modelAndView.setViewName("web/login");
+            return modelAndView;
+        }else {
+            modelAndView.setViewName("web/register");
+            return  modelAndView;
+        }
     }
     @RequestMapping(value = "/contact")
     public String contact() {

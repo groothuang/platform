@@ -6,21 +6,23 @@ import org.springframework.dao.DataAccessException;
 import java.util.List;
 
 
-public interface UserInfoMapper {
+interface UserInfoMapper {
 
-    public int insert(UserInfo userInfo);
+    int insert(UserInfo userInfo);
 
-    public int insertAdmin(UserInfo userInfo);
+    int insertAdmin(UserInfo userInfo);
 
-    public int update(UserInfo userInfo);
+    int update(UserInfo userInfo);
 
-    public int delete(List list);
+    int enableAdmin(UserInfo userInfo);
 
-    public List<UserInfo> selectAll();
+    int delete(List list);
 
-    public List<UserInfo> selectAdmin();
+    List<UserInfo> selectAll();
 
-    public int countAll();
+    List<UserInfo> selectAdmin();
 
-    public UserInfo findByUserId(String userId);
+    int countAll();
+
+    UserInfo findById(String userId);
 }

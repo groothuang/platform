@@ -3,6 +3,7 @@ package com.platform.service
 import com.platform.dao.domain.UserInfo
 
 interface UserInfoService {
+
     int insert(UserInfo userInfo);
     
     String selectAll();
@@ -13,9 +14,11 @@ interface UserInfoService {
 
     int update(UserInfo userInfo);
 
+    int enableAdmin(UserInfo userInfo);
+
     int delete(String user_id);
 
     int countAll();
 
-    UserInfo findByUserId(String id);
+    UserInfo findById(String id);
 }

@@ -1,7 +1,6 @@
 package com.platform.service.impl
 
 import com.google.gson.Gson
-import com.platform.dao.domain.User
 import com.platform.dao.domain.UserInfo
 import com.platform.dao.mapper.UserInfoMapper
 import com.platform.service.UserInfoService
@@ -23,6 +22,7 @@ class UserInfoServiceImpl implements UserInfoService {
         userInfo.user_id = "U"+currentDay;
         userInfo.create_time = currentTime;
         userInfo.role = "2";
+        userInfo.enable_flag = "true";
         return userInfoMapper.insert(userInfo)
     }
 
@@ -32,11 +32,12 @@ class UserInfoServiceImpl implements UserInfoService {
         def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         userInfo.create_time = currentTime;
         userInfo.role = "1";
+        userInfo.enable_flag = "true";
         return userInfoMapper.insertAdmin(userInfo)
     }
 
     String selectAll(){
-        List<User> users= userInfoMapper.selectAll();
+        List<UserInfo> users= userInfoMapper.selectAll();
         Gson gson = new Gson();
         String jsonStr = gson.toJson(users);
         JSONObject jsonObject = new JSONObject();  //创建Json对象
@@ -52,6 +53,10 @@ class UserInfoServiceImpl implements UserInfoService {
         return  userInfoMapper.update(userInfo)
     }
 
+    int enableAdmin(UserInfo userInfo){
+        return userInfoMapper.enableAdmin(userInfo)
+    }
+
     int delete(String user_id){
         List<String> user_ids = java.util.Arrays.asList(user_id.split(","));
         return userInfoMapper.delete(user_ids)
@@ -61,12 +66,12 @@ class UserInfoServiceImpl implements UserInfoService {
         return userInfoMapper.countAll()
     }
 
-    UserInfo findByUserId(String id){
-        return userInfoMapper.findByUserId(id)
+    UserInfo findById(String id){
+        return userInfoMapper.findById(id)
     }
 
     String selectAdmin(){
-        List<User> admins= userInfoMapper.selectAdmin();
+        List<UserInfo> admins= userInfoMapper.selectAdmin();
         Gson gson = new Gson();
         String jsonStr = gson.toJson(admins);
         JSONObject jsonObject = new JSONObject();  //创建Json对象

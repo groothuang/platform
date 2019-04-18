@@ -1,7 +1,11 @@
 package com.platform.controller
 
+import com.platform.dao.domain.UserInfo
+import com.platform.service.UserInfoService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseBody
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -45,5 +49,26 @@ class AdminController {
     @RequestMapping(value = "/adminis")
     public String adminis() {
         return "admin/adminis";
+    }
+
+    @Autowired
+    UserInfoService userInfoService
+
+    @RequestMapping("/adminMsg")
+    @ResponseBody
+    String adminMsg(UserInfo user){
+        return userInfoService.selectAdmin()
+    }
+
+    @RequestMapping("/addAdmin")
+    @ResponseBody
+    String addAdmin(UserInfo user){
+        return userInfoService.insertAdmin(user)
+    }
+
+    @RequestMapping("/enableAdmin")
+    @ResponseBody
+    String enableAdmin(UserInfo user){
+        return userInfoService.enableAdmin(user)
     }
 }

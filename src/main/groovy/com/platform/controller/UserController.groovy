@@ -1,7 +1,6 @@
 package com.platform.controller
 
 import com.google.gson.Gson
-import com.platform.dao.domain.User
 import com.platform.dao.domain.UserInfo
 import com.platform.service.UserInfoService
 import org.springframework.beans.factory.annotation.Autowired
@@ -35,10 +34,10 @@ class UserController {
         return userInfoService.insert(user)
     }
 
-    @RequestMapping("/findByUserId")
+    @RequestMapping("/findById")
     @ResponseBody
-    UserInfo findByUserId(UserInfo user){
-        return userInfoService.findByUserId(user.user_id)
+    UserInfo findById(UserInfo user){
+        return userInfoService.findById(user.user_id)
     }
 
     @RequestMapping("/updateUser")

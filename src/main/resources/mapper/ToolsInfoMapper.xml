@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.dao.mapper.ToolsInfoMapper">
+
+    <select id="countAll" resultType="int">
+        select count(*) c from tools_info;
+    </select>
+
+    <select id="selectAll" resultType="com.platform.dao.domain.ToolsInfo">
+        select * from tools_info order by car_id asc
+    </select>
+
+    <insert id="insert" parameterType="com.platform.dao.domain.ToolsInfo">
+        insert into tools_info(car_id,car_name)
+        values (#{car_id},#{car_name})
+    </insert>
+
+    <update id="update" parameterType="com.platform.dao.domain.ToolsInfo">
+        update tools_info set car_name=#{car_name}
+         where car_id=#{car_id}
+    </update>
+
+    <delete id="delete" parameterType = "java.util.List">
+        delete from tools_info where car_id in
+        <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="findById" parameterType="String" resultType="com.platform.dao.domain.ToolsInfo">
+        select * from tools_info where car_id=#{car_id}
+    </select>
+</mapper>

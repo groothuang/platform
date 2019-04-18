@@ -26,6 +26,10 @@ class SuperController {
     public String adminForm() {
         return "super/adminForm";
     }
+    @RequestMapping(value = "/toolForm")
+    public String toolForm() {
+        return "super/toolForm";
+    }
     @RequestMapping(value = "/users")
     public String users() {
         return "super/users";
@@ -55,49 +59,4 @@ class SuperController {
         return "super/msgboard";
     }
 
-    @Autowired
-    UserInfoService userInfoService
-
-    @RequestMapping("/userMsg")
-    @ResponseBody
-    String userMsg(UserInfo user){
-        return userInfoService.selectAll()
-    }
-
-    @RequestMapping("/adminMsg")
-    @ResponseBody
-    String adminMsg(UserInfo user){
-        return userInfoService.selectAdmin()
-    }
-
-    @RequestMapping("/deleteUser")
-    @ResponseBody
-    String deleteUser(UserInfo user){
-        return userInfoService.delete(user.user_id)
-    }
-
-    @RequestMapping("/addUser")
-    @ResponseBody
-    String addUser(UserInfo user){
-        return userInfoService.insert(user)
-    }
-
-
-    @RequestMapping("/addAdmin")
-    @ResponseBody
-    String addAdmin(UserInfo user){
-        return userInfoService.insertAdmin(user)
-    }
-
-    @RequestMapping("/findByUserId")
-    @ResponseBody
-    UserInfo findByUserId(UserInfo user){
-        return userInfoService.findByUserId(user.user_id)
-    }
-
-    @RequestMapping("/updateUser")
-    @ResponseBody
-    String updateUser(UserInfo user){
-        return userInfoService.update(user)
-    }
 }

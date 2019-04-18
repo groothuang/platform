@@ -32,7 +32,6 @@
                 <div class="layui-tab-content">
 
                     <table class="layui-hide" id="userTable" lay-filter="userTable"></table>
-                    <div id="demo"></div>
 
                     <script type="text/html" id="toolbarDemo">
                         <div class="layui-btn-container">
@@ -74,10 +73,10 @@
                 ,{field:'user_id', title:'ID', width:150, fixed: 'left', unresize: true, sort: true}
                 ,{field:'user_name', title:'用户名', width:150, sort: true}
                 ,{field:'password', title:'密码', width:150}
-                ,{field:'role', title:'角色', width:60}
+                ,{field:'role', title:'角色', width:60, align: 'center'}
                 ,{field:'create_time', title:'创建日期', width:180, sort: true}
                 ,{field:'name', title:'姓名', width:80}
-                ,{field:'sex', title:'性别', width:60}
+                ,{field:'sex', title:'性别', width:60, align: 'center'}
                 ,{field:'tel', title:'联系方式', width:150}
                 ,{field:'email', title:'电子邮件', width:180}
                 ,{field:'user_remark', title:'备注', edit: 'text'}
@@ -87,24 +86,31 @@
                 field: 'user_id' //排序字段，对应 cols 设定的各字段名
                 ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
-            ,done: function(res, curr, count){
-                laypage.render({
-                    elem: 'demo'
-                    ,limit: 10
-                    ,count: count 
-                    ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
-                    ,jump: function(obj, first){
-                        //obj包含了当前分页的所有参数，比如：
-                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-                        console.log(obj.limit); //得到每页显示的条数
-
-                        //首次不执行
-                        if(!first){
-                            //do something
-                        }
-                    }
-                });
+            ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                //,curr: 5 //设定初始在第 5 页
+                , groups: 5
+                , first: true
+                , last: true
             }
+            // ,done: function(res, curr, count){
+            //     laypage.render({
+            //         elem: 'demo'
+            //         ,limit: 10
+            //         ,count: count
+            //         ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+            //         ,jump: function(obj, first){
+            //             //obj包含了当前分页的所有参数，比如：
+            //             console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+            //             console.log(obj.limit); //得到每页显示的条数
+            //
+            //             //首次不执行
+            //             if(!first){
+            //                 //do something
+            //             }
+            //         }
+            //     });
+            // }
         });
 
         //头工具栏事件
@@ -269,7 +275,7 @@
         function editUser(data) {
             $.ajax({
                 type: "POST",
-                url: "/user/findByUserId",
+                url: "/user/findById",
                 data: {
                     user_id: data.user_id
                 },
@@ -348,7 +354,7 @@
         function viewUser(data){
             $.ajax({
                 type: "POST",
-                url: "/user/findByUserId",
+                url: "/user/findById",
                 data: {
                     user_id: data.user_id
                 },

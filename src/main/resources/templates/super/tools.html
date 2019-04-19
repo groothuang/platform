@@ -70,7 +70,7 @@
                 <table class="layui-hide" id="toolsTable" lay-filter="toolsTable"></table>
 
                 <script type="text/html" id="carImg">
-                    <img src="/ui/images/{{d.car_img}}"/>
+                    <img src="/image/{{d.car_img}}"/>
                 </script>
 
                 <script type="text/html" id="toolbarDemo">
@@ -106,20 +106,21 @@
             elem: '#toolsTable'
             ,url:'/tools/toolsMsg'
             ,toolbar: '#toolbarDemo'
-            ,title: '用户数据表'
+            ,title: '交通工具数据表'
             ,height: 560 //容器高度
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'car_id', title:'车辆ID', width:180, fixed: 'left', unresize: true, sort: true}
                 ,{field:'car_name', title:'车辆名称', width:180, sort: true}
-                ,{field:'car_img', title:'图片', width: 110, templet: '#carImg' , align: 'center'}
-                ,{field:'car_type', title:'类型', width:80}
-                ,{field:'car_brand', title:'品牌', width:90}
-                ,{field:'car_source', title:'来源', width:80}
-                ,{field:'car_price', title:'价格', width:90, sort: true}
-                ,{field:'add_time', title:'添加日期', width:150, sort: true}
+                ,{field:'car_img', title:'图片', width: 110, templet: '#carImg', align: 'center'}
+                ,{field:'car_type', title:'类型', width:80, align: 'center'}
+                ,{field:'car_brand', title:'品牌', width:90, align: 'center'}
+                ,{field:'car_source', title:'来源', width:80, align: 'center'}
+                ,{field:'car_price', title:'价格', width:90, sort: true, align: 'center'}
+                ,{field:'car_state', title:'状态', width:90, sort: true, align: 'center'}
+                ,{field:'add_time', title:'添加日期', width:180, sort: true}
                 ,{field:'car_site', title:'放置地点', width:180}
-                ,{field:'validity_time', title:'有效期', width:120}
+                ,{field:'validity_time', title:'有效期/月', width:120, align: 'center'}
                 ,{field:'car_remark', title:'备注', edit: 'text'}
                 ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:165}
             ]]
@@ -190,7 +191,6 @@
                 checkCell.click();
             }
         });
-
         $(document).on("click", "td div.laytable-cell-checkbox div.layui-form-checkbox", function (e) {
             e.stopPropagation();
         });
@@ -275,7 +275,7 @@
         function addItem() {
             var body;
             layer.open({
-                title: '添加用户信息',
+                title: '添加信息',
                 type: 2,
                 maxmin: true, //开启最大化最小化按钮
                 area: ['1000px', '600px'],
@@ -292,11 +292,23 @@
                 },
                 yes: function (index, layero) {
                     var u = body.find('form').serializeJSON(); //获取form表单里的元素
+                    if(u.car_img == ''){
+                        u.car_img = "blank.jpg"
+                    }
                     $.ajax({
                         type: "POST",
                         url: "/tools/addTools",
                         data: {
                             car_name: u.car_name
+                            ,car_img: u.car_img
+                            ,car_price: u.car_price
+                            ,car_type: u.car_type
+                            ,car_brand: u.car_brand
+                            ,validity_time: u.validity_time
+                            ,car_source: u.car_source
+                            ,car_site: u.car_site
+                            ,car_remark: u.car_remark
+
                         },
                         dataType: "text",
                         success: function (Data) {
@@ -309,7 +321,7 @@
                                 layer.close(index);
                             }
                             else {
-                                layer.msg('用户已存在')
+                                layer.msg('添加对象已存在')
                             }
                         },
                         error: function () {
@@ -333,7 +345,7 @@
                     var ref = JSON.parse(Data);
                     var body;
                     layer.open({
-                        title: '用户信息',
+                        title: '编辑信息',
                         type: 2,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['1000px', '600px'],
@@ -344,6 +356,16 @@
                             layer.iframeAuto(index);
                             body = layer.getChildFrame('body', index);
                             body.find("input[name='car_name']").val(ref.car_name);
+                            body.find("input[name='car_img']").val(ref.car_img);
+                            body.find("img").attr('src', '/image/'+ref.car_img);
+                            body.find("p").html(ref.car_name);
+                            body.find("input[name='car_price']").val(ref.car_price);
+                            body.find("input[name='car_brand']").val(ref.car_brand);
+                            body.find("input[name='validity_time']").val(ref.validity_time);
+                            if (ref.car_source == "用户"){body.find("input[name='car_source']").attr("checked",true);}
+                            body.find("input[name='car_site']").val(ref.car_site);
+                            body.find("textarea[name='car_remark']").val(ref.car_remark);
+                            body.find("select").find("option:contains('"+ref.car_type+"')").attr("selected",true);
                         }
                         ,yes: function (index, layero) {
                             var u = body.find('form').serializeJSON(); //获取form表单里的元素
@@ -353,6 +375,14 @@
                                 data: {
                                     car_id: data.car_id
                                     ,car_name: u.car_name
+                                    ,car_img: u.car_img
+                                    ,car_price: u.car_price
+                                    ,car_type: u.car_type
+                                    ,car_brand: u.car_brand
+                                    ,validity_time: u.validity_time
+                                    ,car_source: u.car_source
+                                    ,car_site: u.car_site
+                                    ,car_remark: u.car_remark
                                 },
                                 dataType: "text",
                                 success: function (Data) {
@@ -394,7 +424,7 @@
                 success: function (Data) {
                     var ref = JSON.parse(Data);
                     layer.open({
-                        title: '用户信息',
+                        title: '查看信息',
                         type: 2,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['1000px', '600px'],
@@ -403,6 +433,17 @@
                             layer.iframeAuto(index);
                             var body = layer.getChildFrame('body', index);
                             body.find("input[name='car_name']").val(ref.car_name);
+                            body.find("input[name='car_price']").val(ref.car_price);
+                            body.find("input[name='car_brand']").val(ref.car_brand);
+                            body.find("input[name='validity_time']").val(ref.validity_time);
+                            if (ref.car_source == "用户"){body.find("input[name='car_source']").attr("checked",true);}
+                            body.find("input[name='car_site']").val(ref.car_site);
+                            body.find("textarea[name='car_remark']").val(ref.car_remark);
+                            body.find("input[name='car_img']").val(ref.car_img);
+                            body.find("button").attr('style','display: none');
+                            body.find("img").attr('src', '/image/'+ref.car_img);
+                            body.find("p").html(ref.car_name);
+                            body.find("select").find("option:contains('"+ref.car_type+"')").attr("selected",true);
                         }
                     });
                 },

@@ -17,20 +17,79 @@
 <body>
 <br>
 <div class="layui-container">
-    <form class="layui-form layui-form-pane">
-        <div class="layui-form-item" pane>
-            <label class="layui-form-label">车辆名称</label>
-            <div class="layui-input-block">
-                <input type="text" name="car_name" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+    <form class="layui-form" id="toolsForm">
+        <div class="layui-form-item" >
+            <div class="layui-inline">
+                <label class="layui-form-label">车辆名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="car_name" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">价格</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="car_price" placeholder="元/小时" class="layui-input">
+                </div>
             </div>
         </div>
-
-        <div class="layui-upload">
-            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                <button type="button" class="layui-btn" id="carPic">上传图片</button>
-                <img class="layui-upload-img" id="demo1">
-            </blockquote>
-            <p id="demoText"></p>
+        <div class="layui-form-item" >
+            <div class="layui-inline">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-inline">
+                    <select name="car_type">
+                        <option value="汽车">汽车</option>
+                        <option value="自行车">自行车</option>
+                        <option value="大巴">大巴</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">品牌</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="car_brand" placeholder="大众" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">有效期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="validity_time" placeholder="月" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">来源</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="car_source" value="系统" title="系统" checked="">
+                    <input type="radio" name="car_source" value="用户" title="用户">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" >
+            <label class="layui-form-label">放置地点</label>
+            <div class="layui-input-block">
+                <input type="text" name="car_site" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item" >
+            <div class="layui-inline">
+                <div style="display: none">
+                    <input type="text" name="car_img" class="layui-input" id="car_img">
+                </div>
+                <div class="layui-input-inline">
+                    <blockquote class="layui-elem-quote layui-quote-nm" style="width: 200px;height: 200px;text-align:center">
+                        <button type="button" class="layui-btn" id="carPic">上传图片</button><br>
+                        <img class="layui-upload-img" id="demo" style="width: 200px">
+                        <p id="img_name"></p>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-inline">
+                    <textarea name="car_remark" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -55,21 +114,23 @@
             , before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                    $('#demo1').attr('style', 'max-width:150px;')
+                    $('#demo').attr('src', result); //图片链接（base64）
+                    $('#demo').attr('style', 'max-width:150px;')
                 });
             }
             , done: function (res) {
                 //如果上传失败
                 if (res.code > 0) {
                     return layer.msg('上传失败');
+                }else {
+                    $('#img_name').html(res.image);
+                    $('#car_img').val(res.image);
                 }
                 //上传成功
             }
             , error: function () {
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
+                $('#img_name').html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                $('#img_name').find('.demo-reload').on('click', function () {
                     uploadInst.upload();
                 });
             }

@@ -11,12 +11,13 @@
     </select>
 
     <insert id="insert" parameterType="com.platform.dao.domain.ToolsInfo">
-        insert into tools_info(car_id,car_name)
-        values (#{car_id},#{car_name})
+        insert into tools_info(car_id,car_name,car_img,car_type,car_brand,car_source,car_price,add_time,car_site,car_remark,car_state,validity_time)
+        values (#{car_id},#{car_name},#{car_img},#{car_type},#{car_brand},#{car_source},#{car_price},#{add_time},#{car_site},#{car_remark},#{car_state},#{validity_time})
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.ToolsInfo">
-        update tools_info set car_name=#{car_name}
+        update tools_info set car_name=#{car_name},car_img=#{car_img},car_type=#{car_type},car_brand=#{car_brand},car_source=#{car_source},car_price=#{car_price}
+        ,car_site=#{car_site},car_remark=#{car_remark},validity_time=#{validity_time}
          where car_id=#{car_id}
     </update>
 
@@ -29,5 +30,9 @@
 
     <select id="findById" parameterType="String" resultType="com.platform.dao.domain.ToolsInfo">
         select * from tools_info where car_id=#{car_id}
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="com.platform.dao.domain.ToolsInfo">
+        select * from tools_info where car_name=#{car_name}
     </select>
 </mapper>

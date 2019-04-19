@@ -4,7 +4,9 @@ import com.platform.dao.domain.UserInfo
 import com.platform.dao.mapper.UserInfoMapper
 import com.platform.service.LoginService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 
+@Service
 class LoginServiceImpl implements LoginService{
 
     @Autowired

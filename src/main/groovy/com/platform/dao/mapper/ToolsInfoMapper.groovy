@@ -16,4 +16,6 @@ interface ToolsInfoMapper {
     int delete(List list);
 
     ToolsInfo findById(String id);
+
+    ToolsInfo findByName(String name);
 }

@@ -23,7 +23,8 @@
                 <div class="layui-tab-content">
                         <span class="layui-breadcrumb">
                             <a href="index.html">首页</a>
-                            <a><cite>留言板管理</cite></a>
+                            <a><cite>账号管理</cite></a>
+                            <a><cite>用户管理</cite></a>
                         </span>
                 </div>
             </div>
@@ -31,7 +32,6 @@
                 <div class="layui-tab-content">
 
                     <table class="layui-hide" id="userTable" lay-filter="userTable"></table>
-                    <div id="demo"></div>
 
                     <script type="text/html" id="toolbarDemo">
                         <div class="layui-btn-container">
@@ -40,7 +40,7 @@
                         </div>
                     </script>
                     <script type="text/html" id="barDemo">
-                        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="view">查看</a>
+                        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                     </script>
@@ -72,18 +72,17 @@
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'user_id', title:'ID', width:150, fixed: 'left', unresize: true, sort: true}
                 ,{field:'user_name', title:'用户名', width:150, sort: true}
-                ,{field:'password', title:'密码', width:150}
                 ,{field:'role', title:'角色', width:60, align: 'center'}
                 ,{field:'create_time', title:'创建日期', width:180, sort: true}
                 ,{field:'name', title:'姓名', width:80}
                 ,{field:'sex', title:'性别', width:60, align: 'center'}
                 ,{field:'tel', title:'联系方式', width:150}
                 ,{field:'email', title:'电子邮件', width:180}
-                ,{field:'user_remark', title:'备注', edit: 'text'}
+                ,{field:'user_remark', title:'留言', edit: 'text'}
                 ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:165}
             ]]
             ,initSort: {
-                field: 'user_id' //排序字段，对应 cols 设定的各字段名
+                field: 'create_time' //排序字段，对应 cols 设定的各字段名
                 ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
             ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
@@ -110,285 +109,210 @@
             //             }
             //         }
             //     });
+            // }
         });
-    });
 
-    //头工具栏事件
-    table.on('toolbar(userTable)', function(obj){
-        var checkStatus = table.checkStatus(obj.config.id);
-        switch(obj.event){
-            case 'add':
-                addUser();
-                break;
-            case 'delete':
-                var data = checkStatus.data;
-                var user_id = [];
-                for(var i in data) {
-                    user_id.push(data[i].user_id)
-                }
-                deleteUser(user_id.toString());
-                break;
-        }
-    });
-
-    //单击行勾选checkbox事件
-    $(document).on("click",".layui-table-body table.layui-table tbody tr", function () {
-        var index = $(this).attr('data-index');
-        var tableBox = $(this).parents('.layui-table-box');
-        //存在固定列
-        if (tableBox.find(".layui-table-fixed.layui-table-fixed-l").length>0) {
-            tableDiv = tableBox.find(".layui-table-fixed.layui-table-fixed-l");
-        } else {
-            tableDiv = tableBox.find(".layui-table-body.layui-table-main");
-        }
-        var checkCell = tableDiv.find("tr[data-index=" + index + "]").find("td div.laytable-cell-checkbox div.layui-form-checkbox I");
-        if (checkCell.length>0) {
-            checkCell.click();
-        }
-    });
-
-    $(document).on("click", "td div.laytable-cell-checkbox div.layui-form-checkbox", function (e) {
-        e.stopPropagation();
-    });
-
-    // //监听行双击事件
-    // table.on('rowDouble(userTable)', function(obj){
-    //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-    //     obj.tr.find("input[name='layTableCheckbox']").next().click();
-    //     console.log(obj.data) //获取选中行的数据
-    // });
-
-    //监听单元格编辑
-    table.on('edit(userTable)', function(obj){
-        var value = obj.value //得到修改后的值
-            ,data = obj.data //得到所在行所有键值
-            ,field = obj.field; //得到字段
-        layer.msg('[ID: '+ data.user_id +'] ' + field + ' 字段更改为：'+ value);
-    });
-
-    //监听行工具事件
-    table.on('tool(userTable)', function(obj){
-        var data = obj.data;
-        switch(obj.event) {
-            case 'del':
-                deleteUser(data.user_id);
-                break;
-            case 'edit':
-                editUser(data);
-                break;
-            case 'view':
-                viewUser(data);
-                break;
-        }
-    });
-
-    function deleteUser(user_id) {
-        layer.confirm('您确定要删除操作吗?', {
-            closeBtn: 1 // 是否显示关闭按钮
-            , btn: ['确定', '取消'] //按钮
-            , yes: function (index) {
-                $.ajax({
-                    type: "POST",
-                    url: "/user/deleteUser",
-                    data: { user_id: user_id },
-                    dataType: "text",
-                    success: function (Data) {
-                        if (Data != "0") {
-                            table.reload('userTable', {
-                                url: '/user/userMsg'
-                                ,where: {} //设定异步数据接口的额外参数
-                                //,height: 300
-                            });
-                            layer.close(index);
-                        }
-                        else {
-                            layer.msg('删除失败')
-                        }
-                    },
-                    error: function () {
-                        alert("出现错误");
-                        return false;
+        //头工具栏事件
+        table.on('toolbar(userTable)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'delete':
+                    var data = checkStatus.data;
+                    var user_id = [];
+                    for(var i in data) {
+                        user_id.push(data[i].user_id)
                     }
-                }) //ajax结束
+                    deleteUser(user_id.toString());
+                    break;
             }
         });
-    }
 
-    function addUser() {
-        var body;
-        layer.open({
-            title: '添加用户信息',
-            type: 2,
-            maxmin: true, //开启最大化最小化按钮
-            area: ['1000px', '600px'],
-            content: ['/super/userForm','no'],
-            btnAlign: 'c',
-            btn: ['确定', '取消'],
-            success: function(layero, index){
-                layer.iframeAuto(index);
-                body = layer.getChildFrame('body', index);
-                // var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：
-                // iframeWin.method();
-                // console.log(body.html()) //得到iframe页的body内容
-                // body.find('input').val('Hi，我是从父页来的')
-            },
-            yes: function (index, layero) {
-                var u = body.find('form').serializeJSON(); //获取form表单里的元素
-                $.ajax({
-                    type: "POST",
-                    url: "/user/addUser",
-                    data: {
-                        user_name: u.user_name
-                        ,password: u.password
-                        ,name: u.name
-                        ,sex: u.sex
-                        ,role: u.role
-                        ,tel: u.tel
-                        ,email: u.email
-                        ,licence: u.licence
-                        ,id_card: u.id_card
-                        ,user_remark: u.user_remark
-                    },
-                    dataType: "text",
-                    success: function (Data) {
-                        if (Data != "0") {
-                            table.reload('userTable', {
-                                url: '/user/userMsg'
-                                ,where: {} //设定异步数据接口的额外参数
-                                //,height: 300
-                            });
-                            layer.close(index);
-                        }
-                        else {
-                            layer.msg('用户已存在')
-                        }
-                    },
-                    error: function () {
-                        alert("出现错误");
-                        return false;
-                    }
-                }) //ajax结束
+        //单击行勾选checkbox事件
+        $(document).on("click",".layui-table-body table.layui-table tbody tr", function () {
+            var index = $(this).attr('data-index');
+            var tableBox = $(this).parents('.layui-table-box');
+            //存在固定列
+            if (tableBox.find(".layui-table-fixed.layui-table-fixed-l").length>0) {
+                tableDiv = tableBox.find(".layui-table-fixed.layui-table-fixed-l");
+            } else {
+                tableDiv = tableBox.find(".layui-table-body.layui-table-main");
+            }
+            var checkCell = tableDiv.find("tr[data-index=" + index + "]").find("td div.laytable-cell-checkbox div.layui-form-checkbox I");
+            if (checkCell.length>0) {
+                checkCell.click();
             }
         });
-    }
 
-    function editUser(data) {
-        $.ajax({
-            type: "POST",
-            url: "/user/findById",
-            data: {
-                user_id: data.user_id
-            },
-            dataType: "text",
-            success: function (Data) {
-                var ref = JSON.parse(Data);
-                var body;
-                layer.open({
-                    title: '用户信息',
-                    type: 2,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['1000px', '600px'],
-                    content: ['/super/userForm','no'],
-                    btnAlign: 'c',
-                    btn: ['确定', '取消'],
-                    success: function(layero, index){
-                        layer.iframeAuto(index);
-                        body = layer.getChildFrame('body', index);
-                        body.find("input[name='user_name']").val(ref.user_name);
-                        body.find("input[name='password']").val(ref.password);
-                        body.find("input[name='name']").val(ref.name);
-                        if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
-                        body.find("input[name='tel']").val(ref.tel);
-                        body.find("input[name='email']").val(ref.email);
-                        body.find("input[name='licence']").val(ref.licence);
-                        body.find("input[name='id_card']").val(ref.id_card);
-                        body.find("textarea[name='user_remark']").val(ref.user_remark);
-                    }
-                    ,yes: function (index, layero) {
-                        var u = body.find('form').serializeJSON(); //获取form表单里的元素
-                        $.ajax({
-                            type: "POST",
-                            url: "/user/updateUser",
-                            data: {
-                                user_id: data.user_id
-                                ,user_name: u.user_name
-                                ,password: u.password
-                                ,name: u.name
-                                ,sex: u.sex
-                                ,role: u.role
-                                ,tel: u.tel
-                                ,email: u.email
-                                ,licence: u.licence
-                                ,id_card: u.id_card
-                                ,user_remark: u.user_remark
-                            },
-                            dataType: "text",
-                            success: function (Data) {
-                                if (Data != "0") {
-                                    table.reload('userTable', {
-                                        url: '/user/userMsg'
-                                        ,where: {} //设定异步数据接口的额外参数
-                                        //,height: 300
-                                    });
-                                    layer.close(index);
-                                }
-                                else {
-                                    layer.msg('编辑失败')
-                                }
-                            },
-                            error: function () {
-                                alert("出现错误");
-                                return false;
+        $(document).on("click", "td div.laytable-cell-checkbox div.layui-form-checkbox", function (e) {
+            e.stopPropagation();
+        });
+
+        // //监听行双击事件
+        // table.on('rowDouble(userTable)', function(obj){
+        //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+        //     obj.tr.find("input[name='layTableCheckbox']").next().click();
+        //     console.log(obj.data) //获取选中行的数据
+        // });
+
+        //监听单元格编辑
+        table.on('edit(userTable)', function(obj){
+            var value = obj.value //得到修改后的值
+                ,data = obj.data //得到所在行所有键值
+                ,field = obj.field; //得到字段
+            layer.msg('[ID: '+ data.user_id +'] ' + field + ' 字段更改为：'+ value);
+        });
+
+        //监听行工具事件
+        table.on('tool(userTable)', function(obj){
+            var data = obj.data;
+            switch(obj.event) {
+                case 'del':
+                    deleteUser(data.user_id);
+                    break;
+                case 'edit':
+                    editUser(data);
+                    break;
+                case 'detail':
+                    viewUser(data);
+                    break;
+            }
+        });
+
+        function deleteUser(user_id) {
+            layer.confirm('您确定要删除操作吗?', {
+                closeBtn: 1 // 是否显示关闭按钮
+                , btn: ['确定', '取消'] //按钮
+                , yes: function (index) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/user/deleteUser",
+                        data: { user_id: user_id },
+                        dataType: "text",
+                        success: function (Data) {
+                            if (Data != "0") {
+                                table.reload('userTable', {
+                                    url: '/user/userMsg'
+                                    ,where: {} //设定异步数据接口的额外参数
+                                    //,height: 300
+                                });
+                                layer.close(index);
                             }
-                        }) //ajax结束
-                    }
-                });
-            }
-            ,error: function () {
-                layer.msg("ID不存在");
-                return false;
-            }
-        }) //ajax结束
-    }
+                            else {
+                                layer.msg('删除失败')
+                            }
+                        },
+                        error: function () {
+                            alert("出现错误");
+                            return false;
+                        }
+                    }) //ajax结束
+                }
+            });
+        }
 
-    function viewUser(data){
-        $.ajax({
-            type: "POST",
-            url: "/user/findById",
-            data: {
-                user_id: data.user_id
-            },
-            dataType: "text",
-            success: function (Data) {
-                var ref = JSON.parse(Data);
-                layer.open({
-                    title: '用户信息',
-                    type: 2,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['1000px', '600px'],
-                    content: ['/super/userForm','no'],
-                    success: function(layero, index){
-                        layer.iframeAuto(index);
-                        var body = layer.getChildFrame('body', index);
-                        body.find("input[name='user_name']").val(ref.user_name);
-                        body.find("input[name='password']").val(ref.password);
-                        body.find("input[name='name']").val(ref.name);
-                        if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
-                        body.find("input[name='tel']").val(ref.tel);
-                        body.find("input[name='email']").val(ref.email);
-                        body.find("input[name='licence']").val(ref.licence);
-                        body.find("input[name='id_card']").val(ref.id_card);
-                        body.find("textarea[name='user_remark']").val(ref.user_remark);
+        function editUser(data) {
+            $.ajax({
+                type: "POST",
+                url: "/user/findById",
+                data: {
+                    user_id: data.user_id
+                },
+                dataType: "text",
+                success: function (Data) {
+                    var ref = JSON.parse(Data);
+                    var body;
+                    layer.open({
+                        title: '编辑信息',
+                        type: 2,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['1000px', '600px'],
+                        content: ['/super/userForm','no'],
+                        btnAlign: 'c',
+                        btn: ['确定', '取消'],
+                        success: function(layero, index){
+                            layer.iframeAuto(index);
+                            body = layer.getChildFrame('body', index);
+                            body.find("input[name='user_name']").val(ref.user_name);
+                            body.find("input[name='name']").val(ref.name);
+                            if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
+                            body.find("input[name='tel']").val(ref.tel);
+                            body.find("input[name='email']").val(ref.email);
+                            body.find("textarea[name='user_remark']").val(ref.user_remark);
+                        }
+                        ,yes: function (index, layero) {
+                            var u = body.find('form').serializeJSON(); //获取form表单里的元素
+                            $.ajax({
+                                type: "POST",
+                                url: "/user/updateUser",
+                                data: {
+                                    user_id: data.user_id
+                                    ,user_remark: u.user_remark
+                                },
+                                dataType: "text",
+                                success: function (Data) {
+                                    if (Data != "0") {
+                                        table.reload('userTable', {
+                                            url: '/user/userMsg'
+                                            ,where: {} //设定异步数据接口的额外参数
+                                            //,height: 300
+                                        });
+                                        layer.close(index);
+                                    }
+                                    else {
+                                        layer.msg('编辑失败')
+                                    }
+                                },
+                                error: function () {
+                                    alert("出现错误");
+                                    return false;
+                                }
+                            }) //ajax结束
+                        }
+                    });
+                }
+                ,error: function () {
+                    layer.msg("ID不存在");
+                    return false;
+                }
+            }) //ajax结束
+        }
 
-                    }
-                });
-            },
-            error: function () {
-                alert("出现错误");
-                return false;
-            }
-        }) //ajax结束
-    }
+        function viewUser(data){
+            $.ajax({
+                type: "POST",
+                url: "/user/findById",
+                data: {
+                    user_id: data.user_id
+                },
+                dataType: "text",
+                success: function (Data) {
+                    var ref = JSON.parse(Data);
+                    layer.open({
+                        title: '查看信息',
+                        type: 2,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['1000px', '600px'],
+                        content: ['/super/userForm','no'],
+                        success: function(layero, index){
+                            layer.iframeAuto(index);
+                            var body = layer.getChildFrame('body', index);
+                            body.find("input[name='user_name']").val(ref.user_name);
+                            body.find("input[name='name']").val(ref.name);
+                            if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
+                            body.find("input[name='tel']").val(ref.tel);
+                            body.find("input[name='email']").val(ref.email);
+                            body.find("textarea[name='user_remark']").val(ref.user_remark);
+
+                        }
+                    });
+                },
+                error: function () {
+                    alert("出现错误");
+                    return false;
+                }
+            }) //ajax结束
+        }
+    });
 
 </script>
 

@@ -73,7 +73,7 @@
             elem: '#userTable'
             ,url:'/user/userMsg'
             ,toolbar: '#toolbarDemo'
-            ,title: '用户数据表'
+            ,title: '数据表'
             ,height: 560 //容器高度
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
@@ -234,7 +234,7 @@
         function addUser() {
             var body;
             layer.open({
-                title: '添加用户信息',
+                title: '添加信息',
                 type: 2,
                 maxmin: true, //开启最大化最小化按钮
                 area: ['1000px', '600px'],
@@ -273,7 +273,7 @@
                                 layer.close(index);
                             }
                             else {
-                                layer.msg('用户已存在')
+                                layer.msg('添加对象已存在')
                             }
                         },
                         error: function () {
@@ -297,7 +297,7 @@
                     var ref = JSON.parse(Data);
                     var body;
                     layer.open({
-                        title: '用户信息',
+                        title: '编辑信息',
                         type: 2,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['1000px', '600px'],
@@ -367,7 +367,7 @@
                 success: function (Data) {
                     var ref = JSON.parse(Data);
                     layer.open({
-                        title: '用户信息',
+                        title: '查看信息',
                         type: 2,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['1000px', '600px'],

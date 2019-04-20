@@ -18,7 +18,7 @@
         values (#{user_id},#{user_name},#{password},#{name},#{sex},#{tel},#{email},#{licence},#{id_card},#{user_remark},#{create_time},#{role})
     </insert>
 
-    <insert id="insertAdmin" parameterType="com.platform.dao.domain.UserInfo">
+    <insert id="insertUser" parameterType="com.platform.dao.domain.UserInfo">
         insert into user_info(user_id,user_name,password,name,tel,email,create_time,role,enable_flag)
         values (#{user_id},#{user_name},#{password},#{name},#{tel},#{email},#{create_time},#{role},#{enable_flag})
     </insert>

@@ -63,7 +63,7 @@ class AdminController {
     @RequestMapping("/addAdmin")
     @ResponseBody
     String addAdmin(UserInfo user){
-        return userInfoService.insertAdmin(user)
+        return userInfoService.insertUser(user)
     }
 
     @RequestMapping("/enableAdmin")

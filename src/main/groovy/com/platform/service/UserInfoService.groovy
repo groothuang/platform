@@ -5,12 +5,12 @@ import com.platform.dao.domain.UserInfo
 interface UserInfoService {
 
     int insert(UserInfo userInfo);
-    
+
     String selectAll();
 
     String selectAdmin();
 
-    int insertAdmin(UserInfo userInfo)
+    int insertUser(UserInfo userInfo)
 
     int update(UserInfo userInfo);
 

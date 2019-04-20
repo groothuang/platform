@@ -66,29 +66,24 @@ class WebController {
         if (flag == "0"){
             httpSession.setAttribute("user_name", userInfo.user_name);
             modelAndView.setViewName("redirect:/super/index.html");
-            return modelAndView;
         }
         if (flag == "1"){
             httpSession.setAttribute("user_name", userInfo.user_name);
             modelAndView.setViewName("redirect:/admin/index.html");
-            return modelAndView;
         }
         if (flag == "2"){
             httpSession.setAttribute("user_name", userInfo.user_name);
             modelAndView.setViewName("redirect:/web/index.html");
-            return modelAndView;
         }
         if  (flag == "none"){
             modelAndView.addObject("loginError", "用户名不存在！");
             modelAndView.setViewName("web/login");
-            return modelAndView;
         }
         if (flag == "wrong") {
             modelAndView.addObject("loginError", "密码不正确！");
             modelAndView.setViewName("web/login");
-            return modelAndView;
         }
-
+        return modelAndView;
     }
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session) {
@@ -101,14 +96,20 @@ class WebController {
     }
     @PostMapping(value = "/register")
     ModelAndView doRegister(UserInfo userInfo, ModelAndView modelAndView, HttpSession httpSession){
-        int flag = userInfoService.insert(userInfo)
-        if(flag == 1){
-            modelAndView.setViewName("web/login");
-            return modelAndView;
-        }else {
-            modelAndView.setViewName("web/register");
-            return  modelAndView;
+        String flag = loginService.registerCheck(userInfo)
+        if(flag == "2"){
+            httpSession.setAttribute("user_name", userInfo.user_name);
+            modelAndView.setViewName("redirect:/web/index.html");
         }
+        if (flag == "exist"){
+            modelAndView.addObject("loginError", "用户名已存在！");
+            modelAndView.setViewName("web/register");
+        }
+        if (flag == "wrong") {
+            modelAndView.addObject("loginError", "密码不一致！");
+            modelAndView.setViewName("web/register");
+        }
+        return modelAndView;
     }
     @RequestMapping(value = "/contact")
     public String contact() {

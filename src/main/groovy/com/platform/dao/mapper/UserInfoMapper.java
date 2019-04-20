@@ -10,7 +10,7 @@ interface UserInfoMapper {
 
     int insert(UserInfo userInfo);
 
-    int insertAdmin(UserInfo userInfo);
+    int insertUser(UserInfo userInfo);
 
     int update(UserInfo userInfo);
 

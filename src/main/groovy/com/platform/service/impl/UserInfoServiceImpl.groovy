@@ -17,30 +17,34 @@ class UserInfoServiceImpl implements UserInfoService {
     private UserInfoMapper userInfoMapper
 
     public int insert(UserInfo userInfo){
-        if("".equals(userInfo.user_name) || userInfo.user_name == null){
+        UserInfo d_user
+        try {
+            d_user = userInfoMapper.findByName(userInfo.user_name);
+        } catch (DataAccessException e) {
             return 0
         }
-        UserInfo d_user = userInfoMapper.findByName(userInfo.user_name)
-        if(userInfo.user_name.equals(d_user.user_name) || d_user.user_name == userInfo.user_name){
+        if (d_user == null){
+            def currentDay = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
+            def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            userInfo.user_id = "U"+currentDay;
+            userInfo.create_time = currentTime;
+            userInfo.role = "2";
+            userInfo.enable_flag = "true";
+            return userInfoMapper.insert(userInfo)
+        }else {
             return 0
         }
-        def currentDay = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
-        def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        userInfo.user_id = "U"+currentDay;
-        userInfo.create_time = currentTime;
-        userInfo.role = "2";
-        userInfo.enable_flag = "true";
-        return userInfoMapper.insert(userInfo)
+
     }
 
-    int insertAdmin(UserInfo userInfo){
+    int insertUser(UserInfo userInfo){
         def currentDay = new SimpleDateFormat("ddHHmmss").format(new Date());
         userInfo.user_id = "A"+currentDay;
         def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         userInfo.create_time = currentTime;
         userInfo.role = "1";
         userInfo.enable_flag = "true";
-        return userInfoMapper.insertAdmin(userInfo)
+        return userInfoMapper.insertUser(userInfo)
     }
 
     String selectAll(){

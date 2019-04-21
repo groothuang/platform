@@ -2,6 +2,7 @@ package com.platform.service.impl
 
 import com.google.gson.Gson
 import com.platform.dao.domain.ToolsInfo
+import com.platform.dao.domain.UserInfo
 import com.platform.dao.mapper.ToolsInfoMapper
 import com.platform.service.ToolsInfoService
 import org.json.JSONObject
@@ -31,6 +32,14 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         return result
     }
 
+    ToolsInfo findById(String id){
+        return toolsInfoMapper.findById(id)
+    }
+
+    ToolsInfo findByName(String name){
+        return  toolsInfoMapper.findByName(name)
+    }
+
     int countAll(){
         return toolsInfoMapper.countAll();
     }
@@ -52,14 +61,6 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
     int delete(String id){
         List<String> ids = java.util.Arrays.asList(id.split(","));
         return toolsInfoMapper.delete(ids)
-    }
-
-    ToolsInfo findById(String id){
-        return toolsInfoMapper.findById(id)
-    }
-
-    ToolsInfo findByName(String name){
-        return  toolsInfoMapper.findByName(name)
     }
 
     public Map<String,Object> uploadPic (MultipartFile file, String path) {
@@ -92,5 +93,32 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         tempFile.createNewFile();
         file.transferTo(tempFile);
         return  tempFile.getName();
+    }
+
+    String searchTools(ToolsInfo toolsInfo) {
+        Gson gson = new Gson();
+        println(gson.toJson(toolsInfo))
+        String jsonStr;
+        if (toolsInfo.search_type == "车辆名称"){
+            jsonStr = gson.toJson(toolsInfoMapper.findByName(toolsInfo.search_field));
+        }
+        if (toolsInfo.search_type == "车辆ID"){
+            jsonStr = gson.toJson(toolsInfoMapper.findById(toolsInfo.search_field));
+        }
+        if (toolsInfo.search_field == "" || toolsInfo.search_field == null){
+            jsonStr = gson.toJson(toolsInfoMapper.selectAll())
+        }
+        println(jsonStr)
+//        if (jsonStr == null || jsonStr == ""){
+//            jsonStr = gson.toJson(toolsInfoMapper.selectAll());
+//        }
+        JSONObject jsonObject = new JSONObject();  //创建Json对象
+        jsonObject.put("code", 0);         //设置Json对象的属性
+        jsonObject.put("msg", "");
+        jsonObject.put("count", toolsInfoMapper.countAll());
+        String str = jsonObject.toString();
+        String result = "{"+str.substring(1,str.length()-1)+",\"data\":"+jsonStr+"}"
+        println(result)
+        return result
     }
 }

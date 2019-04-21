@@ -10,17 +10,20 @@ interface ToolsInfoService {
 
     String selectAll();
 
+    String searchTools(ToolsInfo toolsInfo);
+
+    ToolsInfo findByName(String name);
+
+    ToolsInfo findById(String id);
+
     int insert(ToolsInfo toolsInfo);
 
     int update(ToolsInfo toolsInfo);
 
     int delete(String id);
 
-    ToolsInfo findById(String id);
-
     Map<String,Object> uploadPic (MultipartFile file, String path);
 
     String uploadFile(MultipartFile file, String path);
 
-    ToolsInfo findByName(String name);
 }

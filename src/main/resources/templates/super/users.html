@@ -83,8 +83,8 @@
                 ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:165}
             ]]
             ,initSort: {
-                field: 'user_id' //排序字段，对应 cols 设定的各字段名
-                ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+                field: 'create_time' //排序字段，对应 cols 设定的各字段名
+                ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
             ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局

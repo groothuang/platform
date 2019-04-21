@@ -14,6 +14,8 @@ interface UserInfoMapper {
 
     int update(UserInfo userInfo);
 
+    int updateMsg(UserInfo userInfo);
+
     int enableAdmin(UserInfo userInfo);
 
     int delete(List list);

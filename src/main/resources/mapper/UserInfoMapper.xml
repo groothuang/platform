@@ -29,6 +29,11 @@
          where user_id=#{user_id}
     </update>
 
+    <update id="updateMsg" parameterType="com.platform.dao.domain.UserInfo">
+        update user_info set user_remark=#{user_remark}
+         where user_id=#{user_id}
+    </update>
+
     <update id="enableAdmin" parameterType="com.platform.dao.domain.UserInfo">
         update user_info set enable_flag = #{enable_flag}
          where user_id=#{user_id}

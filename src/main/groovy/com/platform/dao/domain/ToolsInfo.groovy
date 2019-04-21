@@ -17,5 +17,6 @@ class ToolsInfo {
     String use_return_date
     String validity_time
     String car_state
-
+    String search_type
+    String search_field
 }

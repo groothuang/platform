@@ -57,4 +57,10 @@ class ToolsController {
         String path = "D:\\IdeaProject\\platform\\src\\main\\resources\\static\\image";
         return toolsInfoService.uploadPic(file,path);
     }
+
+    @RequestMapping("/searchTools")
+    @ResponseBody
+    String searchTools(ToolsInfo toolsInfo){
+        return toolsInfoService.searchTools(toolsInfo)
+    }
 }

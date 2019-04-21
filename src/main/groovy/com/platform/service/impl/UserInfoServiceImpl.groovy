@@ -64,6 +64,10 @@ class UserInfoServiceImpl implements UserInfoService {
         return  userInfoMapper.update(userInfo)
     }
 
+    int updateMsg(UserInfo userInfo){
+        return  userInfoMapper.updateMsg(userInfo)
+    }
+
     int enableAdmin(UserInfo userInfo){
         return userInfoMapper.enableAdmin(userInfo)
     }

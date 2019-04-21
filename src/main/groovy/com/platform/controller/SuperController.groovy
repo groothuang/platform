@@ -30,6 +30,10 @@ class SuperController {
     public String toolForm() {
         return "super/toolForm";
     }
+    @RequestMapping(value = "/msgboardForm")
+    public String msgboardForm() {
+        return "super/msgboardForm";
+    }
     @RequestMapping(value = "/users")
     public String users() {
         return "super/users";

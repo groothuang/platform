@@ -71,4 +71,22 @@ class AdminController {
     String enableAdmin(UserInfo user){
         return userInfoService.enableAdmin(user)
     }
+
+    @RequestMapping("/boardMsg")
+    @ResponseBody
+    String boardMsg(UserInfo user){
+        return userInfoService.selectAll()
+    }
+
+    @RequestMapping("/updateMsg")
+    @ResponseBody
+    String updateMsg(UserInfo user){
+        return userInfoService.updateMsg(user)
+    }
+
+    @RequestMapping("/findById")
+    @ResponseBody
+    UserInfo findById(UserInfo user){
+        return userInfoService.findById(user.user_id)
+    }
 }

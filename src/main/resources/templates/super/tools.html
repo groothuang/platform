@@ -30,35 +30,35 @@
             </div>
             <div class="layui-card">
                 <div class="layui-tab-content">
-                    <form class="layui-form" action="">
+                    <form class="layui-form"  id="selectForm"  lay-filter="selectForm">
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label">查询类型</label>
                                 <div class="layui-input-inline">
-                                    <select name="search_type" lay-verify="required" lay-search="">
-                                        <option value="1" >车辆ID</option>
-                                        <option value="2">车辆名称</option>
+                                    <select name="search_type">
+                                        <option value="车辆名称">车辆名称</option>
+                                        <option value="车辆ID" >车辆ID</option>
                                     </select>
                                 </div>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="searchType"  lay-verify="required" class="layui-input"/>
+                                    <input type="text" name="search_field" id="search_field" class="layui-input"/>
                                 </div>
                                 <div class="layui-input-inline">
-                                    <select name="car_type" lay-verify="required" lay-search="">
-                                        <option value="1">汽车</option>
-                                        <option value="2">自行车</option>
-                                        <option value="3">大巴</option>
+                                    <select name="car_type">
+                                        <option value="汽车">汽车</option>
+                                        <option value="自行车">自行车</option>
+                                        <option value="大巴">大巴</option>
                                     </select>
                                 </div>
                                 <div class="layui-input-inline">
-                                    <select name="source" lay-verify="required" lay-search="">
-                                        <option value="1">系统</option>
-                                        <option value="2">用户</option>
+                                    <select name="car_source">
+                                        <option value="系统">系统</option>
+                                        <option value="用户">用户</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <button class="layui-btn" data-type="reload">查询</button>
+                                <button class="layui-btn" lay-submit lay-filter="selectForm">查询</button>
                             </div>
                         </div>
                     </form>
@@ -93,14 +93,12 @@
 <script src="/ui/js/jquery-3.3.1.min.js" charset="utf-8"></script>
 <script src="/layui/jquery.serializejson.js" charset="utf-8"></script>
 <script>
-    layui.use(['element', 'layer'], function(){
-        var element = layui.element;
-        var layer = layui.layer;
-    });
-    layui.use(['laypage', 'layer', 'table'], function(){
+    layui.use(['laypage', 'layer', 'element', 'table', 'form'], function(){
         var laypage = layui.laypage
             ,table = layui.table
-            ,layer = layui.layer;
+            ,form =layui.form
+            ,layer = layui.layer
+            ,element = layui.element;
         var $ = layui.jquery;
         table.render({
             elem: '#toolsTable'
@@ -125,8 +123,8 @@
                 ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:165}
             ]]
             ,initSort: {
-                field: 'car_id' //排序字段，对应 cols 设定的各字段名
-                ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+                field: 'add_time' //排序字段，对应 cols 设定的各字段名
+                ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
             ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -156,6 +154,20 @@
             //         }
             //     });
             // }
+        });
+
+        form.on('submit(selectForm)', function(data){
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            table.reload('toolsTable',{
+                url: "/tools/searchTools"
+                ,where: {
+                    search_type: data.field.search_type
+                    ,search_field: data.field.search_field
+                    ,car_source: data.field.car_source
+                    ,car_type: data.field.car_type
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
         //头工具栏事件
@@ -224,6 +236,16 @@
                     viewItem(data);
                     break;
             }
+        });
+
+        $("#searchTools").on("click",function () {
+            var field = $('#search_field').val();
+            table.reload('toolsTable', {
+                url:'/tools/toolsMsg'
+                ,where: {
+                    user_id: field
+                }
+            });
         });
 
         function hoverOpenImg(){

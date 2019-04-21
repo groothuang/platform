@@ -24,7 +24,7 @@
                         <span class="layui-breadcrumb">
                             <a href="index.html">首页</a>
                             <a><cite>账号管理</cite></a>
-                            <a><cite>用户管理</cite></a>
+                            <a><cite>留言板管理</cite></a>
                         </span>
                 </div>
             </div>
@@ -35,7 +35,6 @@
 
                     <script type="text/html" id="toolbarDemo">
                         <div class="layui-btn-container">
-                            <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
                             <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
                         </div>
                     </script>
@@ -64,7 +63,7 @@
         var $ = layui.jquery;
         table.render({
             elem: '#userTable'
-            ,url:'/user/userMsg'
+            ,url:'/admin/boardMsg'
             ,toolbar: '#toolbarDemo'
             ,title: '用户数据表'
             ,height: 560 //容器高度
@@ -83,7 +82,7 @@
             ]]
             ,initSort: {
                 field: 'create_time' //排序字段，对应 cols 设定的各字段名
-                ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+                ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
             ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -185,13 +184,16 @@
                 , yes: function (index) {
                     $.ajax({
                         type: "POST",
-                        url: "/user/deleteUser",
-                        data: { user_id: user_id },
+                        url: "/admin/updateMsg",
+                        data: {
+                            user_id: user_id
+                            ,user_mark: ""
+                        },
                         dataType: "text",
                         success: function (Data) {
                             if (Data != "0") {
                                 table.reload('userTable', {
-                                    url: '/user/userMsg'
+                                    url: '/admin/boardMsg'
                                     ,where: {} //设定异步数据接口的额外参数
                                     //,height: 300
                                 });
@@ -213,7 +215,7 @@
         function editUser(data) {
             $.ajax({
                 type: "POST",
-                url: "/user/findById",
+                url: "/admin/findById",
                 data: {
                     user_id: data.user_id
                 },
@@ -226,24 +228,19 @@
                         type: 2,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['1000px', '600px'],
-                        content: ['/super/userForm','no'],
+                        content: ['/super/msgboardForm','no'],
                         btnAlign: 'c',
                         btn: ['确定', '取消'],
                         success: function(layero, index){
                             layer.iframeAuto(index);
                             body = layer.getChildFrame('body', index);
-                            body.find("input[name='user_name']").val(ref.user_name);
-                            body.find("input[name='name']").val(ref.name);
-                            if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
-                            body.find("input[name='tel']").val(ref.tel);
-                            body.find("input[name='email']").val(ref.email);
                             body.find("textarea[name='user_remark']").val(ref.user_remark);
                         }
                         ,yes: function (index, layero) {
                             var u = body.find('form').serializeJSON(); //获取form表单里的元素
                             $.ajax({
                                 type: "POST",
-                                url: "/user/updateUser",
+                                url: "/admin/updateMsg",
                                 data: {
                                     user_id: data.user_id
                                     ,user_remark: u.user_remark
@@ -252,7 +249,7 @@
                                 success: function (Data) {
                                     if (Data != "0") {
                                         table.reload('userTable', {
-                                            url: '/user/userMsg'
+                                            url: '/admin/boardMsg'
                                             ,where: {} //设定异步数据接口的额外参数
                                             //,height: 300
                                         });
@@ -280,7 +277,7 @@
         function viewUser(data){
             $.ajax({
                 type: "POST",
-                url: "/user/findById",
+                url: "/admin/findById",
                 data: {
                     user_id: data.user_id
                 },
@@ -292,17 +289,11 @@
                         type: 2,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['1000px', '600px'],
-                        content: ['/super/userForm','no'],
+                        content: ['/super/msgboardForm','no'],
                         success: function(layero, index){
                             layer.iframeAuto(index);
                             var body = layer.getChildFrame('body', index);
-                            body.find("input[name='user_name']").val(ref.user_name);
-                            body.find("input[name='name']").val(ref.name);
-                            if (ref.sex == "女"){body.find("input[name='sex']").attr("checked",true);}
-                            body.find("input[name='tel']").val(ref.tel);
-                            body.find("input[name='email']").val(ref.email);
                             body.find("textarea[name='user_remark']").val(ref.user_remark);
-
                         }
                     });
                 },

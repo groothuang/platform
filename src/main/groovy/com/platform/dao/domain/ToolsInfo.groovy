@@ -8,7 +8,7 @@ class ToolsInfo {
     String car_brand
     String car_source
     String car_price
-    String add_time
+    String create_time
     String car_site
     String car_remark
     String seat_amount
@@ -17,6 +17,7 @@ class ToolsInfo {
     String use_return_date
     String validity_time
     String car_state
-    String search_type
-    String search_field
+    String select_type
+    String select_field
+    String enable_flag
 }

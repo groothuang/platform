@@ -51,42 +51,4 @@ class AdminController {
         return "admin/adminis";
     }
 
-    @Autowired
-    UserInfoService userInfoService
-
-    @RequestMapping("/adminMsg")
-    @ResponseBody
-    String adminMsg(UserInfo user){
-        return userInfoService.selectAdmin()
-    }
-
-    @RequestMapping("/addAdmin")
-    @ResponseBody
-    String addAdmin(UserInfo user){
-        return userInfoService.insertUser(user)
-    }
-
-    @RequestMapping("/enableAdmin")
-    @ResponseBody
-    String enableAdmin(UserInfo user){
-        return userInfoService.enableAdmin(user)
-    }
-
-    @RequestMapping("/boardMsg")
-    @ResponseBody
-    String boardMsg(UserInfo user){
-        return userInfoService.selectAll()
-    }
-
-    @RequestMapping("/updateMsg")
-    @ResponseBody
-    String updateMsg(UserInfo user){
-        return userInfoService.updateMsg(user)
-    }
-
-    @RequestMapping("/findById")
-    @ResponseBody
-    UserInfo findById(UserInfo user){
-        return userInfoService.findById(user.user_id)
-    }
 }

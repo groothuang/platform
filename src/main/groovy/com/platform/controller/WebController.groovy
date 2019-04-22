@@ -1,7 +1,6 @@
 package com.platform.controller
 
 import com.platform.dao.domain.MsgInfo
-import com.platform.dao.domain.User
 import com.platform.dao.domain.UserInfo
 import com.platform.service.LoginService
 import com.platform.service.UserInfoService
@@ -76,11 +75,11 @@ class WebController {
             modelAndView.setViewName("redirect:/web/index.html");
         }
         if  (flag == "none"){
-            modelAndView.addObject("loginError", "ÓÃ»§Ãû²»´æÔÚ£¡");
+            modelAndView.addObject("loginError", "ç”¨æˆ·åä¸å­˜åœ¨ï¼");
             modelAndView.setViewName("web/login");
         }
         if (flag == "wrong") {
-            modelAndView.addObject("loginError", "ÃÜÂë²»ÕıÈ·£¡");
+            modelAndView.addObject("loginError", "å¯†ç ä¸æ­£ç¡®ï¼");
             modelAndView.setViewName("web/login");
         }
         return modelAndView;
@@ -102,11 +101,11 @@ class WebController {
             modelAndView.setViewName("redirect:/web/index.html");
         }
         if (flag == "exist"){
-            modelAndView.addObject("loginError", "ÓÃ»§ÃûÒÑ´æÔÚ£¡");
+            modelAndView.addObject("loginError", "ç”¨æˆ·åå·²å­˜åœ¨ï¼");
             modelAndView.setViewName("web/register");
         }
         if (flag == "wrong") {
-            modelAndView.addObject("loginError", "ÃÜÂë²»Ò»ÖÂ£¡");
+            modelAndView.addObject("loginError", "å¯†ç ä¸ä¸€è‡´ï¼");
             modelAndView.setViewName("web/register");
         }
         return modelAndView;

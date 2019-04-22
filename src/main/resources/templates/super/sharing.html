@@ -30,30 +30,31 @@
             </div>
             <div class="layui-card">
                 <div class="layui-tab-content">
-                    <form class="layui-form" action="">
+                    <form class="layui-form"  id="selectForm" lay-filter="selectForm">
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label">查询类型</label>
                                 <div class="layui-input-inline">
-                                    <select name="search_type" lay-verify="required" lay-search="">
-                                        <option value="1" >资源ID</option>
-                                        <option value="2">资源名称</option>
+                                    <select name="select_type">
+                                        <option value=""></option>
+                                        <option value="车辆ID" >车辆ID</option>
+                                        <option value="车辆名称">车辆名称</option>
                                     </select>
                                 </div>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="searchType"  lay-verify="required" class="layui-input"/>
+                                    <input type="text" name="select_field" id="select_field" class="layui-input"/>
                                 </div>
                                 <div class="layui-input-inline">
-                                    <select name="car_type" lay-verify="required" lay-search="">
-                                        <option value="1">汽车</option>
-                                        <option value="2">自行车</option>
-                                        <option value="3">大巴</option>
+                                    <select name="car_type">
+                                        <option value=""></option>
+                                        <option value="汽车">汽车</option>
+                                        <option value="自行车">自行车</option>
+                                        <option value="大巴">大巴</option>
                                     </select>
                                 </div>
-
                             </div>
                             <div class="layui-inline">
-                                <button class="layui-btn" data-type="reload">查询</button>
+                                <button class="layui-btn" lay-submit lay-filter="selectForm">查询</button>
                             </div>
                         </div>
                     </form>
@@ -62,13 +63,18 @@
             <div class="layui-card">
                 <div class="layui-tab-content">
 
-                    <table class="layui-hide" id="test" lay-filter="test"></table>
+                    <table class="layui-hide" id="sharingTable" lay-filter="sharingTable"></table>
 
+                    <script type="text/html" id="carImg">
+                        <img src="/image/{{d.car_img}}"/>
+                    </script>
+                    <script type="text/html" id="switchTpl">
+                        <input type="checkbox" name="enable_flag" value="{{d.car_id}}" lay-skin="switch" lay-text="是|否" lay-filter="flagDemo" {{ d.enable_flag == 'true' ? 'checked' : '' }}>
+                    </script>
                     <script type="text/html" id="toolbarDemo">
                         <div class="layui-btn-container">
                             <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
                             <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
                         </div>
                     </script>
                     <script type="text/html" id="barDemo">
@@ -82,87 +88,423 @@
     </div>
 </div>
 <script src="/layui/layui.js" charset="utf-8"></script>
+<script src="/ui/js/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="/layui/jquery.serializejson.js" charset="utf-8"></script>
 <script>
-    layui.use(['element'], function(){
-        var element = layui.element
-    });
-    layui.use('table', function(){
-        var table = layui.table;
+    layui.use(['laypage', 'layer', 'element', 'table', 'form'], function(){
+        var laypage = layui.laypage
+            ,table = layui.table
+            ,form =layui.form
+            ,layer = layui.layer
+            ,element = layui.element;
+        var $ = layui.jquery;
         table.render({
-            elem: '#test'
-            ,url:'/json/sharing.json'
+            elem: '#sharingTable'
+            ,url:'/sharing/sharingMsg'
             ,toolbar: '#toolbarDemo'
-            ,title: '用户数据表'
-            ,height: 550 //容器高度
+            ,title: '共享资源数据表'
+            ,height: 560 //容器高度
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                ,{field:'car_id', title:'资源编号', width:180, fixed: 'left', unresize: true, sort: true}
-                ,{field:'car_name', title:'资源名称', width:180, edit: 'text', sort: true}
-                ,{field:'car_type', title:'类型', width:80, edit: 'text'}
-                ,{field:'car_brand', title:'品牌', width:80, edit: 'text'}
-                ,{field:'car_source', title:'来源', width:80, edit: 'text'}
-                ,{field:'car_price', title:'价格', width:80, edit: 'text', sort: true}
-                ,{field:'add_time', title:'操作时间', width:150, sort: true}
-                ,{field:'car_site', title:'放置地点', edit: 'text', width:180}
-                ,{field:'validity_date', title:'有效日期', edit: 'text', width:120}
-                ,{field:'car_status', title:'状态', width:80, edit: 'text'}
-                ,{field:'car_remark', title:'备注', edit: 'text'}
-                ,{fixed:'right', title:'操作', toolbar: '#barDemo', unresize: true, width:150}
+                ,{field:'car_id', title:'车辆ID', width:180, fixed: 'left', unresize: true, sort: true}
+                ,{field:'car_name', title:'车辆名称', width:180, sort: true}
+                ,{field:'car_img', title:'图片', width: 110, templet: '#carImg', align: 'center', unresize: true}
+                ,{field:'car_type', title:'类型', width:80, align: 'center'}
+                ,{field:'car_brand', title:'品牌', width:90, align: 'center'}
+                ,{field:'car_source', title:'来源', width:80, align: 'center'}
+                ,{field:'car_price', title:'价格', width:90, sort: true, align: 'center'}
+                ,{field:'car_state', title:'状态', width:90, sort: true, align: 'center'}
+                ,{field:'enable_flag', title:'是否过审',  templet: '#switchTpl', unresize: true, width:90, align: 'center'}
+                ,{field:'validity_time', title:'有效期/月', width:100, align: 'center'}
+                ,{field:'car_site', title:'放置地点', width:180}
+                ,{field:'create_time', title:'添加日期', width:180, sort: true}
+                ,{field:'car_remark', title:'备注', edit: 'text', width:200}
+                ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:165}
             ]]
-            ,page: true
             ,initSort: {
-                field: 'add_time' //排序字段，对应 cols 设定的各字段名
-                ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+                field: 'create_time' //排序字段，对应 cols 设定的各字段名
+                ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
+            ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                layout: [ 'prev', 'page', 'next', 'skip', 'count', 'limit'] //自定义分页布局
+                //,curr: 5 //设定初始在第 5 页
+                , groups: 5
+                , first: true
+                , last: true
+            }
+            ,done: function(res, curr, count) {
+                hoverOpenImg();//显示大图
+            }
+            // ,done: function(res, curr, count){
+            //     laypage.render({
+            //         elem: 'demo'
+            //         ,limit: 10
+            //         ,count: count
+            //         ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+            //         ,jump: function(obj, first){
+            //             //obj包含了当前分页的所有参数，比如：
+            //             console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+            //             console.log(obj.limit); //得到每页显示的条数
+            //
+            //             //首次不执行
+            //             if(!first){
+            //                 //do something
+            //             }
+            //         }
+            //     });
+            // }
+        });
+
+        //监听按钮操作
+        form.on('switch(flagDemo)', function(obj){
+            var flag = obj.elem.checked;
+            $.ajax({
+                type: "POST",
+                url: "/sharing/enable",
+                data: {
+                    car_id: this.value
+                    ,enable_flag: flag
+                },
+                dataType: "text",
+                success: function (Data) {
+                    if (Data != "0") {
+                        console.log(Data)
+                    }
+                    else {
+                        layer.msg('编辑失败')
+                    }
+                },
+                error: function () {
+                    layer.msg("出现错误");
+                    return false;
+                }
+            }) //ajax结束
+
+        });
+
+        //查询
+        form.on('submit(selectForm)', function(data){
+            console.log(data.field);//当前容器的全部表单字段，名值对形式：{name: value}
+            table.reload('sharingTable',{
+                url: "/sharing/search"
+                ,where: {
+                    select_type: data.field.select_type
+                    ,select_field: data.field.select_field
+                    ,car_type: data.field.car_type
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
         //头工具栏事件
-        table.on('toolbar(test)', function(obj){
-            var checkStatus = table.checkStatus(obj.config.car_id);
+        table.on('toolbar(sharingTable)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
             switch(obj.event){
                 case 'add':
-                    var data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
+                    addItem();
                     break;
                 case 'delete':
                     var data = checkStatus.data;
-                    layer.msg('选中了：'+ data.length + ' 个');
+                    var car_id = [];
+                    for(var i in data) {
+                        car_id.push(data[i].car_id)
+                    }
+                    deleteItem(car_id.toString());
                     break;
-            };
+            }
         });
 
+        //单击行勾选checkbox事件
+        $(document).on("click",".layui-table-body table.layui-table tbody tr", function () {
+            var index = $(this).attr('data-index');
+            var tableBox = $(this).parents('.layui-table-box');
+            //存在固定列
+            if (tableBox.find(".layui-table-fixed.layui-table-fixed-l").length>0) {
+                tableDiv = tableBox.find(".layui-table-fixed.layui-table-fixed-l");
+            } else {
+                tableDiv = tableBox.find(".layui-table-body.layui-table-main");
+            }
+            var checkCell = tableDiv.find("tr[data-index=" + index + "]").find("td div.laytable-cell-checkbox div.layui-form-checkbox I");
+            if (checkCell.length>0) {
+                checkCell.click();
+            }
+        });
+        $(document).on("click", "td div.laytable-cell-checkbox div.layui-form-checkbox", function (e) {
+            e.stopPropagation();
+        });
+
+        // //监听行双击事件
+        // table.on('rowDouble(sharingTable)', function(obj){
+        //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+        //     obj.tr.find("input[name='layTableCheckbox']").next().click();
+        //     console.log(obj.data) //获取选中行的数据
+        // });
+
         //监听单元格编辑
-        table.on('edit(test)', function(obj){
+        table.on('edit(sharingTable)', function(obj){
             var value = obj.value //得到修改后的值
                 ,data = obj.data //得到所在行所有键值
                 ,field = obj.field; //得到字段
-            layer.msg('[ID: '+ data.car_id +'] ' + field + ' 字段更改为：'+ value);
+            // $.ajax({
+            //     type: "POST",
+            //     url: "/admin/updateMsg",
+            //     data: {
+            //         user_id: data.user_id
+            //         ,user_remark: value
+            //     },
+            //     dataType: "text",
+            //     success: function (Data) {
+            //         if (Data == "0") {
+            //             layer.msg('编辑失败')
+            //         }
+            //     },
+            //     error: function () {
+            //         alert("出现错误");
+            //         return false;
+            //     }
+            // }) //ajax结束
         });
 
         //监听行工具事件
-        table.on('tool(test)', function(obj){
+        table.on('tool(sharingTable)', function(obj){
             var data = obj.data;
-            //console.log(obj)
-            if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if(obj.event === 'edit'){
-                layer.prompt({
-                    formType: 2
-                    ,value: data.email
-                }, function(value, index){
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
-                });
-            }else if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.car_id + ' 的查看操作');
+            switch(obj.event) {
+                case 'del':
+                    deleteItem(data.car_id);
+                    break;
+                case 'edit':
+                    editItem(data);
+                    break;
+                case 'detail':
+                    viewItem(data);
+                    break;
             }
         });
+
+        function hoverOpenImg(){
+            var img_show = null; // tips提示
+            $('td img').hover(function(){
+                // alert($(this).attr('src'));
+                var img = "<img class='img_msg' src='"+$(this).attr('src')+"' style='width:200px;' />";
+                img_show = layer.tips(img, this,{
+                    tips:[2, 'rgba(41,41,41,.5)']
+                });
+            },function(){
+                layer.close(img_show);
+            });
+            $('td img').attr('style','max-width:70px');
+        }
+
+        function deleteItem(id) {
+            layer.confirm('您确定要删除操作吗?', {
+                closeBtn: 1 // 是否显示关闭按钮
+                , btn: ['确定', '取消'] //按钮
+                , yes: function (index) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/sharing/deleteTools",
+                        data: { car_id: id },
+                        dataType: "text",
+                        success: function (Data) {
+                            if (Data != "0") {
+                                table.reload('sharingTable', {
+                                    url: '/sharing/sharingMsg'
+                                    ,where: {} //设定异步数据接口的额外参数
+                                    //,height: 300
+                                });
+                                layer.close(index);
+                            }
+                            else {
+                                layer.msg('删除失败')
+                            }
+                        },
+                        error: function () {
+                            alert("出现错误");
+                            return false;
+                        }
+                    }) //ajax结束
+                }
+            });
+        }
+
+        function addItem() {
+            var body;
+            layer.open({
+                title: '添加信息',
+                type: 2,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['1000px', '600px'],
+                content: ['/super/sharingForm','no'],
+                btnAlign: 'c',
+                btn: ['确定', '取消'],
+                success: function(layero, index){
+                    layer.iframeAuto(index);
+                    body = layer.getChildFrame('body', index);
+                    // var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：
+                    // iframeWin.method();
+                    // console.log(body.html()) //得到iframe页的body内容
+                    // body.find('input').val('Hi，我是从父页来的')
+                },
+                yes: function (index, layero) {
+                    var u = body.find('form').serializeJSON(); //获取form表单里的元素
+                    if(u.car_img == ''){
+                        u.car_img = "blank.jpg"
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "/sharing/addTools",
+                        data: {
+                            car_name: u.car_name
+                            ,car_img: u.car_img
+                            ,car_price: u.car_price
+                            ,car_type: u.car_type
+                            ,car_brand: u.car_brand
+                            ,validity_time: u.validity_time
+                            ,car_site: u.car_site
+                            ,car_remark: u.car_remark
+                        },
+                        dataType: "text",
+                        success: function (Data) {
+                            if (Data != "0") {
+                                table.reload('sharingTable', {
+                                    url: '/sharing/sharingMsg'
+                                    ,where: {} //设定异步数据接口的额外参数
+                                    //,height: 300
+                                });
+                                layer.close(index);
+                            }
+                            else {
+                                layer.msg('添加对象已存在')
+                            }
+                        },
+                        error: function () {
+                            alert("出现错误");
+                            return false;
+                        }
+                    }) //ajax结束
+                }
+            });
+        }
+
+        function editItem(data) {
+            $.ajax({
+                type: "POST",
+                url: "/sharing/findById",
+                data: {
+                    car_id: data.car_id
+                },
+                dataType: "text",
+                success: function (Data) {
+                    var ref = JSON.parse(Data);
+                    var body;
+                    layer.open({
+                        title: '编辑信息',
+                        type: 2,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['1000px', '600px'],
+                        content: ['/super/sharingForm','no'],
+                        btnAlign: 'c',
+                        btn: ['确定', '取消'],
+                        success: function(layero, index){
+                            layer.iframeAuto(index);
+                            body = layer.getChildFrame('body', index);
+                            body.find("input[name='car_name']").val(ref.car_name);
+                            body.find("input[name='car_img']").val(ref.car_img);
+                            body.find("img").attr('src', '/image/'+ref.car_img);
+                            body.find("p").html(ref.car_name);
+                            body.find("input[name='car_price']").val(ref.car_price);
+                            body.find("input[name='car_brand']").val(ref.car_brand);
+                            body.find("input[name='validity_time']").val(ref.validity_time);
+                            body.find("input[name='car_site']").val(ref.car_site);
+                            body.find("textarea[name='car_remark']").val(ref.car_remark);
+                            body.find("select").find("option:contains('"+ref.car_type+"')").attr("selected",true);
+                        }
+                        ,yes: function (index, layero) {
+                            var u = body.find('form').serializeJSON(); //获取form表单里的元素
+                            $.ajax({
+                                type: "POST",
+                                url: "/sharing/updateTools",
+                                data: {
+                                    car_id: data.car_id
+                                    ,car_name: u.car_name
+                                    ,car_img: u.car_img
+                                    ,car_price: u.car_price
+                                    ,car_type: u.car_type
+                                    ,car_brand: u.car_brand
+                                    ,validity_time: u.validity_time
+                                    ,car_site: u.car_site
+                                    ,car_remark: u.car_remark
+                                },
+                                dataType: "text",
+                                success: function (Data) {
+                                    if (Data != "0") {
+                                        table.reload('sharingTable', {
+                                            url: '/sharing/sharingMsg'
+                                            ,where: {} //设定异步数据接口的额外参数
+                                            //,height: 300
+                                        });
+                                        layer.close(index);
+                                    }
+                                    else {
+                                        layer.msg('编辑失败')
+                                    }
+                                },
+                                error: function () {
+                                    alert("出现错误");
+                                    return false;
+                                }
+                            }) //ajax结束
+                        }
+                    });
+                }
+                ,error: function () {
+                    layer.msg("ID不存在");
+                    return false;
+                }
+            }) //ajax结束
+        }
+
+        function viewItem(data){
+            $.ajax({
+                type: "POST",
+                url: "/sharing/findById",
+                data: {
+                    car_id: data.car_id
+                },
+                dataType: "text",
+                success: function (Data) {
+                    var ref = JSON.parse(Data);
+                    layer.open({
+                        title: '查看信息',
+                        type: 2,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['1000px', '600px'],
+                        content: ['/super/sharingForm','no'],
+                        success: function(layero, index){
+                            layer.iframeAuto(index);
+                            var body = layer.getChildFrame('body', index);
+                            body.find("input[name='car_name']").val(ref.car_name);
+                            body.find("input[name='car_price']").val(ref.car_price);
+                            body.find("input[name='car_brand']").val(ref.car_brand);
+                            body.find("input[name='validity_time']").val(ref.validity_time);
+                            body.find("input[name='car_site']").val(ref.car_site);
+                            body.find("textarea[name='car_remark']").val(ref.car_remark);
+                            body.find("input[name='car_img']").val(ref.car_img);
+                            body.find("button").attr('style','display: none');
+                            body.find("img").attr('src', '/image/'+ref.car_img);
+                            body.find("p").html(ref.car_name);
+                            body.find("select").find("option:contains('"+ref.car_type+"')").attr("selected",true);
+                        }
+                    });
+                },
+                error: function () {
+                    alert("出现错误");
+                    return false;
+                }
+            }) //ajax结束
+        }
     });
+
 </script>
 
 </body>

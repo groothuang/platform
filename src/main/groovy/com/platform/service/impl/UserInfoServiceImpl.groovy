@@ -51,8 +51,8 @@ class UserInfoServiceImpl implements UserInfoService {
         List<UserInfo> users= userInfoMapper.selectAll();
         Gson gson = new Gson();
         String jsonStr = gson.toJson(users);
-        JSONObject jsonObject = new JSONObject();  //´´½¨Json¶ÔÏó
-        jsonObject.put("code", 0);         //ÉèÖÃJson¶ÔÏóµÄÊôÐÔ
+        JSONObject jsonObject = new JSONObject();  //åˆ›å»ºJsonå¯¹è±¡
+        jsonObject.put("code", 0);         //è®¾ç½®Jsonå¯¹è±¡çš„å±žæ€§
         jsonObject.put("msg", "");
         jsonObject.put("count", userInfoMapper.countAll());
         String str = jsonObject.toString();
@@ -89,8 +89,8 @@ class UserInfoServiceImpl implements UserInfoService {
         List<UserInfo> admins= userInfoMapper.selectAdmin();
         Gson gson = new Gson();
         String jsonStr = gson.toJson(admins);
-        JSONObject jsonObject = new JSONObject();  //´´½¨Json¶ÔÏó
-        jsonObject.put("code", 0);         //ÉèÖÃJson¶ÔÏóµÄÊôÐÔ
+        JSONObject jsonObject = new JSONObject();  //åˆ›å»ºJsonå¯¹è±¡
+        jsonObject.put("code", 0);         //è®¾ç½®Jsonå¯¹è±¡çš„å±žæ€§
         jsonObject.put("msg", "");
         jsonObject.put("count", userInfoMapper.countAll());
         String str = jsonObject.toString();

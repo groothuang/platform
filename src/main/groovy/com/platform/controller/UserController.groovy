@@ -46,5 +46,35 @@ class UserController {
         return userInfoService.update(user)
     }
 
+//    管理员信息管理
+    @RequestMapping("/adminMsg")
+    @ResponseBody
+    String adminMsg(UserInfo user){
+        return userInfoService.selectAdmin()
+    }
+
+    @RequestMapping("/addAdmin")
+    @ResponseBody
+    String addAdmin(UserInfo user){
+        return userInfoService.insertUser(user)
+    }
+
+    @RequestMapping("/enableAdmin")
+    @ResponseBody
+    String enableAdmin(UserInfo user){
+        return userInfoService.enableAdmin(user)
+    }
+
+    @RequestMapping("/boardMsg")
+    @ResponseBody
+    String boardMsg(UserInfo user){
+        return userInfoService.selectAll()
+    }
+
+    @RequestMapping("/updateMsg")
+    @ResponseBody
+    String updateMsg(UserInfo user){
+        return userInfoService.updateMsg(user)
+    }
 
 }

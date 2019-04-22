@@ -1,10 +1,11 @@
 package com.platform.service.impl
 
 import com.google.gson.Gson
-import com.platform.dao.domain.ToolsInfo
-import com.platform.dao.domain.UserInfo
-import com.platform.dao.mapper.ToolsInfoMapper
-import com.platform.service.ToolsInfoService
+import com.platform.dao.domain.OrderInfo
+import com.platform.dao.mapper.OrderInfoMapper
+import com.platform.dao.mapper.SharingInfoMapper
+import com.platform.service.OrderInfoService
+import com.platform.service.SharingInfoService
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -13,54 +14,56 @@ import org.springframework.web.multipart.MultipartFile
 import java.text.SimpleDateFormat
 
 @Service
-class ToolsInfoServiceImpl implements ToolsInfoService {
+class OrderInfoServiceImpl implements OrderInfoService {
 
     @Autowired
-    ToolsInfoMapper toolsInfoMapper
+    OrderInfoMapper orderInfoMapper 
 
-    String selectAll() {
-        List<ToolsInfo> toolsInfo = toolsInfoMapper.selectAll();
+    String selectAll(){
+        List<OrderInfo> orderInfo = orderInfoMapper.selectAll();
         Gson gson = new Gson();
-        String jsonStr = gson.toJson(toolsInfo);
+        String jsonStr = gson.toJson(orderInfo);
 //        println(jsonStr)
         JSONObject jsonObject = new JSONObject();  //创建Json对象
         jsonObject.put("code", 0);         //设置Json对象的属性
         jsonObject.put("msg", "");
-        jsonObject.put("count", toolsInfoMapper.countAll());
+        jsonObject.put("count", orderInfoMapper.countAll());
         String str = jsonObject.toString();
         String result = "{"+str.substring(1,str.length()-1)+",\"data\":"+jsonStr+"}"
         return result
     }
 
-    ToolsInfo findById(String id){
-        return toolsInfoMapper.findById(id)
+    OrderInfo findById(String id){
+        return orderInfoMapper.findById(id)
     }
 
-    ToolsInfo findByName(String name){
-        return  toolsInfoMapper.findByName(name)
+    OrderInfo findByName(String name){
+        return  orderInfoMapper.findByName(name)
     }
 
     int countAll(){
-        return toolsInfoMapper.countAll();
+        return orderInfoMapper.countAll();
     }
 
-    int insert(ToolsInfo toolsInfo){
+    int insert(OrderInfo orderInfo){
         def currentDay = new SimpleDateFormat("HHmmss").format(new Date());
-        toolsInfo.car_id = "C"+currentDay;
-        toolsInfo.create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        toolsInfo.car_state = "空闲";
-        Gson gson = new Gson()
-        println(gson.toJson(toolsInfo))
-        return toolsInfoMapper.insert(toolsInfo)
+        orderInfo.car_id = "C"+currentDay;
+        orderInfo.create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        orderInfo.car_state = "空闲";
+        orderInfo.enable_flag = "false";
+        orderInfo.car_source = "用户";
+        Gson gson = new Gson();
+        println(gson.toJson(orderInfo));
+        return orderInfoMapper.insert(orderInfo);
     }
 
-    int update(ToolsInfo toolsInfo){
-        return toolsInfoMapper.update(toolsInfo)
+    int update(OrderInfo orderInfo){
+        return orderInfoMapper.update(orderInfo);
     }
 
     int delete(String id){
         List<String> ids = java.util.Arrays.asList(id.split(","));
-        return toolsInfoMapper.delete(ids)
+        return orderInfoMapper.delete(ids);
     }
 
     public Map<String,Object> uploadPic (MultipartFile file, String path) {
@@ -95,50 +98,50 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         return  tempFile.getName();
     }
 
-    String searchTools(ToolsInfo toolsInfo) {
+    String search(OrderInfo orderInfo) {
         Gson gson = new Gson();
-        List<ToolsInfo> tools;
+        List<OrderInfo> tools;
         String jsonStr, count;
 
-        println("输入打印:"+gson.toJson(toolsInfo))
+        println("输入打印:"+gson.toJson(orderInfo))
 
-        if(toolsInfo.select_type == "" || toolsInfo.select_type == null){
-            tools = toolsInfoMapper.selectByName(toolsInfo);
-            count = toolsInfoMapper.countByName(toolsInfo);
+        if(orderInfo.select_type == "" || orderInfo.select_type == null){
+            tools = orderInfoMapper.selectByName(orderInfo);
+            count = orderInfoMapper.countByName(orderInfo);
             jsonStr = gson.toJson(tools);
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectById(toolsInfo)
-                count = toolsInfoMapper.countById(toolsInfo);
+                tools = orderInfoMapper.selectById(orderInfo)
+                count = orderInfoMapper.countById(orderInfo);
                 jsonStr = gson.toJson(tools);
                 if (jsonStr == "[]"){
-                    tools = toolsInfoMapper.selectByName(toolsInfo);
-                    count = toolsInfoMapper.countByName(toolsInfo);
+                    tools = orderInfoMapper.selectByName(orderInfo);
+                    count = orderInfoMapper.countByName(orderInfo);
                     jsonStr = gson.toJson(tools);
                 }
             }
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectAll();
-                count = toolsInfoMapper.countAll();
+                tools = orderInfoMapper.selectAll();
+                count = orderInfoMapper.countAll();
                 jsonStr = gson.toJson(tools);
             }
         }
-        if (toolsInfo.select_type == "车辆名称"){
-            tools = toolsInfoMapper.selectByName(toolsInfo);
-            count = toolsInfoMapper.countByName(toolsInfo);
+        if (orderInfo.select_type == "车辆名称"){
+            tools = orderInfoMapper.selectByName(orderInfo);
+            count = orderInfoMapper.countByName(orderInfo);
             jsonStr = gson.toJson(tools);
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectAll();
-                count = toolsInfoMapper.countAll();
+                tools = orderInfoMapper.selectAll();
+                count = orderInfoMapper.countAll();
                 jsonStr = gson.toJson(tools);
             }
         }
-        if (toolsInfo.select_type == "车辆ID"){
-            tools = toolsInfoMapper.selectById(toolsInfo)
-            count = toolsInfoMapper.countById(toolsInfo);
+        if (orderInfo.select_type == "车辆ID"){
+            tools = orderInfoMapper.selectById(orderInfo)
+            count = orderInfoMapper.countById(orderInfo);
             jsonStr = gson.toJson(tools);
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectAll();
-                count = toolsInfoMapper.countAll();
+                tools = orderInfoMapper.selectAll();
+                count = orderInfoMapper.countAll();
                 jsonStr = gson.toJson(tools);
             }
         }
@@ -150,5 +153,9 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         String str = jsonObject.toString();
         String result = "{"+str.substring(1,str.length()-1)+",\"data\":"+jsonStr+"}"
         return result
+    }
+
+    int enable(OrderInfo orderInfo){
+        return orderInfoMapper.enable(orderInfo)
     }
 }

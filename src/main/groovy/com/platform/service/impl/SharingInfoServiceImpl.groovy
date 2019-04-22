@@ -3,8 +3,8 @@ package com.platform.service.impl
 import com.google.gson.Gson
 import com.platform.dao.domain.ToolsInfo
 import com.platform.dao.domain.UserInfo
-import com.platform.dao.mapper.ToolsInfoMapper
-import com.platform.service.ToolsInfoService
+import com.platform.dao.mapper.SharingInfoMapper
+import com.platform.service.SharingInfoService
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -13,35 +13,35 @@ import org.springframework.web.multipart.MultipartFile
 import java.text.SimpleDateFormat
 
 @Service
-class ToolsInfoServiceImpl implements ToolsInfoService {
+class SharingInfoServiceImpl implements SharingInfoService {
 
     @Autowired
-    ToolsInfoMapper toolsInfoMapper
+    SharingInfoMapper sharingInfoMapper
 
-    String selectAll() {
-        List<ToolsInfo> toolsInfo = toolsInfoMapper.selectAll();
+    String selectSharing(){
+        List<ToolsInfo> toolsInfo = sharingInfoMapper.selectSharing();
         Gson gson = new Gson();
         String jsonStr = gson.toJson(toolsInfo);
 //        println(jsonStr)
         JSONObject jsonObject = new JSONObject();  //创建Json对象
         jsonObject.put("code", 0);         //设置Json对象的属性
         jsonObject.put("msg", "");
-        jsonObject.put("count", toolsInfoMapper.countAll());
+        jsonObject.put("count", sharingInfoMapper.countSharing());
         String str = jsonObject.toString();
         String result = "{"+str.substring(1,str.length()-1)+",\"data\":"+jsonStr+"}"
         return result
     }
 
     ToolsInfo findById(String id){
-        return toolsInfoMapper.findById(id)
+        return sharingInfoMapper.findById(id)
     }
 
     ToolsInfo findByName(String name){
-        return  toolsInfoMapper.findByName(name)
+        return  sharingInfoMapper.findByName(name)
     }
 
-    int countAll(){
-        return toolsInfoMapper.countAll();
+    int countSharing(){
+        return sharingInfoMapper.countSharing();
     }
 
     int insert(ToolsInfo toolsInfo){
@@ -49,18 +49,20 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         toolsInfo.car_id = "C"+currentDay;
         toolsInfo.create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         toolsInfo.car_state = "空闲";
-        Gson gson = new Gson()
-        println(gson.toJson(toolsInfo))
-        return toolsInfoMapper.insert(toolsInfo)
+        toolsInfo.enable_flag = "false";
+        toolsInfo.car_source = "用户";
+        Gson gson = new Gson();
+        println(gson.toJson(toolsInfo));
+        return sharingInfoMapper.insert(toolsInfo);
     }
 
     int update(ToolsInfo toolsInfo){
-        return toolsInfoMapper.update(toolsInfo)
+        return sharingInfoMapper.update(toolsInfo);
     }
 
     int delete(String id){
         List<String> ids = java.util.Arrays.asList(id.split(","));
-        return toolsInfoMapper.delete(ids)
+        return sharingInfoMapper.delete(ids);
     }
 
     public Map<String,Object> uploadPic (MultipartFile file, String path) {
@@ -95,7 +97,7 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         return  tempFile.getName();
     }
 
-    String searchTools(ToolsInfo toolsInfo) {
+    String search(ToolsInfo toolsInfo) {
         Gson gson = new Gson();
         List<ToolsInfo> tools;
         String jsonStr, count;
@@ -103,42 +105,42 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         println("输入打印:"+gson.toJson(toolsInfo))
 
         if(toolsInfo.select_type == "" || toolsInfo.select_type == null){
-            tools = toolsInfoMapper.selectByName(toolsInfo);
-            count = toolsInfoMapper.countByName(toolsInfo);
+            tools = sharingInfoMapper.selectByName(toolsInfo);
+            count = sharingInfoMapper.countByName(toolsInfo);
             jsonStr = gson.toJson(tools);
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectById(toolsInfo)
-                count = toolsInfoMapper.countById(toolsInfo);
+                tools = sharingInfoMapper.selectById(toolsInfo)
+                count = sharingInfoMapper.countById(toolsInfo);
                 jsonStr = gson.toJson(tools);
                 if (jsonStr == "[]"){
-                    tools = toolsInfoMapper.selectByName(toolsInfo);
-                    count = toolsInfoMapper.countByName(toolsInfo);
+                    tools = sharingInfoMapper.selectByName(toolsInfo);
+                    count = sharingInfoMapper.countByName(toolsInfo);
                     jsonStr = gson.toJson(tools);
                 }
             }
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectAll();
-                count = toolsInfoMapper.countAll();
+                tools = sharingInfoMapper.selectSharing();
+                count = sharingInfoMapper.countSharing();
                 jsonStr = gson.toJson(tools);
             }
         }
         if (toolsInfo.select_type == "车辆名称"){
-            tools = toolsInfoMapper.selectByName(toolsInfo);
-            count = toolsInfoMapper.countByName(toolsInfo);
+            tools = sharingInfoMapper.selectByName(toolsInfo);
+            count = sharingInfoMapper.countByName(toolsInfo);
             jsonStr = gson.toJson(tools);
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectAll();
-                count = toolsInfoMapper.countAll();
+                tools = sharingInfoMapper.selectSharing();
+                count = sharingInfoMapper.countSharing();
                 jsonStr = gson.toJson(tools);
             }
         }
         if (toolsInfo.select_type == "车辆ID"){
-            tools = toolsInfoMapper.selectById(toolsInfo)
-            count = toolsInfoMapper.countById(toolsInfo);
+            tools = sharingInfoMapper.selectById(toolsInfo)
+            count = sharingInfoMapper.countById(toolsInfo);
             jsonStr = gson.toJson(tools);
             if (jsonStr == "[]"){
-                tools = toolsInfoMapper.selectAll();
-                count = toolsInfoMapper.countAll();
+                tools = sharingInfoMapper.selectSharing();
+                count = sharingInfoMapper.countSharing();
                 jsonStr = gson.toJson(tools);
             }
         }
@@ -150,5 +152,9 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
         String str = jsonObject.toString();
         String result = "{"+str.substring(1,str.length()-1)+",\"data\":"+jsonStr+"}"
         return result
+    }
+
+    int enable(ToolsInfo toolsInfo){
+        return sharingInfoMapper.enable(toolsInfo)
     }
 }

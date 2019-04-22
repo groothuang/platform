@@ -1,7 +1,6 @@
 package com.platform.controller
 
 import com.google.gson.Gson
-import com.platform.dao.domain.User
 import com.platform.dao.domain.UserInfo
 import com.platform.service.UserInfoService
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,9 +25,17 @@ class SuperController {
     public String adminForm() {
         return "super/adminForm";
     }
-    @RequestMapping(value = "/toolForm")
-    public String toolForm() {
-        return "super/toolForm";
+    @RequestMapping(value = "/toolsForm")
+    public String toolsForm() {
+        return "super/toolsForm";
+    }
+    @RequestMapping(value = "/sharingForm")
+    public String sharingForm() {
+        return "super/sharingForm";
+    }
+    @RequestMapping(value = "/orderForm")
+    public String orderForm() {
+        return "super/orderForm";
     }
     @RequestMapping(value = "/msgboardForm")
     public String msgboardForm() {

@@ -68,7 +68,7 @@
         var $ = layui.jquery;
         table.render({
             elem: '#userTable'
-            ,url:'/admin/adminMsg'
+            ,url:'/user/adminMsg'
             ,toolbar: '#toolbarDemo'
             ,title: '用户数据表'
             ,height: 560 //容器高度
@@ -90,7 +90,7 @@
                 ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
             ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                layout: [ 'prev', 'page', 'next', 'skip', 'count', 'limit']//自定义分页布局
                 //,curr: 5 //设定初始在第 5 页
                 , groups: 5
                 , first: true
@@ -100,6 +100,7 @@
                 var data = res.data
             }
         });
+
         //监听按钮操作
         form.on('switch(flagDemo)', function(obj){
             var flag = obj.elem.checked;
@@ -120,7 +121,7 @@
                     }
                 },
                 error: function () {
-                    alert("出现错误");
+                    layer.msg("出现错误");
                     return false;
                 }
             }) //ajax结束
@@ -203,7 +204,7 @@
                         success: function (Data) {
                             if (Data != "0") {
                                 table.reload('userTable', {
-                                    url: '/admin/adminMsg'
+                                    url: '/user/adminMsg'
                                     ,where: {} //设定异步数据接口的额外参数
                                     //,height: 300
                                 });
@@ -257,7 +258,7 @@
                         success: function (Data) {
                             if (Data != "0") {
                                 table.reload('userTable', {
-                                    url: '/admin/adminMsg'
+                                    url: '/user/adminMsg'
                                     ,where: {} //设定异步数据接口的额外参数
                                     //,height: 300
                                 });
@@ -322,7 +323,7 @@
                                 success: function (Data) {
                                     if (Data != "0") {
                                         table.reload('userTable', {
-                                            url: '/admin/adminMsg'
+                                            url: '/user/adminMsg'
                                             ,where: {} //设定异步数据接口的额外参数
                                             //,height: 300
                                         });

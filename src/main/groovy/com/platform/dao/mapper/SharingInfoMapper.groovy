@@ -3,15 +3,15 @@ package com.platform.dao.mapper
 import com.platform.dao.domain.ToolsInfo
 
 
-interface ToolsInfoMapper {
+interface SharingInfoMapper {
 
-    int countAll();
+    int countSharing();
 
     int countById(ToolsInfo toolsInfo);
 
     int countByName(ToolsInfo toolsInfo);
 
-    List<ToolsInfo> selectAll();
+    List<ToolsInfo> selectSharing();
 
     List<ToolsInfo> selectById(ToolsInfo toolsInfo);
 
@@ -26,4 +26,6 @@ interface ToolsInfoMapper {
     ToolsInfo findById(String id);
 
     ToolsInfo findByName(String name);
+
+    int enable(ToolsInfo toolsInfo);
 }

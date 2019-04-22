@@ -1,74 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.platform.dao.mapper.ToolsInfoMapper">
+<mapper namespace="com.platform.dao.mapper.SharingInfoMapper">
 
-    <select id="countAll" resultType="int">
-        select count(*) c from tools_info;
+    <select id="countSharing" resultType="int">
+        select count(*) c from tools_info where car_source = '用户'
     </select>
 
     <select id="countById" parameterType="com.platform.dao.domain.ToolsInfo" resultType="int">
-        select count(*) c from tools_info where 1=1
+        select count(*) c from tools_info where 1=1 and car_source = '用户'
         <if test="select_field != null and select_field != ''">
             and car_id like '%${select_field}%'
         </if>
         <if test="car_type != null and car_type != ''">
             and car_type=#{car_type}
         </if>
-        <if test="car_source != null and car_source != ''">
-            and car_source=#{car_source}
-        </if>
     </select>
 
     <select id="countByName" parameterType="com.platform.dao.domain.ToolsInfo" resultType="int">
-        select count(*) c from tools_info where 1=1
+        select count(*) c from tools_info where 1=1 and car_source = '用户'
         <if test="select_field != null and select_field != ''">
             and car_name like '%${select_field}%'
         </if>
         <if test="car_type != null and car_type != ''">
             and car_type=#{car_type}
         </if>
-        <if test="car_source != null and car_source != ''">
-            and car_source=#{car_source}
-        </if>
     </select>
 
-    <select id="selectAll" resultType="com.platform.dao.domain.ToolsInfo">
-        select * from tools_info order by car_id asc
+    <select id="selectSharing" resultType="com.platform.dao.domain.ToolsInfo">
+        select * from tools_info where car_source = '用户'
     </select>
 
     <select id="selectById" parameterType="com.platform.dao.domain.ToolsInfo" resultType="com.platform.dao.domain.ToolsInfo">
-        select * from tools_info where 1=1
+        select * from tools_info where 1=1 and car_source = '用户'
         <if test="select_field != null and select_field != ''">
             and car_id like '%${select_field}%'
         </if>
         <if test="car_type != null and car_type != ''">
             and car_type = #{car_type}
         </if>
-        <if test="car_source != null and car_source != ''">
-            and car_source = #{car_source}
-        </if>
     </select>
 
     <select id="selectByName" parameterType="com.platform.dao.domain.ToolsInfo" resultType="com.platform.dao.domain.ToolsInfo">
-       select * from tools_info where 1=1
+       select * from tools_info where 1=1 and car_source = '用户'
         <if test="select_field != null and select_field != ''">
            and car_name like '%${select_field}%'
         </if>
        <if test="car_type != null and car_type != ''">
            and car_type=#{car_type}
        </if>
-        <if test="car_source != null and car_source != ''">
-           and car_source=#{car_source}
-        </if>
     </select>
 
     <insert id="insert" parameterType="com.platform.dao.domain.ToolsInfo">
-        insert into tools_info(car_id,car_name,car_img,car_type,car_brand,car_source,car_price,create_time,car_site,car_remark,car_state,validity_time)
-        values (#{car_id},#{car_name},#{car_img},#{car_type},#{car_brand},#{car_source},#{car_price},#{create_time},#{car_site},#{car_remark},#{car_state},#{validity_time})
+        insert into tools_info(car_id,car_name,car_img,car_type,car_brand,car_source,car_price,create_time,car_site,car_remark,car_state,validity_time,enable_flag)
+        values (#{car_id},#{car_name},#{car_img},#{car_type},#{car_brand},#{car_source},#{car_price},
+        #{create_time},#{car_site},#{car_remark},#{car_state},#{validity_time},#{enable_flag})
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.ToolsInfo">
-        update tools_info set car_name=#{car_name},car_img=#{car_img},car_type=#{car_type},car_brand=#{car_brand},car_source=#{car_source},car_price=#{car_price}
+        update tools_info set car_name=#{car_name},car_img=#{car_img},car_type=#{car_type},car_brand=#{car_brand},car_price=#{car_price}
         ,car_site=#{car_site},car_remark=#{car_remark},validity_time=#{validity_time}
          where car_id=#{car_id}
     </update>
@@ -81,10 +70,15 @@
     </delete>
 
     <select id="findById" parameterType="String" resultType="com.platform.dao.domain.ToolsInfo">
-        select * from tools_info where car_id=#{car_id}
+        select * from tools_info where car_id=#{car_id} and car_source = '用户'
     </select>
 
     <select id="findByName" parameterType="String" resultType="com.platform.dao.domain.ToolsInfo">
-        select * from tools_info where car_name=#{car_name}
+        select * from tools_info where car_name=#{car_name} and car_source = '用户'
     </select>
+
+    <update id="enable" parameterType="com.platform.dao.domain.ToolsInfo">
+        update tools_info set enable_flag = #{enable_flag}
+         where car_id=#{car_id}
+    </update>
 </mapper>

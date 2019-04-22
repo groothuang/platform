@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.dao.mapper.OrderInfoMapper">
+
+    <select id="countAll" resultType="int">
+        select count(*) c from tools_info
+    </select>
+
+    <select id="countById" parameterType="com.platform.dao.domain.OrderInfo" resultType="int">
+        select count(*) c from tools_info where 1=1 and car_source = '用户'
+        <if test="select_field != null and select_field != ''">
+            and car_id like '%${select_field}%'
+        </if>
+        <if test="car_type != null and car_type != ''">
+            and car_type=#{car_type}
+        </if>
+    </select>
+
+    <select id="countByName" parameterType="com.platform.dao.domain.OrderInfo" resultType="int">
+        select count(*) c from tools_info where 1=1 and car_source = '用户'
+        <if test="select_field != null and select_field != ''">
+            and car_name like '%${select_field}%'
+        </if>
+        <if test="car_type != null and car_type != ''">
+            and car_type=#{car_type}
+        </if>
+    </select>
+
+    <select id="selectAll" resultType="com.platform.dao.domain.OrderInfo">
+        select * from order_info
+    </select>
+
+    <select id="selectById" parameterType="com.platform.dao.domain.OrderInfo" resultType="com.platform.dao.domain.OrderInfo">
+        select * from tools_info where 1=1 and car_source = '用户'
+        <if test="select_field != null and select_field != ''">
+            and car_id like '%${select_field}%'
+        </if>
+        <if test="car_type != null and car_type != ''">
+            and car_type = #{car_type}
+        </if>
+    </select>
+
+    <select id="selectByName" parameterType="com.platform.dao.domain.OrderInfo" resultType="com.platform.dao.domain.OrderInfo">
+       select * from tools_info where 1=1 and car_source = '用户'
+        <if test="select_field != null and select_field != ''">
+           and car_name like '%${select_field}%'
+        </if>
+       <if test="car_type != null and car_type != ''">
+           and car_type=#{car_type}
+       </if>
+    </select>
+
+    <insert id="insert" parameterType="com.platform.dao.domain.OrderInfo">
+        insert into tools_info(car_id,car_name,car_img,car_type,car_brand,car_source,car_price,create_time,car_site,car_remark,car_state,validity_time,enable_flag)
+        values (#{car_id},#{car_name},#{car_img},#{car_type},#{car_brand},#{car_source},#{car_price},
+        #{create_time},#{car_site},#{car_remark},#{car_state},#{validity_time},#{enable_flag})
+    </insert>
+
+    <update id="update" parameterType="com.platform.dao.domain.OrderInfo">
+        update tools_info set car_name=#{car_name},car_img=#{car_img},car_type=#{car_type},car_brand=#{car_brand},car_price=#{car_price}
+        ,car_site=#{car_site},car_remark=#{car_remark},validity_time=#{validity_time}
+         where car_id=#{car_id}
+    </update>
+
+    <delete id="delete" parameterType = "java.util.List">
+        delete from tools_info where car_id in
+        <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="findById" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">
+        select * from tools_info where car_id=#{car_id} and car_source = '用户'
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">
+        select * from tools_info where car_name=#{car_name} and car_source = '用户'
+    </select>
+
+    <update id="enable" parameterType="com.platform.dao.domain.OrderInfo">
+        update tools_info set enable_flag = #{enable_flag}
+         where car_id=#{car_id}
+    </update>
+</mapper>

@@ -17,12 +17,12 @@
 <body>
 <br>
 <div class="layui-container">
-    <form class="layui-form" id="toolsForm">
+    <form class="layui-form" id="sharingForm">
         <div class="layui-form-item" >
             <div class="layui-inline">
                 <label class="layui-form-label">车辆名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="car_name" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+                    <input type="text" name="car_name" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -51,6 +51,18 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">放置地点</label>
+            <div class="layui-input-block">
+                <input type="text" name="car_site" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text" >
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea name="car_remark" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">有效期</label>
                 <div class="layui-input-inline">
@@ -58,37 +70,20 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">来源</label>
+                <label class="layui-form-label"></label>
+                <div style="display: none"><input type="text" name="car_img" class="layui-input" id="car_img"></div>
                 <div class="layui-input-inline">
-                    <input type="radio" name="car_source" value="系统" title="系统" checked="">
-                    <input type="radio" name="car_source" value="用户" title="用户">
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-radius" id="carPic">上传图片</button>
                 </div>
             </div>
         </div>
-        <div class="layui-form-item" >
-            <label class="layui-form-label">放置地点</label>
+        <div class="layui-form-item">
+            <label class="layui-form-label">预览图</label>
             <div class="layui-input-block">
-                <input type="text" name="car_site" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item" >
-            <div class="layui-inline">
-                <div style="display: none">
-                    <input type="text" name="car_img" class="layui-input" id="car_img">
-                </div>
-                <div class="layui-input-inline">
-                    <blockquote class="layui-elem-quote layui-quote-nm" style="width: 200px;height: 200px;text-align:center">
-                        <button type="button" class="layui-btn" id="carPic">上传图片</button><br>
-                        <img class="layui-upload-img" id="demo" style="width: 200px">
-                        <p id="img_name"></p>
-                    </blockquote>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">备注</label>
-                <div class="layui-input-inline">
-                    <textarea name="car_remark" placeholder="请输入内容" class="layui-textarea"></textarea>
-                </div>
+                <blockquote class="layui-elem-quote layui-quote-nm" style="height: 120px;text-align:center">
+                    <p id="img_name"></p><br>
+                    <img class="layui-upload-img" id="demo" style="width: 200px;max-height: 100px">
+                </blockquote>
             </div>
         </div>
     </form>

@@ -85,7 +85,7 @@
                 ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
             }
             ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                layout: [ 'prev', 'page', 'next', 'skip', 'count', 'limit']//自定义分页布局
                 //,curr: 5 //设定初始在第 5 页
                 , groups: 5
                 , first: true
@@ -158,7 +158,24 @@
             var value = obj.value //得到修改后的值
                 ,data = obj.data //得到所在行所有键值
                 ,field = obj.field; //得到字段
-            layer.msg('[ID: '+ data.user_id +'] ' + field + ' 字段更改为：'+ value);
+            $.ajax({
+                type: "POST",
+                url: "/admin/updateMsg",
+                data: {
+                    user_id: data.user_id
+                    ,user_remark: value
+                },
+                dataType: "text",
+                success: function (Data) {
+                    if (Data == "0") {
+                        layer.msg('编辑失败')
+                    }
+                },
+                error: function () {
+                    alert("出现错误");
+                    return false;
+                }
+            }) //ajax结束
         });
 
         //监听行工具事件

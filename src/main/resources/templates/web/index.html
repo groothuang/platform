@@ -66,7 +66,7 @@
 									<div class="content_tabs">
 										<div class="row">
 											<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <form th:action="@{/web/addMsg}" method="post" id="msgForm">
+                                                <form th:action="@{/web/postMsg}" method="post" id="msgForm">
 												<div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
 													<div class="x_slider_form_heading_wrapper float_left">
 														<h3>填写出行的地点和时间</h3>
@@ -75,20 +75,20 @@
 														<div class="col-md-12">
 															<div class="x_slider_form_input_wrapper float_left">
 																<h3>取车地点</h3>
-																<input type="text" name="pick_up_location" placeholder="城市，机场，车站等">
+																<input type="text" name="start_sign" placeholder="城市，机场，车站等">
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class="x_slider_form_input_wrapper float_left">
 																<h3>还车地点</h3>
-																<input type="text" name="drop_off_location" placeholder="城市，机场，车站等">
+																<input type="text" name="return_sign" placeholder="城市，机场，车站等">
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-sec-header">
 																<h3>取车日期</h3>
 																<label class="cal-icon">取车日期
-																	<input type="text" name="pick_up_date" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+																	<input type="text" name="start_date" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
 																</label>
 															</div>
 														</div>
@@ -96,13 +96,13 @@
 															<div class="form-sec-header">
 																<h3>还车日期</h3>
 																<label class="cal-icon">还车日期
-																	<input type="text" name="drop_off_date" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
+																	<input type="text" name="return_date" placeholder="Sun 28 Apr 2019" class="form-control datepicker">
 																</label>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="x_slider_select">
-																<select class="myselect">
+																<select class="myselect" name="start_date_h">
 																	<option>09</option>
 																	<option>10</option>
 																	<option>11</option>
@@ -114,7 +114,7 @@
 																</select>	<i class="fa fa-clock-o"></i>
 															</div>
 															<div class="x_slider_select x_slider_select2">
-																<select class="myselect">
+																<select class="myselect" name="start_date_m">
 																	<option>00</option>
 																	<option>15</option>
 																	<option>30</option>
@@ -124,7 +124,7 @@
 														</div>
 														<div class="col-md-6">
 															<div class="x_slider_select">
-																<select class="myselect">
+																<select class="myselect" name="return_date_h">
                                                                     <option>09</option>
                                                                     <option>10</option>
                                                                     <option>11</option>
@@ -136,7 +136,7 @@
 																</select>	<i class="fa fa-clock-o"></i>
 															</div>
 															<div class="x_slider_select x_slider_select2">
-																<select class="myselect">
+																<select class="myselect" name="return_date_m">
                                                                     <option>00</option>
                                                                     <option>15</option>
                                                                     <option>30</option>
@@ -146,7 +146,7 @@
 														</div>
 														<div class="col-md-12">
 															<div class="x_slider_checkbox float_left">
-																<input type="checkbox" id="c1" name="cb">
+																<input type="checkbox" id="c1" name="self_driving">
 																<label for="c1">是否自行驾驶 &nbsp;<i class="fa fa-question-circle"></i>
 																</label>
 															</div>

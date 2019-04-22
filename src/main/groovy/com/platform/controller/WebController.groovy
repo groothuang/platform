@@ -1,8 +1,10 @@
 package com.platform.controller
 
+import com.google.gson.Gson
 import com.platform.dao.domain.MsgInfo
 import com.platform.dao.domain.UserInfo
 import com.platform.service.LoginService
+import com.platform.service.PostService
 import com.platform.service.UserInfoService
 import com.sun.java.util.jar.pack.Instruction
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,20 +23,18 @@ class WebController {
     UserInfoService userInfoService
     @Autowired
     LoginService loginService
+    @Autowired
+    PostService postService
 
     @RequestMapping(value = "/index")
     public String index() {
         return "web/index";
     }
-    @PostMapping(value = "/addMsg")
-    ModelAndView addMsg(MsgInfo msgInfo, ModelAndView modelAndView, HttpSession httpSession){
-        def list = []
-        list.add(msgInfo.pick_up_location)
-        list.add(msgInfo.drop_off_location)
-        list.add(msgInfo.pick_up_date)
-        list.add(msgInfo.drop_off_date)
-        httpSession.setAttribute("list", msgInfo.pick_up_location)
-        modelAndView.addObject("list",list)
+    @PostMapping(value = "/postMsg")
+    ModelAndView postMsg(MsgInfo msgInfo, ModelAndView modelAndView, HttpSession httpSession){
+        String result = postService.postMsg(msgInfo)
+        httpSession.setAttribute("msgInfo", result)
+        modelAndView.addObject("msgInfo",result)
         modelAndView.setViewName("redirect:/web/booking.html")
         return modelAndView
     }

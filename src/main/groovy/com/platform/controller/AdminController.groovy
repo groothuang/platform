@@ -12,43 +12,39 @@ import org.springframework.web.bind.annotation.ResponseBody
 class AdminController {
     @RequestMapping(value = "/index")
     public String index() {
-        return "admin/index";
+        return "super/index";
     }
     @RequestMapping(value = "/login")
     public String login() {
-        return "admin/login";
+        return "super/login";
     }
     @RequestMapping(value = "/users")
     public String users() {
-        return "admin/users";
-    }
-    @RequestMapping(value = "/platform")
-    public String platform() {
-        return "admin/platform";
+        return "super/users";
     }
     @RequestMapping(value = "/msgboard")
     public String msgboard() {
-        return "admin/msgboard";
+        return "super/msgboard";
     }
     @RequestMapping(value = "/order")
     public String order() {
-        return "admin/order";
+        return "super/order";
     }
     @RequestMapping(value = "/tools")
     public String tools() {
-        return "admin/tools";
+        return "super/tools";
     }
     @RequestMapping(value = "/sharing")
     public String sharing() {
-        return "admin/sharing";
+        return "super/sharing";
     }
-    @RequestMapping(value = "/leacots")
-    public String leacots() {
-        return "admin/leacots";
+    @RequestMapping(value = "/power")
+    public String power() {
+        return "super/index";
     }
     @RequestMapping(value = "/adminis")
     public String adminis() {
-        return "admin/adminis";
+        return "super/index";
     }
 
 }

@@ -24,34 +24,34 @@ class OrderController {
         return orderInfoService.selectAll();
     }
 
-    @RequestMapping("/deleteTools")
+    @RequestMapping("/delete")
     @ResponseBody
-    String deleteTools(OrderInfo orderInfo){
-        return orderInfoService.delete(orderInfo.car_id)
+    String delete(OrderInfo orderInfo){
+        return orderInfoService.delete(orderInfo.order_id)
     }
 
-    @RequestMapping("/addTools")
+    @RequestMapping("/insert")
     @ResponseBody
-    String addTools(OrderInfo orderInfo){
+    String insert(OrderInfo orderInfo){
         return orderInfoService.insert(orderInfo)
     }
 
     @RequestMapping("/findById")
     @ResponseBody
     OrderInfo findById(OrderInfo orderInfo){
-        return orderInfoService.findById(orderInfo.car_id)
+        return orderInfoService.findById(orderInfo.order_id)
     }
 
-    @RequestMapping("/updateTools")
+    @RequestMapping("/update")
     @ResponseBody
-    String updateTools(OrderInfo orderInfo){
+    String update(OrderInfo orderInfo){
         return orderInfoService.update(orderInfo)
     }
 
     @RequestMapping("/uploadPic")
     @ResponseBody
     public Map<String,Object> uploadPic (MultipartFile file, HttpServletRequest request){
-        String path = "D:\\IdeaProject\\platform\\src\\main\\resources\\static\\image";
+        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\image";
         return orderInfoService.uploadPic(file,path);
     }
 

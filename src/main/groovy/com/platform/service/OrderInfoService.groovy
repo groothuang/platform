@@ -11,8 +11,6 @@ interface OrderInfoService {
 
     String search(OrderInfo orderInfo);
 
-    OrderInfo findByName(String name);
-
     OrderInfo findById(String id);
 
     int insert(OrderInfo orderInfo);

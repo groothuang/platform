@@ -14,7 +14,7 @@ class ToolsInfo {
     String seat_amount
     String start_date
     String return_date
-    String use_return_date
+    String user_return_date
     String validity_time
     String car_state
     String select_type

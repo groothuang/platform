@@ -280,7 +280,7 @@
                 , yes: function (index) {
                     $.ajax({
                         type: "POST",
-                        url: "/tools/deleteTools",
+                        url: "/tools/delete",
                         data: { car_id: id },
                         dataType: "text",
                         success: function (Data) {
@@ -330,7 +330,7 @@
                     }
                     $.ajax({
                         type: "POST",
-                        url: "/tools/addTools",
+                        url: "/tools/insert",
                         data: {
                             car_name: u.car_name
                             ,car_img: u.car_img
@@ -404,7 +404,7 @@
                             var u = body.find('form').serializeJSON(); //获取form表单里的元素
                             $.ajax({
                                 type: "POST",
-                                url: "/tools/updateTools",
+                                url: "/tools/update",
                                 data: {
                                     car_id: data.car_id
                                     ,car_name: u.car_name

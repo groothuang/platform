@@ -27,15 +27,15 @@ class SharingController {
         return sharingInfoService.selectSharing();
     }
 
-    @RequestMapping("/deleteTools")
+    @RequestMapping("/delete")
     @ResponseBody
-    String deleteTools(ToolsInfo toolsInfo){
+    String delete(ToolsInfo toolsInfo){
         return sharingInfoService.delete(toolsInfo.car_id)
     }
 
-    @RequestMapping("/addTools")
+    @RequestMapping("/insert")
     @ResponseBody
-    String addTools(ToolsInfo toolsInfo){
+    String insert(ToolsInfo toolsInfo){
         return sharingInfoService.insert(toolsInfo)
     }
 
@@ -45,16 +45,16 @@ class SharingController {
         return sharingInfoService.findById(toolsInfo.car_id)
     }
 
-    @RequestMapping("/updateTools")
+    @RequestMapping("/update")
     @ResponseBody
-    String updateTools(ToolsInfo toolsInfo){
+    String update(ToolsInfo toolsInfo){
         return sharingInfoService.update(toolsInfo)
     }
 
     @RequestMapping("/uploadPic")
     @ResponseBody
     public Map<String,Object> uploadPic (MultipartFile file, HttpServletRequest request){
-        String path = "D:\\IdeaProject\\platform\\src\\main\\resources\\static\\image";
+        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\image";
         return sharingInfoService.uploadPic(file,path);
     }
 

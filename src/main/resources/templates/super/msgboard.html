@@ -63,7 +63,7 @@
         var $ = layui.jquery;
         table.render({
             elem: '#userTable'
-            ,url:'/admin/boardMsg'
+            ,url:'/user/boardMsg'
             ,toolbar: '#toolbarDemo'
             ,title: '用户数据表'
             ,height: 560 //容器高度
@@ -160,7 +160,7 @@
                 ,field = obj.field; //得到字段
             $.ajax({
                 type: "POST",
-                url: "/admin/updateMsg",
+                url: "/user/updateMsg",
                 data: {
                     user_id: data.user_id
                     ,user_remark: value
@@ -201,7 +201,7 @@
                 , yes: function (index) {
                     $.ajax({
                         type: "POST",
-                        url: "/admin/updateMsg",
+                        url: "/user/updateMsg",
                         data: {
                             user_id: user_id
                             ,user_mark: ""
@@ -210,7 +210,7 @@
                         success: function (Data) {
                             if (Data != "0") {
                                 table.reload('userTable', {
-                                    url: '/admin/boardMsg'
+                                    url: '/user/boardMsg'
                                     ,where: {} //设定异步数据接口的额外参数
                                     //,height: 300
                                 });
@@ -232,7 +232,7 @@
         function editUser(data) {
             $.ajax({
                 type: "POST",
-                url: "/admin/findById",
+                url: "/user/findById",
                 data: {
                     user_id: data.user_id
                 },
@@ -257,7 +257,7 @@
                             var u = body.find('form').serializeJSON(); //获取form表单里的元素
                             $.ajax({
                                 type: "POST",
-                                url: "/admin/updateMsg",
+                                url: "/user/updateMsg",
                                 data: {
                                     user_id: data.user_id
                                     ,user_remark: u.user_remark
@@ -266,7 +266,7 @@
                                 success: function (Data) {
                                     if (Data != "0") {
                                         table.reload('userTable', {
-                                            url: '/admin/boardMsg'
+                                            url: '/user/boardMsg'
                                             ,where: {} //设定异步数据接口的额外参数
                                             //,height: 300
                                         });
@@ -294,7 +294,7 @@
         function viewUser(data){
             $.ajax({
                 type: "POST",
-                url: "/admin/findById",
+                url: "/user/findById",
                 data: {
                     user_id: data.user_id
                 },

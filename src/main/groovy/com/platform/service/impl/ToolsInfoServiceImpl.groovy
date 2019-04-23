@@ -7,6 +7,7 @@ import com.platform.dao.mapper.ToolsInfoMapper
 import com.platform.service.ToolsInfoService
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.DataAccessException
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 
@@ -45,13 +46,28 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
     }
 
     int insert(ToolsInfo toolsInfo){
-        def currentDay = new SimpleDateFormat("HHmmss").format(new Date());
-        toolsInfo.car_id = "C"+currentDay;
-        toolsInfo.create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        toolsInfo.car_state = "空闲";
-        Gson gson = new Gson()
-        println(gson.toJson(toolsInfo))
-        return toolsInfoMapper.insert(toolsInfo)
+        ToolsInfo d_tools
+        if (toolsInfo.car_name == "" || toolsInfo.car_name == null){
+            return 0
+        }else {
+            try{
+                d_tools = toolsInfoMapper.findByName(toolsInfo.car_name)
+            } catch (DataAccessException e) {
+                return 0
+            }
+            if (d_tools == null){
+                def currentDay = new SimpleDateFormat("HHmmss").format(new Date());
+                toolsInfo.car_id = "C"+currentDay;
+                toolsInfo.create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                toolsInfo.car_state = "空闲";
+                toolsInfo.car_source = "系统";
+                Gson gson = new Gson()
+                println(gson.toJson(toolsInfo))
+                return toolsInfoMapper.insert(toolsInfo)
+            }else {
+                return 0
+            }
+        }
     }
 
     int update(ToolsInfo toolsInfo){

@@ -106,7 +106,7 @@
             var flag = obj.elem.checked;
             $.ajax({
                 type: "POST",
-                url: "/admin/enableAdmin",
+                url: "/user/enableAdmin",
                 data: {
                     user_id: this.value
                     ,enable_flag: flag
@@ -245,7 +245,7 @@
                     var u = body.find('form').serializeJSON(); //获取form表单里的元素
                     $.ajax({
                         type: "POST",
-                        url: "/admin/addAdmin",
+                        url: "/user/addAdmin",
                         data: {
                             user_name: u.user_name
                             ,password: u.password

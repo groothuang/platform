@@ -24,7 +24,7 @@
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.UserInfo">
-        update user_info set user_name=#{user_name},password=#{password},name=#{name}
+        update user_info set password=#{password},name=#{name}
          ,sex=#{sex},tel=#{tel},email=#{email},licence=#{licence},id_card=#{id_card},user_remark=#{user_remark}
          where user_id=#{user_id}
     </update>

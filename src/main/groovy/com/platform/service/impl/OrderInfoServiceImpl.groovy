@@ -2,12 +2,17 @@ package com.platform.service.impl
 
 import com.google.gson.Gson
 import com.platform.dao.domain.OrderInfo
+import com.platform.dao.domain.ToolsInfo
+import com.platform.dao.domain.UserInfo
 import com.platform.dao.mapper.OrderInfoMapper
 import com.platform.dao.mapper.SharingInfoMapper
+import com.platform.dao.mapper.ToolsInfoMapper
+import com.platform.dao.mapper.UserInfoMapper
 import com.platform.service.OrderInfoService
 import com.platform.service.SharingInfoService
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.DataAccessException
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 
@@ -17,7 +22,11 @@ import java.text.SimpleDateFormat
 class OrderInfoServiceImpl implements OrderInfoService {
 
     @Autowired
-    OrderInfoMapper orderInfoMapper 
+    OrderInfoMapper orderInfoMapper
+    @Autowired
+    UserInfoMapper userInfoMapper
+    @Autowired
+    ToolsInfoMapper toolsInfoMapper
 
     String selectAll(){
         List<OrderInfo> orderInfo = orderInfoMapper.selectAll();
@@ -37,27 +46,90 @@ class OrderInfoServiceImpl implements OrderInfoService {
         return orderInfoMapper.findById(id)
     }
 
-    OrderInfo findByName(String name){
-        return  orderInfoMapper.findByName(name)
-    }
-
     int countAll(){
         return orderInfoMapper.countAll();
     }
 
     int insert(OrderInfo orderInfo){
-        def currentDay = new SimpleDateFormat("HHmmss").format(new Date());
-        orderInfo.car_id = "C"+currentDay;
+        //判断输入订单ID是否存在
+        if(orderInfo.user_id != '' || orderInfo.user_id != null){
+            UserInfo user
+            try{
+                user = userInfoMapper.findById(orderInfo.user_id)
+            }catch (DataAccessException e) {
+                return 0
+            }
+            if (user == null){
+                return 0
+            }else {
+                orderInfo.user_name = user.user_name
+            }
+        }else {
+            return 0
+        }
+        //判断输入车辆ID是否存在
+        if(orderInfo.car_id != '' || orderInfo.car_id != null){
+            ToolsInfo tools
+            try{
+                tools = toolsInfoMapper.findById(orderInfo.car_id)
+            }catch (DataAccessException e) {
+                return 0
+            }
+            if (tools == null){
+                return 0
+            }else {
+                orderInfo.car_name = tools.car_name
+                orderInfo.car_price = tools.car_price
+                orderInfo.car_img = tools.car_img
+            }
+        }else {
+            return 0
+        }
+        def currentDay = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        orderInfo.order_id = currentDay;
         orderInfo.create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        orderInfo.car_state = "空闲";
+        orderInfo.order_status = "新增";  //新增；作废；处理中
         orderInfo.enable_flag = "false";
-        orderInfo.car_source = "用户";
         Gson gson = new Gson();
         println(gson.toJson(orderInfo));
         return orderInfoMapper.insert(orderInfo);
     }
 
     int update(OrderInfo orderInfo){
+        //判断输入订单ID是否存在
+        if(orderInfo.user_id != '' || orderInfo.user_id != null){
+            UserInfo user
+            try{
+                user = userInfoMapper.findById(orderInfo.user_id)
+            }catch (DataAccessException e) {
+                return 0
+            }
+            if (user == null){
+                return 0
+            }else {
+                orderInfo.user_name = user.user_name
+            }
+        }else {
+            return 0
+        }
+        //判断输入车辆ID是否存在
+        if(orderInfo.car_id != '' || orderInfo.car_id != null){
+            ToolsInfo tools
+            try{
+                tools = toolsInfoMapper.findById(orderInfo.car_id)
+            }catch (DataAccessException e) {
+                return 0
+            }
+            if (tools == null){
+                return 0
+            }else {
+                orderInfo.car_name = tools.car_name
+                orderInfo.car_price = tools.car_price
+                orderInfo.car_img = tools.car_img
+            }
+        }else {
+            return 0
+        }
         return orderInfoMapper.update(orderInfo);
     }
 
@@ -100,49 +172,59 @@ class OrderInfoServiceImpl implements OrderInfoService {
 
     String search(OrderInfo orderInfo) {
         Gson gson = new Gson();
-        List<OrderInfo> tools;
+        List<OrderInfo> list;
         String jsonStr, count;
 
         println("输入打印:"+gson.toJson(orderInfo))
 
         if(orderInfo.select_type == "" || orderInfo.select_type == null){
-            tools = orderInfoMapper.selectByName(orderInfo);
-            count = orderInfoMapper.countByName(orderInfo);
-            jsonStr = gson.toJson(tools);
+            list = orderInfoMapper.selectById(orderInfo)
+            count = orderInfoMapper.countById(orderInfo);
+            jsonStr = gson.toJson(list);
             if (jsonStr == "[]"){
-                tools = orderInfoMapper.selectById(orderInfo)
-                count = orderInfoMapper.countById(orderInfo);
-                jsonStr = gson.toJson(tools);
+                list = orderInfoMapper.selectByUser(orderInfo)
+                count = orderInfoMapper.countByUser(orderInfo);
+                jsonStr = gson.toJson(list);
                 if (jsonStr == "[]"){
-                    tools = orderInfoMapper.selectByName(orderInfo);
-                    count = orderInfoMapper.countByName(orderInfo);
-                    jsonStr = gson.toJson(tools);
+                    list = orderInfoMapper.selectByCar(orderInfo);
+                    count = orderInfoMapper.countByCar(orderInfo);
+                    jsonStr = gson.toJson(list);
                 }
             }
             if (jsonStr == "[]"){
-                tools = orderInfoMapper.selectAll();
+                list = orderInfoMapper.selectAll();
                 count = orderInfoMapper.countAll();
-                jsonStr = gson.toJson(tools);
+                jsonStr = gson.toJson(list);
             }
         }
-        if (orderInfo.select_type == "车辆名称"){
-            tools = orderInfoMapper.selectByName(orderInfo);
-            count = orderInfoMapper.countByName(orderInfo);
-            jsonStr = gson.toJson(tools);
+        if (orderInfo.select_type == "订单号"){
+            list = orderInfoMapper.selectById(orderInfo)
+            count = orderInfoMapper.countById(orderInfo);
+            jsonStr = gson.toJson(list);
             if (jsonStr == "[]"){
-                tools = orderInfoMapper.selectAll();
+                list = orderInfoMapper.selectAll();
                 count = orderInfoMapper.countAll();
-                jsonStr = gson.toJson(tools);
+                jsonStr = gson.toJson(list);
+            }
+        }
+        if (orderInfo.select_type == "用户ID"){
+            list = orderInfoMapper.selectByUser(orderInfo)
+            count = orderInfoMapper.countByUser(orderInfo);
+            jsonStr = gson.toJson(list);
+            if (jsonStr == "[]"){
+                list = orderInfoMapper.selectAll();
+                count = orderInfoMapper.countAll();
+                jsonStr = gson.toJson(list);
             }
         }
         if (orderInfo.select_type == "车辆ID"){
-            tools = orderInfoMapper.selectById(orderInfo)
-            count = orderInfoMapper.countById(orderInfo);
-            jsonStr = gson.toJson(tools);
+            list = orderInfoMapper.selectByCar(orderInfo)
+            count = orderInfoMapper.countByCar(orderInfo);
+            jsonStr = gson.toJson(list);
             if (jsonStr == "[]"){
-                tools = orderInfoMapper.selectAll();
+                list = orderInfoMapper.selectAll();
                 count = orderInfoMapper.countAll();
-                jsonStr = gson.toJson(tools);
+                jsonStr = gson.toJson(list);
             }
         }
 
@@ -156,6 +238,11 @@ class OrderInfoServiceImpl implements OrderInfoService {
     }
 
     int enable(OrderInfo orderInfo){
+        if (orderInfo.enable_flag == "true"){
+            orderInfo.order_status = "处理中"
+        }else {
+            orderInfo.order_status = "已完成"
+        }
         return orderInfoMapper.enable(orderInfo)
     }
 }

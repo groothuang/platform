@@ -3,26 +3,33 @@
 <mapper namespace="com.platform.dao.mapper.OrderInfoMapper">
 
     <select id="countAll" resultType="int">
-        select count(*) c from tools_info
+        select count(*) c from order_info
     </select>
 
     <select id="countById" parameterType="com.platform.dao.domain.OrderInfo" resultType="int">
-        select count(*) c from tools_info where 1=1 and car_source = '用户'
+        select count(*) c from order_info where 1=1
         <if test="select_field != null and select_field != ''">
-            and car_id like '%${select_field}%'
-        </if>
-        <if test="car_type != null and car_type != ''">
-            and car_type=#{car_type}
+            and order_id like '%${select_field}%'
         </if>
     </select>
 
-    <select id="countByName" parameterType="com.platform.dao.domain.OrderInfo" resultType="int">
-        select count(*) c from tools_info where 1=1 and car_source = '用户'
+    <select id="countByUser" parameterType="com.platform.dao.domain.OrderInfo" resultType="int">
+        select count(*) c from order_info where 1=1
         <if test="select_field != null and select_field != ''">
-            and car_name like '%${select_field}%'
+            and user_id like '%${select_field}%'
         </if>
-        <if test="car_type != null and car_type != ''">
-            and car_type=#{car_type}
+        <if test="order_status != null and order_status != ''">
+            and order_status=#{order_status}
+        </if>
+    </select>
+
+    <select id="countByCar" parameterType="com.platform.dao.domain.OrderInfo" resultType="int">
+        select count(*) c from order_info where 1=1
+        <if test="select_field != null and select_field != ''">
+            and car_id like '%${select_field}%'
+        </if>
+        <if test="order_status != null and order_status != ''">
+            and order_status=#{order_status}
         </if>
     </select>
 
@@ -31,54 +38,70 @@
     </select>
 
     <select id="selectById" parameterType="com.platform.dao.domain.OrderInfo" resultType="com.platform.dao.domain.OrderInfo">
-        select * from tools_info where 1=1 and car_source = '用户'
+        select * from order_info where 1=1
+        <if test="select_field != null and select_field != ''">
+            and order_id like '%${select_field}%'
+        </if>
+        <if test="order_status != null and order_status != ''">
+            and order_status=#{order_status}
+        </if>
+    </select>
+
+    <select id="selectByUser" parameterType="com.platform.dao.domain.OrderInfo" resultType="com.platform.dao.domain.OrderInfo">
+        select * from order_info where 1=1
+        <if test="select_field != null and select_field != ''">
+            and user_id like '%${select_field}%'
+        </if>
+        <if test="order_status != null and order_status != ''">
+            and order_status=#{order_status}
+        </if>
+    </select>
+
+    <select id="selectByCar" parameterType="com.platform.dao.domain.OrderInfo" resultType="com.platform.dao.domain.OrderInfo">
+        select * from order_info where 1=1
         <if test="select_field != null and select_field != ''">
             and car_id like '%${select_field}%'
         </if>
-        <if test="car_type != null and car_type != ''">
-            and car_type = #{car_type}
+        <if test="order_status != null and order_status != ''">
+            and order_status=#{order_status}
         </if>
-    </select>
-
-    <select id="selectByName" parameterType="com.platform.dao.domain.OrderInfo" resultType="com.platform.dao.domain.OrderInfo">
-       select * from tools_info where 1=1 and car_source = '用户'
-        <if test="select_field != null and select_field != ''">
-           and car_name like '%${select_field}%'
-        </if>
-       <if test="car_type != null and car_type != ''">
-           and car_type=#{car_type}
-       </if>
     </select>
 
     <insert id="insert" parameterType="com.platform.dao.domain.OrderInfo">
-        insert into tools_info(car_id,car_name,car_img,car_type,car_brand,car_source,car_price,create_time,car_site,car_remark,car_state,validity_time,enable_flag)
-        values (#{car_id},#{car_name},#{car_img},#{car_type},#{car_brand},#{car_source},#{car_price},
-        #{create_time},#{car_site},#{car_remark},#{car_state},#{validity_time},#{enable_flag})
+        insert into order_info(order_id,order_status,enable_flag,user_id,user_name,car_id,car_name,car_img,
+        car_price,total_price,start_date,return_date,user_return_date,start_sign,return_sign,create_time,order_remark,self_driving)
+        values (#{order_id},#{order_status},#{enable_flag},#{user_id},#{user_name},#{car_id},#{car_name},#{car_img},
+        #{car_price},#{total_price},#{start_date},#{return_date},#{user_return_date},#{start_sign},#{return_sign},#{create_time},#{order_remark},#{self_driving})
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.OrderInfo">
-        update tools_info set car_name=#{car_name},car_img=#{car_img},car_type=#{car_type},car_brand=#{car_brand},car_price=#{car_price}
-        ,car_site=#{car_site},car_remark=#{car_remark},validity_time=#{validity_time}
-         where car_id=#{car_id}
+        update order_info set order_id=#{order_id},user_id=#{user_id},user_name=#{user_name},car_id=#{car_id},car_name=#{car_name},car_img=#{car_img},
+        car_price=#{car_price},total_price=#{total_price},start_date=#{start_date},return_date=#{return_date},user_return_date=#{user_return_date},
+        start_sign=#{start_sign},return_sign=#{return_sign},order_remark=#{order_remark},self_driving=#{self_driving}
+         where order_id=#{order_id}
     </update>
 
     <delete id="delete" parameterType = "java.util.List">
-        delete from tools_info where car_id in
+        delete from order_info where order_id in
         <foreach collection="list"  item="item" open="(" separator="," close=")"  >
             #{item}
         </foreach>
     </delete>
 
     <select id="findById" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">
-        select * from tools_info where car_id=#{car_id} and car_source = '用户'
+        select * from order_info where order_id=#{order_id}
     </select>
 
-    <select id="findByName" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">
-        select * from tools_info where car_name=#{car_name} and car_source = '用户'
+    <select id="findByUser" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">
+        select * from order_info where user_id=#{user_id}
+    </select>
+
+    <select id="findByCar" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">
+        select * from order_info where car_id=#{car_id}
     </select>
 
     <update id="enable" parameterType="com.platform.dao.domain.OrderInfo">
-        update tools_info set enable_flag = #{enable_flag}
-         where car_id=#{car_id}
+        update order_info set enable_flag = #{enable_flag}, order_status = #{order_status}
+         where order_id=#{order_id}
     </update>
 </mapper>

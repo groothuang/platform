@@ -27,15 +27,15 @@ class ToolsController {
         return toolsInfoService.selectAll()
     }
 
-    @RequestMapping("/deleteTools")
+    @RequestMapping("/delete")
     @ResponseBody
-    String deleteTools(ToolsInfo toolsInfo){
+    String delete(ToolsInfo toolsInfo){
         return toolsInfoService.delete(toolsInfo.car_id)
     }
 
-    @RequestMapping("/addTools")
+    @RequestMapping("/insert")
     @ResponseBody
-    String addTools(ToolsInfo toolsInfo){
+    String insert(ToolsInfo toolsInfo){
         return toolsInfoService.insert(toolsInfo)
     }
 
@@ -45,16 +45,16 @@ class ToolsController {
         return toolsInfoService.findById(toolsInfo.car_id)
     }
 
-    @RequestMapping("/updateTools")
+    @RequestMapping("/update")
     @ResponseBody
-    String updateTools(ToolsInfo toolsInfo){
+    String update(ToolsInfo toolsInfo){
         return toolsInfoService.update(toolsInfo)
     }
 
     @RequestMapping("/uploadPic")
     @ResponseBody
     public Map<String,Object> uploadPic (MultipartFile file, HttpServletRequest request){
-        String path = "D:\\IdeaProject\\platform\\src\\main\\resources\\static\\image";
+        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\image";
         return toolsInfoService.uploadPic(file,path);
     }
 

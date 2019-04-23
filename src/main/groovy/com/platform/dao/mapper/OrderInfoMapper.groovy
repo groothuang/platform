@@ -9,13 +9,17 @@ interface OrderInfoMapper {
 
     int countById(OrderInfo orderInfo);
 
-    int countByName(OrderInfo orderInfo);
+    int countByUser(OrderInfo orderInfo);
+
+    int countByCar(OrderInfo orderInfo);
 
     List<OrderInfo> selectAll();
 
     List<OrderInfo> selectById(OrderInfo orderInfo);
 
-    List<OrderInfo> selectByName(OrderInfo orderInfo);
+    List<OrderInfo> selectByUser(OrderInfo orderInfo);
+
+    List<OrderInfo> selectByCar(OrderInfo orderInfo);
 
     int insert(OrderInfo orderInfo);
 
@@ -25,7 +29,9 @@ interface OrderInfoMapper {
 
     OrderInfo findById(String id);
 
-    OrderInfo findByName(String name);
+    OrderInfo findByUser(String id);
+
+    OrderInfo findByCar(String id);
 
     int enable(OrderInfo orderInfo);
 }

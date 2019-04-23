@@ -13,10 +13,12 @@ class OrderInfo {
     String total_price;
     String start_date;
     String return_date;
-    String use_return_date;
+    String user_return_date;
     String start_sign;
     String return_sign;
     String create_time;
     String order_remark;
     String self_driving;
+    String select_type;
+    String select_field;
 }

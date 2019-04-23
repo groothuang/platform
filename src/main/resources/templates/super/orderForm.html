@@ -20,58 +20,95 @@
     <form class="layui-form" id="sharingForm">
         <div class="layui-form-item" >
             <div class="layui-inline">
-                <label class="layui-form-label">车辆名称</label>
+                <label class="layui-form-label">用户ID</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="car_name" class="layui-input">
+                    <input type="text" name="user_id" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">价格</label>
+                <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="car_price" placeholder="元/小时" class="layui-input">
+                    <input type="text" name="user_name" class="layui-input" disabled>
                 </div>
             </div>
         </div>
         <div class="layui-form-item" >
             <div class="layui-inline">
-                <label class="layui-form-label">类型</label>
+                <label class="layui-form-label">车辆ID</label>
                 <div class="layui-input-inline">
-                    <select name="car_type">
-                        <option value="汽车">汽车</option>
-                        <option value="自行车">自行车</option>
-                        <option value="大巴">大巴</option>
-                    </select>
+                    <input type="text" name="car_id" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">品牌</label>
+                <label class="layui-form-label">车辆名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="car_brand" placeholder="大众" class="layui-input">
+                    <input type="text" name="car_name" class="layui-input" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" >
+            <div class="layui-inline">
+                <label class="layui-form-label">每小时费用</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="car_price" class="layui-input" disabled>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">总费用</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="total_price" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" >
+            <div class="layui-inline">
+                <label class="layui-form-label">取车时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="start_date" id="start_date" class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">还车时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="return_date" id="return_date" class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">放置地点</label>
+            <label class="layui-form-label">用户还车时间</label>
             <div class="layui-input-block">
-                <input type="text" name="car_site" class="layui-input">
+                <input type="text" name="user_return_date" id="user_return_date" class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
+            </div>
+        </div>
+        <div class="layui-form-item" >
+            <div class="layui-inline">
+                <label class="layui-form-label">取车地点</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="start_sign" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">还车地点</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="return_sign" class="layui-input">
+                </div>
             </div>
         </div>
         <div class="layui-form-item layui-form-text" >
             <label class="layui-form-label">备注</label>
             <div class="layui-input-block">
-                <textarea name="car_remark" placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea name="order_remark" placeholder="请输入内容" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">有效期</label>
+                <label class="layui-form-label"></label>
                 <div class="layui-input-inline">
-                    <input type="text" name="validity_time" placeholder="月" class="layui-input">
+                    <div style="display: none"><input type="text" name="car_img" class="layui-input" id="car_img"></div>
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label"></label>
-                <div style="display: none"><input type="text" name="car_img" class="layui-input" id="car_img"></div>
                 <div class="layui-input-inline">
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-radius" id="carPic">上传图片</button>
                 </div>
@@ -93,12 +130,26 @@
     function method(){
         alert("This.")
     }
-    layui.use(['element','layer','table','form'], function(){
+    layui.use(['element','layer','table','form', 'laydate'], function(){
         var form = layui.form
             ,element = layui.element
             ,layer = layui.layer
             ,table = layui.table
+            ,laydate = layui.laydate;
         form.render('select'); //刷新select选择框渲染
+        //日期
+        laydate.render({
+            elem: '#start_date'
+            ,type: 'datetime'
+        });
+        laydate.render({
+            elem: '#return_date'
+            ,type: 'datetime'
+        });
+        laydate.render({
+            elem: '#user_return_date'
+            ,type: 'datetime'
+        });
     });
     layui.use('upload', function() {
         var $ = layui.jquery

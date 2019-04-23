@@ -24,6 +24,9 @@ class UserInfoServiceImpl implements UserInfoService {
             return 0
         }
         if (d_user == null){
+            if(userInfo.password == "" || userInfo.password == null){
+                return 0
+            }
             def currentDay = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
             def currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             userInfo.user_id = "U"+currentDay;
@@ -61,6 +64,9 @@ class UserInfoServiceImpl implements UserInfoService {
     }
 
     int update(UserInfo userInfo){
+        if(userInfo.password == "" || userInfo.password == null){
+            return 0
+        }
         return  userInfoMapper.update(userInfo)
     }
 

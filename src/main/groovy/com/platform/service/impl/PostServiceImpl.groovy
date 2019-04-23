@@ -92,4 +92,28 @@ class PostServiceImpl implements PostService{
         println(result);
         return result
     }
+
+    int updatePassword(UserInfo userInfo){
+        UserInfo d_user = userInfoMapper.findByName(userInfo.user_name)
+        if (userInfo.password == d_user.password){
+            userInfo.password = userInfo.repassword
+            return userInfoMapper.updatePassword(userInfo)
+        }else {
+            return 0
+        }
+    }
+
+    int forget(UserInfo userInfo) {
+        UserInfo d_user = userInfoMapper.findByName(userInfo.user_name)
+        if (userInfo.tel == d_user.tel) {
+            userInfo.password = userInfo.password
+            return userInfoMapper.updatePassword(userInfo)
+        } else {
+            return 0
+        }
+    }
+
+    int updateUser(UserInfo userInfo){
+        return  userInfoMapper.updateUser(userInfo)
+    }
 }

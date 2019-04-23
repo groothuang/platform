@@ -118,7 +118,7 @@
         <div class="x_top_header_wrapper float_left">
             <div class="container">
                 <div class="x_top_header_left_side_wrapper float_left">
-                    <p>Groot</p>
+                    <p>--------</p>
                 </div>
                 <div class="x_top_header_right_side_wrapper float_left">
                     <div class="x_top_header_social_icon_wrapper">
@@ -147,14 +147,16 @@
                             </li>
                         </ul>
                         <ul th:if = "${session.user_name != null}">
-                            <li class="login">
-                                <a href="javascript:;">
-                                    <img src="/ui/images/fevicon.png" class="layui-nav-img"/>
-                                    <span th:text="${session.user_name}"/>
-                                </a>
+                            <li class="login" th:if="${session.role == '0'}">
+                                <a href="/super/index"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;<span th:text="${session.user_name}"/></a>
                             </li>
-                            <li class="login"><a href="/web/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;退出 </a>
+                            <li class="login" th:if="${session.role == '1'}">
+                                <a href="/super/index"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;<span th:text="${session.user_name}"/></a>
                             </li>
+                            <li class="login" th:if="${session.role == '2'}">
+                                <a href="/web/center"><i class="fa fa-user-o"></i>&nbsp;&nbsp;<span th:text="${session.user_name}"/></a>
+                            </li>
+                            <li class="login"><a href="/web/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;退出 </a></li>
                         </ul>
 
                     </div>

@@ -9,4 +9,10 @@ interface PostService {
     String registerCheck(UserInfo userInfo);
 
     String postMsg(MsgInfo msgInfo)
+
+    int updatePassword(UserInfo userInfo)
+
+    int forget(UserInfo userInfo)
+
+    int updateUser(UserInfo userInfo)
 }

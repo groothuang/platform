@@ -14,7 +14,11 @@ interface UserInfoMapper {
 
     int update(UserInfo userInfo);
 
+    int updateUser(UserInfo userInfo);
+
     int updateMsg(UserInfo userInfo);
+
+    int updatePassword(UserInfo userInfo);
 
     int enableAdmin(UserInfo userInfo);
 

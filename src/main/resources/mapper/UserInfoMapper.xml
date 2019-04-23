@@ -29,9 +29,19 @@
          where user_id=#{user_id}
     </update>
 
+    <update id="updateUser" parameterType="com.platform.dao.domain.UserInfo">
+        update user_info set name=#{name},sex=#{sex},tel=#{tel},email=#{email},licence=#{licence},id_card=#{id_card},user_remark=#{user_remark}
+         where user_name=#{user_name}
+    </update>
+
     <update id="updateMsg" parameterType="com.platform.dao.domain.UserInfo">
         update user_info set user_remark=#{user_remark}
          where user_id=#{user_id}
+    </update>
+
+    <update id="updatePassword" parameterType="com.platform.dao.domain.UserInfo">
+        update user_info set password = #{password}
+         where user_name=#{user_name}
     </update>
 
     <update id="enableAdmin" parameterType="com.platform.dao.domain.UserInfo">

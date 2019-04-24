@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 23/04/2019 17:38:56
+ Date: 24/04/2019 18:35:52
 */
 
 SET NAMES utf8mb4;
@@ -55,8 +55,8 @@ CREATE TABLE `order_info`  (
   `start_date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `return_date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_return_date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `start_sign` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `return_sign` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `start_site` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `return_site` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `create_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `order_remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `self_driving` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -70,6 +70,8 @@ INSERT INTO `order_info` VALUES ('20190423140416', '处理中', 'true', 'U190423
 INSERT INTO `order_info` VALUES ('20190423140610', '处理中', 'true', 'U190417132257', 'user3', 'C140715', '丰田皇冠2018款 2.0T', '140713.png', '12', '', '', '', '', '', '', '2019-04-23 14:06:10', '', NULL);
 INSERT INTO `order_info` VALUES ('20190423140648', '处理中', 'true', 'U190423102531', '1235', 'C085217', '124', '085213.png', '13', '67', '', '', '', '', '', '2019-04-23 14:06:48', '', NULL);
 INSERT INTO `order_info` VALUES ('20190423143537', '新增', 'false', 'U190423102531', '1235', 'C085217', '124', '085213.png', '13', '', '2019-04-23 14:35:32', '2019-04-23 14:35:33', '2019-04-23 14:35:35', '123', '234', '2019-04-23 14:35:37', '123', NULL);
+INSERT INTO `order_info` VALUES ('20190424180725', '新增', 'false', 'U190417131853', 'user2', 'C140715', '丰田皇冠2018款 2.0T', '140713.png', '12', NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-24 18:07:28', NULL, NULL);
+INSERT INTO `order_info` VALUES ('20190424181023', '新增', 'false', 'U190417131853', 'user2', 'C095334', '大巴', '095326.png', '12', NULL, '2019-04-29 09:00:00', '2019-04-25 15:00:00', NULL, '12', '234', '2019-04-24 18:10:23', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tools_info
@@ -99,7 +101,7 @@ CREATE TABLE `tools_info`  (
 -- ----------------------------
 -- Records of tools_info
 -- ----------------------------
-INSERT INTO `tools_info` VALUES ('C085217', '124', '085213.png', '汽车', '', NULL, '13', '2019-04-23 08:52:17', '', '', '', '空闲', 'false', NULL, NULL, NULL, NULL);
+INSERT INTO `tools_info` VALUES ('C085217', '124', '085213.png', '汽车', '', 'sss', '13', '2019-04-23 08:52:17', '', '', '', '空闲', 'false', NULL, NULL, NULL, NULL);
 INSERT INTO `tools_info` VALUES ('C095334', '大巴', '095326.png', '大巴', '大众', '系统', '12', '2019-04-22 09:53:34', '珠海火车站', '哈哈哈', '12', '空闲', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `tools_info` VALUES ('C105225', '126', 'blank.jpg', '汽车', '', NULL, '', '2019-04-22 10:52:25', '', '', '', '空闲', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `tools_info` VALUES ('C140220', '123', 'blank.jpg', '汽车', '', '系统', '', '2019-04-23 14:02:20', '', '', '', '空闲', NULL, NULL, NULL, NULL, NULL);

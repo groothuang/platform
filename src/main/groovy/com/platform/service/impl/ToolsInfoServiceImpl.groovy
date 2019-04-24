@@ -60,7 +60,7 @@ class ToolsInfoServiceImpl implements ToolsInfoService {
                 toolsInfo.car_id = "C"+currentDay;
                 toolsInfo.create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                 toolsInfo.car_state = "空闲";
-                toolsInfo.car_source = "系统";
+                toolsInfo.car_source = "官方";
                 Gson gson = new Gson()
                 println(gson.toJson(toolsInfo))
                 return toolsInfoMapper.insert(toolsInfo)

@@ -69,15 +69,15 @@
 
     <insert id="insert" parameterType="com.platform.dao.domain.OrderInfo">
         insert into order_info(order_id,order_status,enable_flag,user_id,user_name,car_id,car_name,car_img,
-        car_price,total_price,start_date,return_date,user_return_date,start_sign,return_sign,create_time,order_remark,self_driving)
+        car_price,total_price,start_date,return_date,user_return_date,start_site,return_site,create_time,order_remark,self_driving)
         values (#{order_id},#{order_status},#{enable_flag},#{user_id},#{user_name},#{car_id},#{car_name},#{car_img},
-        #{car_price},#{total_price},#{start_date},#{return_date},#{user_return_date},#{start_sign},#{return_sign},#{create_time},#{order_remark},#{self_driving})
+        #{car_price},#{total_price},#{start_date},#{return_date},#{user_return_date},#{start_site},#{return_site},#{create_time},#{order_remark},#{self_driving})
     </insert>
 
     <update id="update" parameterType="com.platform.dao.domain.OrderInfo">
         update order_info set order_id=#{order_id},user_id=#{user_id},user_name=#{user_name},car_id=#{car_id},car_name=#{car_name},car_img=#{car_img},
         car_price=#{car_price},total_price=#{total_price},start_date=#{start_date},return_date=#{return_date},user_return_date=#{user_return_date},
-        start_sign=#{start_sign},return_sign=#{return_sign},order_remark=#{order_remark},self_driving=#{self_driving}
+        start_site=#{start_site},return_site=#{return_site},order_remark=#{order_remark},self_driving=#{self_driving}
          where order_id=#{order_id}
     </update>
 

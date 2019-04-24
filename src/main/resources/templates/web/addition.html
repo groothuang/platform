@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Xpedia</title>
+	<title>易出行</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta name="description" content="Xpedia" />
 	<meta name="keywords" content="Xpedia" />
@@ -102,9 +102,9 @@
 									<hr>
 									<!-- Resources -->
 									<div class="x_car_access_filer_top_img">
-										<img src="/ui/images/c2.png" alt="car_img">
-										<h3>Dakota gtx</h3>
-										<p>$69 (1 day)</p>
+										<img src="/ui/images/c2.png" alt="car_img" style="height: 73px;width: 190px" th:src="@{'/image/'+${t.car_img}}">
+										<h3 th:text="${t.car_name}">Dakota gtx</h3>
+										<p th:text="${t.car_price} +'元/ 小时'">25元</p>
 									</div>
 									<hr>
 									<!-- Company -->
@@ -116,9 +116,9 @@
 											<div class="panel-body">
 												<div class="x_car_acc_filter_date">
 													<ul>
-														<li>类型 <span>汽车</span>
+														<li>类型 <span th:text="${t.car_type}">汽车</span>
 														</li>
-														<li>品牌 <span>大众</span>
+														<li>品牌 <span th:text="${t.car_brand}">大众</span>
 														</li>
 													</ul>
 												</div>
@@ -128,15 +128,15 @@
 									<hr>
 									<div class="panel panel-default x_car_inner_acc_acordion_padding x_car_inner_acc_acordion_padding_last">
 										<div class="panel-heading">
-											<h5 class="panel-title"> <a data-toggle="collapse" href="#collapsefour" class="collapse"> 购物车</a> </h5>
+											<h5 class="panel-title"> <a data-toggle="collapse" href="#collapsefour" class="collapse"> 其他</a> </h5>
 										</div>
 										<div id="collapsefour" class="collapse show">
 											<div class="panel-body">
 												<div class="x_car_acc_filter_date">
 													<ul>
-														<li>GPS x 1 <span>$19</span>
+														<li>GPS x 1 <span>25元</span>
 														</li>
-														<li>Dakota gtx x 12h <span>$69</span>
+														<li>专车 x 1 <span>50元</span>
 														</li>
 													</ul>
 												</div>
@@ -145,7 +145,7 @@
 									</div>
 									<div class="x_car_acc_filter_bottom_total">
 										<ul>
-											<li>总计 <span>$88</span>
+											<li>总计 <span>75元</span>
 											</li>
 										</ul>
 									</div>
@@ -164,18 +164,18 @@
 											<img src="/ui/images/g1.png" alt="g1_img">
 										</div>
 										<div class="x_car_access_right_price_img_cont_wrapper">
-											<h3>DOMDOM GPS</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipi Sicing elit.</p>
+											<h3>GPS</h3>
+											<p>提供精准的GPS仪器</p>
 										</div>
 									</div>
 									<div class="x_car_access_right_price_main_box_inner_right_wrapper">
 										<div class="x_car_acc_price_dollar_wrapper">
 											<h3>25元</h3>
-											<p>/ day</p>
+											<p>/ 天</p>
 										</div>
 										<div class="x_car_acc_price_dollar_count_wrapper">
 											<div class="quantity">
-												<input type="number" min="0" max="100" step="0" value="0" class="qty">
+												<input type="number" min="0" max="100" step="1" value="1" class="qty">
 											</div>
 										</div>
 									</div>
@@ -188,18 +188,18 @@
 											<img src="/ui/images/g3.png" alt="g1_img">
 										</div>
 										<div class="x_car_access_right_price_img_cont_wrapper">
-											<h3>Extra Drivers</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipi Sicing elit.</p>
+											<h3>专车服务</h3>
+											<p>提供专业的驾驶人提供驾驶服务</p>
 										</div>
 									</div>
 									<div class="x_car_access_right_price_main_box_inner_right_wrapper">
 										<div class="x_car_acc_price_dollar_wrapper">
-											<h3>$15</h3>
-											<p>/ day</p>
+											<h3>50元</h3>
+											<p>/ 天</p>
 										</div>
 										<div class="x_car_acc_price_dollar_count_wrapper">
 											<div class="quantity">
-												<input type="number" min="0" max="100" step="0" value="0" class="qty">
+												<input type="number" min="0" max="100" step="1" value="1" class="qty">
 											</div>
 										</div>
 									</div>
@@ -212,14 +212,14 @@
 											<img src="/ui/images/g4.png" alt="g1_img">
 										</div>
 										<div class="x_car_access_right_price_img_cont_wrapper">
-											<h3>Insurance</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipi Sicing elit.</p>
+											<h3>保险</h3>
+											<p>提供购买意外保险服务</p>
 										</div>
 									</div>
 									<div class="x_car_access_right_price_main_box_inner_right_wrapper">
 										<div class="x_car_acc_price_dollar_wrapper">
-											<h3>$199</h3>
-											<p>/ day</p>
+											<h3>20元</h3>
+											<p>/ 天</p>
 										</div>
 										<div class="x_car_acc_price_dollar_count_wrapper">
 											<div class="quantity">
@@ -231,9 +231,9 @@
 							</div>
 							<div class="col-md-12">
 								<div class="x_car_acc_bottom_button float_left">
-									<p><i class="fa fa-info-circle"></i> &nbsp;Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor.</p>
+									<p><i class="fa fa-info-circle"></i> &nbsp; 请确认详细信息</p>
 									<ul>
-										<li><a href="checkout.html">添加 <i class="fa fa-arrow-right"></i></a>
+										<li><a href="checkout.html" th:href="@{'checkout.html?car_id='+${t.car_id}}">添加 <i class="fa fa-arrow-right"></i></a>
 										</li>
 									</ul>
 								</div>

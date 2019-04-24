@@ -14,8 +14,8 @@ class OrderInfo {
     String start_date;
     String return_date;
     String user_return_date;
-    String start_sign;
-    String return_sign;
+    String start_site;
+    String return_site;
     String create_time;
     String order_remark;
     String self_driving;

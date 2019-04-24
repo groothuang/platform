@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Xpedia</title>
+	<title>易出行</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta name="description" content="Xpedia" />
 	<meta name="keywords" content="Xpedia" />
@@ -102,9 +102,9 @@
 									<hr>
 									<!-- Resources -->
 									<div class="x_car_access_filer_top_img">
-										<img src="/ui/images/c2.png" alt="car_img">
-										<h3>Dakota gtx</h3>
-										<p>50元 （2小时）</p>
+										<img src="/ui/images/c2.png" alt="car_img" style="height: 73px;width: 190px" th:src="@{'/image/'+${t.car_img}}">
+										<h3 th:text="${t.car_name}">Dakota gtx</h3>
+										<p th:text="${t.car_price} +'元/ 小时'">25元</p>
 									</div>
 									<hr>
 									<!-- Company -->
@@ -116,7 +116,7 @@
 													<table class="table">
 														<thead>
 															<tr>
-																<th scope="col">数量</th>
+																<th scope="col">时长</th>
 																<th scope="col">单价</th>
 																<th scope="col">总价</th>
 															</tr>
@@ -124,8 +124,8 @@
 														<tbody>
 															<tr>
 																<td>1</td>
-																<td>25元</td>
-																<td>25元</td>
+																<td th:text="${t.car_price} +'元'">25元</td>
+																<td th:text="${t.car_price} +'元'">25元</td>
 															</tr>
 														</tbody>
 													</table>
@@ -142,8 +142,8 @@
 											<div class="panel-body">
 												<div class="x_car_acc_filter_date">
 													<ul>
-														<li>Wed 20 Mar 2019 @ 10:00</li>
-														<li>广州, 白云机场</li>
+														<li th:text="${m.start_date}">Wed 20 Mar 2019 @ 10:00</li>
+														<li th:text="${m.start_site}">广州, 白云机场</li>
 													</ul>
 												</div>
 											</div>
@@ -158,8 +158,8 @@
 											<div class="panel-body">
 												<div class="x_car_acc_filter_date">
 													<ul>
-														<li>Wed 20 Mar 2019 @ 12:00</li>
-														<li>广州, 珠江新城</li>
+														<li th:text="${m.return_date}">Wed 20 Mar 2019 @ 12:00</li>
+														<li th:text="${m.return_site}">广州, 珠江新城</li>
 													</ul>
 												</div>
 											</div>
@@ -174,9 +174,9 @@
 											<div class="panel-body">
 												<div class="x_car_acc_filter_date">
 													<ul>
-														<li>GPS <span>3元</span>
+														<li>GPS x 1 <span>25元</span>
 														</li>
-														<li>保险 <span>5元</span>
+														<li>专车 x 1 <span>50元</span>
 														</li>
 													</ul>
 												</div>
@@ -186,7 +186,7 @@
 									<hr>
 									<div class="x_car_acc_filter_bottom_total">
 										<ul>
-											<li>费用 <span>58元</span>
+											<li>费用 <span>100元</span>
 											</li>
 										</ul>
 									</div>
@@ -209,46 +209,46 @@
 											<ul class="list-unstyled row">
 												<li class="col-md-6">
 													<label>昵称
-														aaaa
+														<p th:text="${u.user_name}">
 													</label>
 												</li>
 												<li class="col-md-6">
 													<label>性别
-														男
+														<p th:text="${u.sex}">
 													</label>
 												</li>
 												<hr>
 												<li class="col-md-6">
 													<label>真实姓名
-														黄XX
+														<p th:text="${u.name}">
 													</label>
 												</li>
 												<li class="col-md-6">
 													<label>身份证号码
-														440xxx
+														<p th:text="${u.id_card}">
 													</label>
 												</li>
 												<hr>
 												<li class="col-md-6">
 													<label>联系方式
-														137
+														<p th:text="${u.tel}">
 													</label>
 												</li>
 												<li class="col-md-6">
 													<label>驾驶证编号
-														xxxxx
+														<p th:text="${u.licence}">
 													</label>
 												</li>
 												<hr>
 												<li class="col-md-12">
 													<label>邮箱地址
-														464101668@qq.com
+														<p th:text="${u.email}">
 													</label>
 												</li>
 												<hr>
 												<li class="col-md-12">
 													<label>备注信息</label>
-													你好
+													<p th:text="${u.user_remark}">
 													<br>
 													<br>
 												</li>
@@ -260,7 +260,7 @@
 												</div>
 												<div class="radio">
 													<input type="radio" name="ratio" id="poa" value="option1" checked="">
-													<label for="poa">还车支付</label>
+													<label for="poa">稍后支付</label>
 												</div>
 												<div class="radio">
 													<input type="radio" name="ratio" id="paypal" value="option1">
@@ -269,7 +269,7 @@
 											</div>
 											<hr>
 											<div class="checkbox car_checkout_chekbox car_checkout_chekbox1">
-												<input type="checkbox" id="c2" name="cb">
+												<input type="checkbox" id="c2" name="cb" checked>
 												<label for="c2">我已确认信息无误</label>
 											</div>
 										</form>
@@ -279,7 +279,7 @@
 							<div class="col-md-12">
 								<div class="contect_btn contect_btn_contact">
 									<ul>
-										<li><a href="booking_done.html">提交订单 <i class="fa fa-arrow-right"></i></a>
+										<li><a href="bookingDone.html" th:href="@{'bookingDone.html?car_id='+${t.car_id}}">提交订单 <i class="fa fa-arrow-right"></i></a>
 										</li>
 									</ul>
 								</div>

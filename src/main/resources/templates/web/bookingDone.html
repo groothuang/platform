@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Xpedia</title>
+	<title>易出行</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta name="description" content="Xpedia" />
 	<meta name="keywords" content="Xpedia" />
@@ -92,66 +92,67 @@
 		<div class="container">
 			<div class="x_car_donr_main_box_wrapper_inner">
 				<div class="order-done"> <i class="icon-checked"><img src="/ui/images/icon-checked.png" alt=""></i>
-					<h4>thank you! Order has been received</h4>
-					<h4>Order number: <span>#887768</span></h4>
+					<h4>订单提交成功！</h4>
+					<h4>订单 ID: <span th:text="${order_id}">#887768</span></h4>
 					<hr>
-					<h4>Summary</h4>
+					<h4>详细信息</h4>
 					<ul class="row list-unstyled">
 						<li class="col-md-6">
-							<h6>Date</h6>
-							<p>From <span>16-01-2018 @ 10:00</span>
+							<h6>使用日期</h6>
+							<p>从 <span th:text="${m.start_date}">16-01-2018 @ 10:00</span>
 							</p>
-							<p>To <span>16-01-2018 @ 10:00</span>
+							<p>到 <span th:text="${m.return_date}">16-01-2018 @ 10:00</span>
 							</p>
-							<p>From <span>1 Day</span>
-							</p>
-						</li>
-						<li class="col-md-6">
-							<h6>Location</h6>
-							<p>Pick-Up <span>Barcelona, Airport</span>
-							</p>
-							<p>Drop-off <span>Barcelona, Airport</span>
+							<p>总共 <span>X 小时</span>
 							</p>
 						</li>
 						<li class="col-md-6">
-							<h6>Car</h6>
-							<p>Dakota GT86 <span>$69</span>
+							<h6>地点</h6>
+							<p>取车地点 <span th:text="${m.start_site}">Barcelona, Airport</span>
 							</p>
-							<p>Coupe</p>
-						</li>
-						<li class="col-md-6">
-							<h6>Add-ons</h6>
-							<p>1x GPS <span>$19</span>
-							</p>
-							<p>Extended Insurance <span>$199</span>
+							<p>还车地点 <span th:text="${m.return_site}">Barcelona, Airport</span>
 							</p>
 						</li>
 						<li class="col-md-6">
-							<h6>Taxes & Fees</h6>
-							<p>Sales Tax (1%) <span>$1</span>
+							<h6 >出行工具</h6>
+							<p><p th:text="${t.car_name}"></p> <span th:text="${t.car_price}">$69</span>
+							</p>
+							<p><p th:text="${t.car_brand}">Coupe</p> <span th:text="${t.car_type}">$69</span>
 							</p>
 						</li>
 						<li class="col-md-6">
-							<h6>Total</h6>
-							<p>Payment on Arrival <span>$288</span>
+							<h6>其他服务</h6>
+							<p>GPSx 1 <span>25元/天</span>
+							</p>
+							<p>专车x 1 <span>50元/天</span>
+							</p>
+						</li>
+						<li class="col-md-6">
+							<h6>总费用</h6>
+							<p>总计 <span>100元</span>
+							</p>
+						</li>
+						<li class="col-md-6">
+							<h6>其他费用</h6>
+							<p>总计 <span>75元</span>
 							</p>
 						</li>
 						<li class="col-md-12">
-							<h6>Billing Information</h6>
-							<p>John Smith
-								<br>Driver’s License ID 1234567890
-								<br>Envato Ltd.
-								<br>Australia
-								<br>Victoria
-								<br>PO Box 16122 Collins Street West
-								<br>+61 3 8376 6284
-								<br>john@envato.com
+							<h6>用户信息</h6>
+							<p th:text="${u.user_name}">
+								<br><p th:text="${u.name}"></p>
+								<br><p th:text="${u.sex}"></p>
+								<br><p th:text="${u.tel}"></p>
+								<br><p th:text="${u.email}"></p>
+								<br><p th:text="${u.licence}"></p>
+								<br><p th:text="${u.id_card}"></p>
+								<br><p th:text="${u.user_remark}"></p>
 								<br>
 							</p>
 						</li>
 						<li class="col-md-12">
-							<h6>Additional Information</h6>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.</p>
+							<h6>订单备注</h6>
+							<p th:text="${u.user_remark}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.</p>
 						</li>
 					</ul>
 					<hr>

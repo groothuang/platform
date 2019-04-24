@@ -114,8 +114,15 @@ class WebController {
     }
 
     @RequestMapping(value = "/center")
-    public String center() {
-        return "web/center";
+    ModelAndView center(MsgInfo msgInfo, ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
+        String user_name = httpSession.getAttribute('user_name')
+        if(user_name == '' || user_name == null){
+            modelAndView.setViewName("redirect:/web/login.html")
+        }else {
+            UserInfo userInfo = postService.findByUser(user_name);
+            modelAndView.addObject("u",userInfo)
+        }
+        return modelAndView;
     }
     @PostMapping(value = "/center")
     ModelAndView center(UserInfo userInfo, ModelAndView modelAndView, HttpSession httpSession){

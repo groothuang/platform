@@ -25,13 +25,13 @@
                 <div class="layui-form-item" pane>
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="user_name" id="user_name" class="layui-input" disabled>
+                        <input type="text" name="user_name" id="user_name" class="layui-input" disabled">
                     </div>
                 </div>
                 <div class="layui-form-item" pane>
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+                        <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" th:value="${u.name}">
                     </div>
                     <div class="layui-input-inline">
                         <input type="radio" name="sex" value="男" title="男" checked>
@@ -41,37 +41,37 @@
                 <div class="layui-form-item" pane>
                     <label class="layui-form-label">联系方式</label>
                     <div class="layui-input-block">
-                        <input type="text" name="tel" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
+                        <input type="text" name="tel" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input" th:value="${u.tel}">
                     </div>
                 </div>
                 <div class="layui-form-item" pane>
                     <label class="layui-form-label">电子邮箱</label>
                     <div class="layui-input-block">
-                        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input">
+                        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input" th:value="${u.email}">
                     </div>
                 </div>
                 <div class="layui-form-item" pane>
                     <label class="layui-form-label">驾驶证编号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="licence" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+                        <input type="text" name="licence" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" th:value="${u.licence}">
                     </div>
                 </div>
                 <div class="layui-form-item" pane>
                     <label class="layui-form-label">身份证号码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="id_card" lay-verify="identity" autocomplete="off" placeholder="" class="layui-input">
+                        <input type="text" name="id_card" lay-verify="identity" autocomplete="off" placeholder="" class="layui-input" th:value="${u.id_card}">
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text" pane>
                     <div class="layui-input-block">
-                        <textarea name="user_remark" placeholder="备注" class="layui-textarea"></textarea>
+                        <textarea name="user_remark" placeholder="备注" class="layui-textarea" th:text="${u.user_remark}"></textarea>
                     </div>
                 </div>
+                <div align="center">
+                    <button class="layui-btn layui-btn-primary layui-btn-radius" lay-filter="submit_button">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary layui-btn-radius">重置</button>
+                </div><br>
             </form>
-            <div align="center">
-                <button class="layui-btn layui-btn-primary layui-btn-radius" lay-filter="submit_button">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary layui-btn-radius">重置</button>
-            </div><br>
             <p align="center" style="font-size: 12px" th:text="${message}" aria-describedby="basic-addon0"></p>
         </div>
     </div>

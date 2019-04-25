@@ -123,7 +123,7 @@
 														</thead>
 														<tbody>
 															<tr>
-																<td>1</td>
+																<td>1 小时</td>
 																<td th:text="${t.car_price} +'元'">25元</td>
 																<td th:text="${t.car_price} +'元'">25元</td>
 															</tr>
@@ -198,6 +198,7 @@
 				<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
 					<div class="x_carbooking_right_section_wrapper float_left">
 						<div class="row">
+							<form method="post" id="msgForm" th:action="@{/web/bookingDone}">
 							<div class="col-md-12">
 								<div class="x_car_checkout_right_main_box_wrapper float_left">
 									<div class="car-filter order-billing margin-top-0">
@@ -276,10 +277,13 @@
 									</div>
 								</div>
 							</div>
+							</form>
 							<div class="col-md-12">
 								<div class="contect_btn contect_btn_contact">
 									<ul>
-										<li><a href="bookingDone.html" th:href="@{'bookingDone.html?car_id='+${t.car_id}}">提交订单 <i class="fa fa-arrow-right"></i></a>
+										<li>
+											<a onclick="document:msgForm.submit()">提交订单 <i class="fa fa-arrow-right"></i></a>
+											<!--<a href="bookingDone.html" th:href="@{'bookingDone.html?car_id='+${t.car_id}}">提交订单 <i class="fa fa-arrow-right"></i></a>-->
 										</li>
 									</ul>
 								</div>

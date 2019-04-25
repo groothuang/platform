@@ -93,31 +93,35 @@
 			<div class="x_car_donr_main_box_wrapper_inner">
 				<div class="order-done"> <i class="icon-checked"><img src="/ui/images/icon-checked.png" alt=""></i>
 					<h4>订单提交成功！</h4>
-					<h4>订单 ID: <span th:text="${order_id}">#887768</span></h4>
+					<h4>订单 ID: <span th:text="${order_id}"></span></h4>
 					<hr>
 					<h4>详细信息</h4>
 					<ul class="row list-unstyled">
 						<li class="col-md-6">
 							<h6>使用日期</h6>
-							<p>从 <span th:text="${m.start_date}">16-01-2018 @ 10:00</span>
+							<p>从 <span th:text="${m.start_date}"></span>
 							</p>
-							<p>到 <span th:text="${m.return_date}">16-01-2018 @ 10:00</span>
+							<p>到 <span th:text="${m.return_date}"></span>
 							</p>
 							<p>总共 <span>X 小时</span>
 							</p>
 						</li>
 						<li class="col-md-6">
 							<h6>地点</h6>
-							<p>取车地点 <span th:text="${m.start_site}">Barcelona, Airport</span>
+							<p>取车地点 <span th:text="${m.start_site}"></span>
 							</p>
-							<p>还车地点 <span th:text="${m.return_site}">Barcelona, Airport</span>
+							<p>还车地点 <span th:text="${m.return_site}"></span>
 							</p>
 						</li>
 						<li class="col-md-6">
 							<h6 >出行工具</h6>
-							<p><p th:text="${t.car_name}"></p> <span th:text="${t.car_price}">$69</span>
+							<p>车辆名称 <span th:text="${t.car_name}"></span>
 							</p>
-							<p><p th:text="${t.car_brand}">Coupe</p> <span th:text="${t.car_type}">$69</span>
+							<p>每小时价格<span th:text="${t.car_price}"></span>
+							</p>
+							<p>类型<span th:text="${t.car_type}"></span>
+							</p>
+							<p>品牌<span th:text="${t.car_brand}"></span>
 							</p>
 						</li>
 						<li class="col-md-6">
@@ -139,20 +143,18 @@
 						</li>
 						<li class="col-md-12">
 							<h6>用户信息</h6>
-							<p th:text="${u.user_name}">
-								<br><p th:text="${u.name}"></p>
-								<br><p th:text="${u.sex}"></p>
-								<br><p th:text="${u.tel}"></p>
-								<br><p th:text="${u.email}"></p>
-								<br><p th:text="${u.licence}"></p>
-								<br><p th:text="${u.id_card}"></p>
-								<br><p th:text="${u.user_remark}"></p>
-								<br>
-							</p>
+							<p>用户名：  <p th:text="${u.user_name}"></p></p>
+							<p>姓名：  <p th:text="${u.name}"></p></p>
+							<p>性别：  <p th:text="${u.sex}"></p></p>
+							<p>联系方式：  <p th:text="${u.tel}"></p></p>
+							<p>电子邮箱：  <p th:text="${u.email}"></p></p>
+							<p>驾驶证编号：  <p th:text="${u.licence}"></p></p>
+							<p>身份证号码：  <p th:text="${u.id_card}"></p></p>
+							<p>用户备注：  <p th:text="${u.user_remark}"></p></p>
 						</li>
 						<li class="col-md-12">
 							<h6>订单备注</h6>
-							<p th:text="${u.user_remark}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.</p>
+							<p th:text="${u.user_remark}"></p>
 						</li>
 					</ul>
 					<hr>

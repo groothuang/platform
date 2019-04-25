@@ -2,6 +2,7 @@ package com.platform.controller
 
 import com.google.gson.Gson
 import com.platform.dao.domain.MsgInfo
+import com.platform.dao.domain.OrderInfo
 import com.platform.dao.domain.ToolsInfo
 import com.platform.dao.domain.User
 import com.platform.dao.domain.UserInfo
@@ -113,7 +114,7 @@ class WebController {
         return modelAndView
     }
 
-    @RequestMapping(value = "/center")
+    @GetMapping(value = "/center")
     ModelAndView center(MsgInfo msgInfo, ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
         String user_name = httpSession.getAttribute('user_name')
         if(user_name == '' || user_name == null){
@@ -135,7 +136,7 @@ class WebController {
         }else {
             modelAndView.addObject("message", "已保存！");
         }
-        modelAndView.setViewName("web/center");
+        modelAndView.setViewName("redirect:/web/center");
         return modelAndView
     }
 
@@ -202,6 +203,7 @@ class WebController {
     ModelAndView doCheckout(MsgInfo msgInfo, ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
         Gson gson = new Gson()
         String car_id = request.getParameter("car_id");
+        httpSession.setAttribute("car_id",car_id)
         msgInfo = httpSession.getAttribute('msgInfo')
         String user_name = httpSession.getAttribute('user_name');
         if (msgInfo == null || user_name == '' || user_name == null){
@@ -217,10 +219,36 @@ class WebController {
         return modelAndView
     }
 
-    @RequestMapping(value = "/bookingDone")
-    ModelAndView bookingDone(MsgInfo msgInfo, ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
+    @GetMapping(value = "/bookingDone")
+    ModelAndView bookingDone(OrderInfo orderInfo, MsgInfo msgInfo, ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
         Gson gson = new Gson()
         String car_id = request.getParameter("car_id");
+        msgInfo = httpSession.getAttribute('msgInfo');
+        String user_name = httpSession.getAttribute('user_name');
+        if (msgInfo == null || user_name == '' || user_name == null){
+            modelAndView.addObject("message", "disabled");
+            modelAndView.setViewName("redirect:/web/index.html")
+        }else {
+            if (orderInfo.order_id != '' || orderInfo.order_id != null){
+                ToolsInfo toolsInfo = postService.findById(car_id);
+                UserInfo userInfo = postService.findByUser(user_name);
+                modelAndView.addObject("order_id",orderInfo.order_id)
+                modelAndView.addObject("order_remark",orderInfo.order_remark)
+                modelAndView.addObject("t",toolsInfo)
+                modelAndView.addObject("u",userInfo)
+                modelAndView.addObject("m",msgInfo)
+            }else {
+                modelAndView.addObject("message", "failed");
+                modelAndView.setViewName("redirect:/web/booking.html")
+            }
+        }
+        return modelAndView
+    }
+
+    @PostMapping(value = "/bookingDone")
+    ModelAndView doBookingDone(MsgInfo msgInfo, ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
+        Gson gson = new Gson()
+        String car_id = httpSession.getAttribute("car_id");
         msgInfo = httpSession.getAttribute('msgInfo');
         String user_name = httpSession.getAttribute('user_name');
         if (msgInfo == null || user_name == '' || user_name == null){

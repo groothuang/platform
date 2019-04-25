@@ -25,7 +25,7 @@
                 <div class="layui-form-item" pane>
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="user_name" id="user_name" class="layui-input" disabled">
+                        <input type="text" name="user_name" id="user_name" class="layui-input" disabled>
                     </div>
                 </div>
                 <div class="layui-form-item" pane>
@@ -34,8 +34,8 @@
                         <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" th:value="${u.name}">
                     </div>
                     <div class="layui-input-inline">
-                        <input type="radio" name="sex" value="男" title="男" checked>
-                        <input type="radio" name="sex" value="女" title="女" >
+                        <input type="radio" name="sex" value="男" title="男" th:field="*{u.sex}">
+                        <input type="radio" name="sex" value="女" title="女" th:field="*{u.sex}">
                     </div>
                 </div>
                 <div class="layui-form-item" pane>
@@ -68,8 +68,8 @@
                     </div>
                 </div>
                 <div align="center">
-                    <button class="layui-btn layui-btn-primary layui-btn-radius" lay-filter="submit_button">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary layui-btn-radius">重置</button>
+                    <button class="layui-btn layui-btn-primary layui-btn-radius" lay-filter="submit_button">确认修改</button>
+                    <a href='/web/passwordForm.html'>   忘记密码</a>
                 </div><br>
             </form>
             <p align="center" style="font-size: 12px" th:text="${message}" aria-describedby="basic-addon0"></p>

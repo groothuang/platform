@@ -58,11 +58,11 @@ class WebController {
             modelAndView.setViewName("redirect:/web/index.html");
         }
         if  (flag == "none"){
-            modelAndView.addObject("loginError", "用户名不存在！");
+            httpSession.setAttribute("loginError", "用户名不存在！");
             modelAndView.setViewName("web/login");
         }
         if (flag == "wrong") {
-            modelAndView.addObject("loginError", "密码不正确！");
+            httpSession.setAttribute("loginError", "密码不正确！");
             modelAndView.setViewName("web/login");
         }
         return modelAndView;
@@ -86,11 +86,11 @@ class WebController {
             modelAndView.setViewName("redirect:/web/login");
         }
         if (flag == "exist"){
-            modelAndView.addObject("loginError", "用户名已存在！");
+            httpSession.setAttribute("loginError", "用户名已存在！");
             modelAndView.setViewName("web/register");
         }
         if (flag == "wrong") {
-            modelAndView.addObject("loginError", "密码不一致！");
+            httpSession.setAttribute("loginError", "密码不一致！");
             modelAndView.setViewName("web/register");
         }
         return modelAndView;
@@ -106,16 +106,16 @@ class WebController {
         println(gson.toJson(userInfo))
         String flag = postService.forget(userInfo);
         if (flag == "0"){
-            modelAndView.addObject("message", "手机号不正确！");
+            httpSession.setAttribute("message", "手机号不正确！");
         }else {
-            modelAndView.addObject("message", "修改成功！");
+            httpSession.setAttribute("message", "修改成功！");
         }
         modelAndView.setViewName("web/forgetForm");
         return modelAndView
     }
 
-    @GetMapping(value = "/center")
-    ModelAndView center(MsgInfo msgInfo, ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
+    @RequestMapping(value = "/center")
+    ModelAndView center(ModelAndView modelAndView, HttpServletRequest request, HttpSession httpSession){
         String user_name = httpSession.getAttribute('user_name')
         if(user_name == '' || user_name == null){
             modelAndView.setViewName("redirect:/web/login.html")
@@ -127,14 +127,12 @@ class WebController {
     }
     @PostMapping(value = "/center")
     ModelAndView center(UserInfo userInfo, ModelAndView modelAndView, HttpSession httpSession){
-        Gson gson = new Gson();
         userInfo.user_name = httpSession.getAttribute("user_name");
-        println(gson.toJson(userInfo))
         String flag = postService.updateUser(userInfo);
         if (flag == "0"){
-            modelAndView.addObject("message", "保存失败！");
+            httpSession.setAttribute("message", "保存失败！");
         }else {
-            modelAndView.addObject("message", "已保存！");
+            httpSession.setAttribute("message", "已保存！");
         }
         modelAndView.setViewName("redirect:/web/center");
         return modelAndView
@@ -151,9 +149,9 @@ class WebController {
         println(gson.toJson(userInfo))
         String flag = postService.updatePassword(userInfo);
         if (flag == "0"){
-            modelAndView.addObject("message", "旧密码错误！");
+            httpSession.setAttribute("message", "旧密码错误！");
         }else {
-            modelAndView.addObject("message", "修改成功！");
+            httpSession.setAttribute("message", "修改成功！");
         }
         modelAndView.setViewName("web/passwordForm");
         return modelAndView
@@ -166,17 +164,13 @@ class WebController {
 
     @PostMapping(value = "/postMsg")
     ModelAndView postMsg(MsgInfo msgInfo, ModelAndView modelAndView, HttpSession httpSession){
-        MsgInfo result = postService.postMsg(msgInfo)
-        httpSession.setAttribute("msgInfo", result)
-        modelAndView.addObject("msgInfo",result)
+        httpSession.setAttribute("orderInfo", postService.postMsg(msgInfo))
         modelAndView.setViewName("redirect:/web/booking.html")
         return modelAndView
     }
 
     @RequestMapping(value = "/booking")
-    ModelAndView doBooking(MsgInfo msgInfo, ModelAndView modelAndView, HttpSession httpSession){
-        msgInfo = httpSession.getAttribute('msgInfo')
-        Gson gson = new Gson()
+    ModelAndView doBooking(ModelAndView modelAndView, HttpSession httpSession){
         List<ToolsInfo> tools = postService.selectTools()
         modelAndView.addObject("tools",tools)
         modelAndView.addObject("count",toolsInfoService.countAll())
@@ -189,7 +183,7 @@ class WebController {
         String user_name = httpSession.getAttribute('user_name');
         Gson gson = new Gson()
         if (msgInfo == null || user_name == '' || user_name == null){
-            modelAndView.addObject("message", "disabled");
+            httpSession.setAttribute("message", "disabled");
             modelAndView.setViewName("redirect:/web/booking.html")
         }else {
             String car_id = request.getParameter("car_id");
@@ -207,7 +201,7 @@ class WebController {
         msgInfo = httpSession.getAttribute('msgInfo')
         String user_name = httpSession.getAttribute('user_name');
         if (msgInfo == null || user_name == '' || user_name == null){
-            modelAndView.addObject("message", "disabled");
+            httpSession.setAttribute("message", "disabled");
             modelAndView.setViewName("redirect:/web/index.html")
         }else {
             ToolsInfo toolsInfo = postService.findById(car_id);
@@ -225,7 +219,7 @@ class WebController {
         msgInfo = httpSession.getAttribute('msgInfo');
         String user_name = httpSession.getAttribute('user_name');
         if (msgInfo == null || user_name == '' || user_name == null){
-            modelAndView.addObject("message", "disabled");
+            httpSession.setAttribute("message", "disabled");
             modelAndView.setViewName("redirect:/web/index.html")
         }else {
             String order_id = postService.addOrder(user_name,car_id,msgInfo);
@@ -237,7 +231,7 @@ class WebController {
                 modelAndView.addObject("u",userInfo)
                 modelAndView.addObject("m",msgInfo)
             }else {
-                modelAndView.addObject("message", "failed");
+                httpSession.setAttribute("message", "failed");
                 modelAndView.setViewName("redirect:/web/booking.html")
             }
         }

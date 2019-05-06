@@ -1,15 +1,13 @@
 package com.platform.service
 
 import com.platform.dao.domain.MsgInfo
+import com.platform.dao.domain.OrderInfo
 import com.platform.dao.domain.ToolsInfo
 import com.platform.dao.domain.UserInfo
 
 interface PostService {
-    String loginCheck(UserInfo userInfo);
 
-    String registerCheck(UserInfo userInfo);
-
-    MsgInfo postMsg(MsgInfo msgInfo)
+    OrderInfo postMsg(MsgInfo msgInfo)
 
     int updatePassword(UserInfo userInfo)
 

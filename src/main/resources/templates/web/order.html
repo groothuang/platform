@@ -49,29 +49,29 @@
             <div class="x_blog_sidebar_main_wrapper float_left padding_tb_100">
                 <div class="x_car_donr_main_box_wrapper_inner">
                     <div class="order-done"> <i class="icon-checked"><img src="/ui/images/icon-checked.png" alt=""></i>
-                        <h4>订单 ID: <span th:text="${order_id}"></span></h4>
+                        <h4>订单 ID: <span th:text="${o.order_id}"></span></h4>
                         <hr>
                         <h4>详细信息</h4>
                         <ul class="row list-unstyled">
                             <li class="col-md-6">
                                 <h6>使用日期</h6>
-                                <p>从 <span th:text="${m.start_date}"></span>
+                                <p>从 <span th:text="${o.start_date}"></span>
                                 </p>
-                                <p>到 <span th:text="${m.return_date}"></span>
+                                <p>到 <span th:text="${o.return_date}"></span>
                                 </p>
                                 <p>总共 <span>X 小时</span>
                                 </p>
                             </li>
                             <li class="col-md-6">
                                 <h6>地点</h6>
-                                <p>取车地点 <span th:text="${m.start_site}"></span>
+                                <p>取车地点 <span th:text="${o.start_site}"></span>
                                 </p>
-                                <p>还车地点 <span th:text="${m.return_site}"></span>
+                                <p>还车地点 <span th:text="${o.return_site}"></span>
                                 </p>
                             </li>
                             <li class="col-md-6">
                                 <h6 >出行工具</h6>
-                                <p>车辆名称 <span th:text="${t.car_name}"></span>
+                                <p>车辆名称 <span th:text="${o.car_name}"></span>
                                 </p>
                                 <p>每小时价格<span th:text="${t.car_price}"></span>
                                 </p>
@@ -99,7 +99,7 @@
                             </li>
                             <li class="col-md-12">
                                 <h6>用户信息</h6>
-                                <p>用户名：  <p th:text="${u.user_name}"></p></p>
+                                <p>用户名：  <p th:text="${o.user_name}"></p></p>
                                 <p>姓名：  <p th:text="${u.name}"></p></p>
                                 <p>性别：  <p th:text="${u.sex}"></p></p>
                                 <p>联系方式：  <p th:text="${u.tel}"></p></p>

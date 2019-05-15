@@ -93,7 +93,7 @@
     </select>
 
     <select id="findByUser" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">
-        select * from order_info where user_id=#{user_id}
+        select * from order_info where user_name=#{user_name}
     </select>
 
     <select id="findByCar" parameterType="String" resultType="com.platform.dao.domain.OrderInfo">

@@ -58,7 +58,8 @@
 								<input type="checkbox" checked>
 								<span class="control__indicator"></span>
 							</label>
-							<span style="font-size: 12px;color: red" th:text="${session.loginError}" aria-describedby="basic-addon0"></span>
+							<span id="basic-addon0">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span style="font-size: 12px;color: red" th:text="${message}" aria-describedby="basic-addon0"></span>
 						</div>
 						<div class="login_btn_wrapper">
 							<a onclick="document:registerForm.submit()" class="btn btn-primary login_btn"> 注册 </a>

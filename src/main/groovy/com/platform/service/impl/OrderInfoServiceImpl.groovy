@@ -50,6 +50,10 @@ class OrderInfoServiceImpl implements OrderInfoService {
         return orderInfoMapper.countAll();
     }
 
+    OrderInfo findByUser(String user_name){
+        return orderInfoMapper.findByUser(user_name)
+    }
+
     int insert(OrderInfo orderInfo){
         //判断输入订单ID是否存在
         if(orderInfo.user_id != '' || orderInfo.user_id != null){
@@ -245,4 +249,6 @@ class OrderInfoServiceImpl implements OrderInfoService {
         }
         return orderInfoMapper.enable(orderInfo)
     }
+
+
 }

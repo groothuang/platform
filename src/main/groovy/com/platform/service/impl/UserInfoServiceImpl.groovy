@@ -37,7 +37,6 @@ class UserInfoServiceImpl implements UserInfoService {
         }else {
             return 0
         }
-
     }
 
     int insertUser(UserInfo userInfo){
@@ -89,6 +88,10 @@ class UserInfoServiceImpl implements UserInfoService {
 
     UserInfo findById(String id){
         return userInfoMapper.findById(id)
+    }
+
+    UserInfo findByName(String name){
+        return userInfoMapper.findByName(name)
     }
 
     String selectAdmin(){

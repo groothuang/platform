@@ -10,5 +10,4 @@ class MsgInfo {
     String return_date_h
     String return_date_m
     String self_driving
-    String sdate = start_date_h
 }

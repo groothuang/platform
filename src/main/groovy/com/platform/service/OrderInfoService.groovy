@@ -13,6 +13,8 @@ interface OrderInfoService {
 
     OrderInfo findById(String id);
 
+    OrderInfo findByUser(String user_name)
+
     int insert(OrderInfo orderInfo);
 
     int update(OrderInfo orderInfo);

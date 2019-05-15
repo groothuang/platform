@@ -142,8 +142,8 @@
 											<div class="panel-body">
 												<div class="x_car_acc_filter_date">
 													<ul>
-														<li th:text="${m.start_date}">Wed 20 Mar 2019 @ 10:00</li>
-														<li th:text="${m.start_site}">广州, 白云机场</li>
+														<li th:text="${o.start_date}">Wed 20 Mar 2019 @ 10:00</li>
+														<li th:text="${o.start_site}">广州, 白云机场</li>
 													</ul>
 												</div>
 											</div>
@@ -158,8 +158,8 @@
 											<div class="panel-body">
 												<div class="x_car_acc_filter_date">
 													<ul>
-														<li th:text="${m.return_date}">Wed 20 Mar 2019 @ 12:00</li>
-														<li th:text="${m.return_site}">广州, 珠江新城</li>
+														<li th:text="${o.return_date}">Wed 20 Mar 2019 @ 12:00</li>
+														<li th:text="${o.return_site}">广州, 珠江新城</li>
 													</ul>
 												</div>
 											</div>
@@ -198,7 +198,7 @@
 				<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
 					<div class="x_carbooking_right_section_wrapper float_left">
 						<div class="row">
-							<form method="post" id="msgForm" th:action="@{/web/bookingDone}">
+							<form method="post" id="msgForm" th:action="@{/web/submit}">
 							<div class="col-md-12">
 								<div class="x_car_checkout_right_main_box_wrapper float_left">
 									<div class="car-filter order-billing margin-top-0">

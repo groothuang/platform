@@ -5,9 +5,11 @@ import com.platform.dao.domain.OrderInfo
 import com.platform.dao.domain.ToolsInfo
 import com.platform.dao.domain.UserInfo
 
-interface PostService {
+interface UserService {
 
-    OrderInfo postMsg(MsgInfo msgInfo)
+    String loginCheck(UserInfo userInfo);
+
+    String registerCheck(UserInfo userInfo);
 
     int updatePassword(UserInfo userInfo)
 
@@ -15,13 +17,4 @@ interface PostService {
 
     int updateUser(UserInfo userInfo)
 
-    List<ToolsInfo> selectTools()
-
-    Map getUrlParams(String url)
-
-    ToolsInfo findById(String id);
-
-    UserInfo findByUser(String name)
-
-    String addOrder(String name,String id,MsgInfo msgInfo)
 }

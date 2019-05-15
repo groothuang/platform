@@ -23,4 +23,6 @@ interface UserInfoService {
     int countAll();
 
     UserInfo findById(String id);
+
+    UserInfo findByName(String name);
 }
